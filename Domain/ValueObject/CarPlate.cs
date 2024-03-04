@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Car.ValueObject;
+namespace Domain.ValueObject;
 
-internal class CarPlate
+public class CarPlate
 {
     public string Value { get; init; }
 

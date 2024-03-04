@@ -1,15 +1,15 @@
-﻿using Domain.Car.ValueObject;
+﻿using Domain.ValueObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Car.Entity;
+namespace Domain.Entity;
 
-internal class Car
+public class Car
 {
-    private CarPlate Plate { get; }
+    public CarPlate Plate { get; }
 
     public Car(CarPlate plate)
     {
