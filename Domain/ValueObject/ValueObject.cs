@@ -21,7 +21,7 @@ public abstract class ValueObject<T> where T : IConvertible, IEquatable<T>, ICom
         return Value.GetHashCode();
     }
 
-    public override string ToString()
+    public override string? ToString()
     {
         return Value.ToString();
     }
