@@ -3,14 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{CB597AFA-DE4C-4F43-A400-518609D21667}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{CB597AFA-DE4C-4F43-A400-518609D21667}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F2807B6F-6F8A-49B8-969B-79B298D2CE4C}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitTests", "Domain.UnitTests\Domain.UnitTests.csproj", "{87EDB485-3051-4384-9341-A5816D9FEDDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.UnitTests", "Domain.UnitTests\Domain.UnitTests.csproj", "{87EDB485-3051-4384-9341-A5816D9FEDDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{1C11C3C5-A02E-440B-9A3B-BF62A45A24A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +29,10 @@ Global
 		{87EDB485-3051-4384-9341-A5816D9FEDDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87EDB485-3051-4384-9341-A5816D9FEDDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87EDB485-3051-4384-9341-A5816D9FEDDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C11C3C5-A02E-440B-9A3B-BF62A45A24A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C11C3C5-A02E-440B-9A3B-BF62A45A24A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C11C3C5-A02E-440B-9A3B-BF62A45A24A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C11C3C5-A02E-440B-9A3B-BF62A45A24A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
