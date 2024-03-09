@@ -2,7 +2,7 @@
 
 namespace Domain.Entity;
 
-public class Car(CarPlate plate)
+public sealed class Car(CarPlate plate)
 {
     public CarPlate Plate { get; } = plate;
 }

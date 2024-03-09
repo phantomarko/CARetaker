@@ -1,6 +1,8 @@
 ﻿namespace Domain.ValueObject;
 
-public class CarPlate(string value)
+public sealed class CarPlate(string value) : ValueObject<string>(value)
 {
-    public string Value { get; init; } = value;
+    protected override void Validate(string value)
+    {
+    }
 }
