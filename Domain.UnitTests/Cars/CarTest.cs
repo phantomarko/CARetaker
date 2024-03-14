@@ -17,7 +17,7 @@ internal class CarTest
     [TestCaseSource(nameof(ValidCarData))]
     public void Constructor_Should_ReturnCar(CarPlate plate)
     {
-        Car car = new(plate);
+        Car car = Car.Create(plate);
 
         Assert.That(car.Plate, Is.EqualTo(plate));
     }

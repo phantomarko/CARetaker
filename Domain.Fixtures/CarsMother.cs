@@ -8,7 +8,7 @@ public static class CarsMother
     
     public static Car CreateCar(CarPlate? plate = null)
     {
-        return new Car(plate ?? CreateCarPlate());
+        return Car.Create(plate ?? CreateCarPlate());
     }
 
     public static CarPlate CreateCarPlate(string? value = null)
