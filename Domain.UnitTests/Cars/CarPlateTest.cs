@@ -1,6 +1,6 @@
-﻿using Domain.ValueObject;
+﻿using Domain.Cars;
 
-namespace Domain.UnitTests.Entity;
+namespace Domain.UnitTests.Cars;
 
 [TestFixture]
 internal class CarPlateTest
@@ -10,7 +10,7 @@ internal class CarPlateTest
     [TestCase("MA2888AZ")] // provinces
     public void Constructor_Should_ReturnCarPlate(string value)
     {
-        CarPlate plate = new(value);
+        CarPlate plate = CarPlate.Create(value);
 
         Assert.That(plate.Value, Is.EqualTo(value));
     }

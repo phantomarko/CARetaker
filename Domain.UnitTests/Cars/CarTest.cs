@@ -1,8 +1,7 @@
-﻿using Domain.Entity;
+﻿using Domain.Cars;
 using Domain.Fixtures;
-using Domain.ValueObject;
 
-namespace Domain.UnitTests.Entity;
+namespace Domain.UnitTests.Cars;
 
 [TestFixture]
 internal class CarTest
@@ -11,7 +10,7 @@ internal class CarTest
     {
         get
         {
-            yield return new TestCaseData(ValueObjectMother.CarPlate());
+            yield return new TestCaseData(CarsMother.CreateCarPlate());
         }
     }
 

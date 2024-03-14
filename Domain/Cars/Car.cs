@@ -1,6 +1,4 @@
-﻿using Domain.ValueObject;
-
-namespace Domain.Entity;
+﻿namespace Domain.Cars;
 
 public sealed class Car(CarPlate plate)
 {
