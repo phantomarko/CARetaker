@@ -10,7 +10,7 @@ internal class CarPlateTest
     [TestCase("H7465BZD")] // EU historical
     [TestCase("MA2888AZ")] // provinces with 2 letter
     [TestCase("M2888AZ")] // provinces with one letter
-    public void Create_Should_ReturnCarPlate(string value)
+    public void Create_Should_ReturnInstance(string value)
     {
         CarPlate plate = CarPlate.Create(value);
 
@@ -23,8 +23,8 @@ internal class CarPlateTest
     [TestCase("h7465bzd")]
     [TestCase("ma2888az")]
     [TestCase("m2888az")]
-    public void Constructor_Should_ThrowException(string value)
+    public void Create_Should_ThrowException(string value)
     {
-        Assert.Throws<InvalidCarPlateException>(() => CarPlate.Create(value));
+        Assert.Throws<CarPlateFormatIsInvalidException>(() => CarPlate.Create(value));
     }
 }

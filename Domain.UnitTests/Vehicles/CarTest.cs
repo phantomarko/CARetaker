@@ -6,16 +6,16 @@ namespace Domain.UnitTests.Vehicles;
 [TestFixture]
 internal class CarTest
 {
-    private static IEnumerable<TestCaseData> ValidCarData
+    private static IEnumerable<TestCaseData> ValidCreateData
     {
         get
         {
-            yield return new TestCaseData(CarsMother.CreateCarPlate());
+            yield return new TestCaseData(VehiclesMother.CreateCarPlate());
         }
     }
 
-    [TestCaseSource(nameof(ValidCarData))]
-    public void Constructor_Should_ReturnCar(CarPlate plate)
+    [TestCaseSource(nameof(ValidCreateData))]
+    public void Create_Should_ReturnInstance(CarPlate plate)
     {
         Car car = Car.Create(plate);
 

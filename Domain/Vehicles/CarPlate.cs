@@ -19,7 +19,7 @@ public sealed record CarPlate
             string.IsNullOrEmpty(value)
             || !ValidFormats.Any(format => Regex.IsMatch(value, format)))
         {
-            throw new InvalidCarPlateException();
+            throw new CarPlateFormatIsInvalidException();
         }
 
         return new CarPlate(value);

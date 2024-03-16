@@ -2,7 +2,7 @@
 
 namespace Domain.Fixtures;
 
-public static class CarsMother
+public static class VehiclesMother
 {
     private const string CarPlateDefault = "0000BBB";
     
