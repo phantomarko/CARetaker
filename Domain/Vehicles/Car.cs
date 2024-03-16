@@ -8,10 +8,11 @@ public sealed class Car : Vehicle
 
     public CarPlate Plate { get; private set; }
 
-    public static Car Create(VehicleName name, CarPlate plate)
+    public static Car Create(VehicleId id, VehicleName name, CarPlate plate)
     {
         return new Car()
         {
+            Id = id,
             Name = name,
             Plate = plate
         };

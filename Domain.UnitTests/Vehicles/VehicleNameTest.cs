@@ -19,7 +19,7 @@ internal class VehicleNameTest
     }
 
     [TestCaseSource(nameof(ValidNames))]
-    public void Create_Should_ReturnInstance(string value)
+    public void Create_Should_ReturnVehicleName(string value)
     {
         VehicleName name = VehicleName.Create(value);
 
@@ -27,7 +27,7 @@ internal class VehicleNameTest
     }
 
     [Test]
-    public void Create_Should_ThrowException_WhenLengthIsGreaterThanAllowed()
+    public void Create_Should_ThrowVehicleNameLengthIsInvalidException()
     {
         string value = new string('a', VehicleName.MaximumLength + 1);
         Assert.Throws<VehicleNameLengthIsInvalidException>(() => VehicleName.Create(value));
@@ -35,7 +35,7 @@ internal class VehicleNameTest
 
     [TestCase("")]
     [TestCase("     ")]
-    public void Create_Should_ThrowException_WhenValueIsEmptyOrWhiteSpace(string value)
+    public void Create_Should_ThrowVehicleNameIsEmptyException(string value)
     {
         Assert.Throws<VehicleNameIsEmptyException>(() => VehicleName.Create(value));
     }
