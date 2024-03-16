@@ -1,3 +1,3 @@
 ﻿namespace Domain.Vehicles;
 
-public record VehicleId(Guid Value);
+public sealed record VehicleId(Guid Value);

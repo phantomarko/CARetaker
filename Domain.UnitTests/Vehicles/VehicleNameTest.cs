@@ -1,6 +1,5 @@
-﻿using Domain.Fixtures;
-using Domain.Vehicles;
-using Domain.Vehicles.Exception;
+﻿using Domain.Vehicles;
+using Domain.Vehicles.Exceptions;
 
 namespace Domain.UnitTests.Vehicles;
 

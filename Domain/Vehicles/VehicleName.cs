@@ -1,4 +1,4 @@
-﻿using Domain.Vehicles.Exception;
+﻿using Domain.Vehicles.Exceptions;
 
 namespace Domain.Vehicles;
 
@@ -16,6 +16,7 @@ public sealed record VehicleName
         {
             throw new VehicleNameIsEmptyException();
         }
+
         if (MaximumLength < value.Length)
         {
             throw new VehicleNameLengthIsInvalidException();
