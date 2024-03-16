@@ -10,15 +10,16 @@ internal class CarTest
     {
         get
         {
-            yield return new TestCaseData(VehiclesMother.CreateCarPlate());
+            yield return new TestCaseData(VehiclesMother.CreateVehicleName(), VehiclesMother.CreateCarPlate());
         }
     }
 
     [TestCaseSource(nameof(ValidCreateData))]
-    public void Create_Should_ReturnInstance(CarPlate plate)
+    public void Create_Should_ReturnInstance(VehicleName name, CarPlate plate)
     {
-        Car car = Car.Create(plate);
+        Car car = Car.Create(name, plate);
 
+        Assert.That(car.Name, Is.EqualTo(name));
         Assert.That(car.Plate, Is.EqualTo(plate));
     }
 }
