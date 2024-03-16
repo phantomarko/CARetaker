@@ -1,7 +1,7 @@
-﻿using Domain.Cars.Exception;
+﻿using Domain.Vehicles.Exception;
 using System.Text.RegularExpressions;
 
-namespace Domain.Cars;
+namespace Domain.Vehicles;
 
 public sealed record CarPlate
 {

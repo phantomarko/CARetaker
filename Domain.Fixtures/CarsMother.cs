@@ -1,4 +1,4 @@
-﻿using Domain.Cars;
+﻿using Domain.Vehicles;
 
 namespace Domain.Fixtures;
 

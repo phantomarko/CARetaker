@@ -1,7 +1,7 @@
-﻿using Domain.Cars;
-using Domain.Fixtures;
+﻿using Domain.Fixtures;
+using Domain.Vehicles;
 
-namespace Domain.UnitTests.Cars;
+namespace Domain.UnitTests.Vehicles;
 
 [TestFixture]
 internal class CarTest

@@ -1,7 +1,7 @@
-﻿using Domain.Cars;
-using Domain.Cars.Exception;
+﻿using Domain.Vehicles;
+using Domain.Vehicles.Exception;
 
-namespace Domain.UnitTests.Cars;
+namespace Domain.UnitTests.Vehicles;
 
 [TestFixture]
 internal class CarPlateTest

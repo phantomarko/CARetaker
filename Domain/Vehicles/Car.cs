@@ -1,6 +1,6 @@
-﻿namespace Domain.Cars;
+﻿namespace Domain.Vehicles;
 
-public sealed class Car
+public sealed class Car : Vehicle
 {
     private Car()
     {
@@ -11,8 +11,9 @@ public sealed class Car
     public static Car Create(CarPlate plate)
     {
         return new Car()
-        { 
-            Plate = plate 
+
+        {
+            Plate = plate
         };
     }
 }
