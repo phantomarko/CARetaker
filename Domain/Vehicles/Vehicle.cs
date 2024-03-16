@@ -1,13 +1,13 @@
-﻿namespace Domain.Vehicles;
+﻿using Domain.Primitives;
 
-public abstract class Vehicle
+namespace Domain.Vehicles;
+
+public abstract class Vehicle : Entity
 {
-    protected Vehicle(VehicleId id, VehicleName name)
+    protected Vehicle(Guid id, VehicleName name) : base(id)
     {
-        Id = id;
         Name = name;
     }
 
-    public VehicleId Id { get; protected init; }
     public VehicleName Name { get; protected set; }
 }

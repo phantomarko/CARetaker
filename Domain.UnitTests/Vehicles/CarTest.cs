@@ -18,7 +18,7 @@ internal class CarTest
     }
 
     [TestCaseSource(nameof(ValidCreateData))]
-    public void Create_Should_ReturnCar(VehicleId id, VehicleName name, CarPlate plate)
+    public void Create_Should_ReturnCar(Guid id, VehicleName name, CarPlate plate)
     {
         Car car = Car.Create(id, name, plate);
 

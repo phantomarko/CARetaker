@@ -8,7 +8,7 @@ public static class VehiclesMother
     private const string VehicleNameDefault = "Some car";
 
     public static Car CreateCar(
-        VehicleId? id = null,
+        Guid? id = null,
         VehicleName? name = null,
         CarPlate? plate = null)
     {
@@ -18,9 +18,9 @@ public static class VehiclesMother
             plate ?? CreateCarPlate());
     }
 
-    public static VehicleId CreateVehicleId(Guid? value = null)
+    public static Guid CreateVehicleId(string? value = null)
     {
-        return new VehicleId(value ?? Guid.NewGuid());
+        return value is null ? Guid.NewGuid() : new Guid(value);
     }
 
     public static VehicleName CreateVehicleName(string? value = null)

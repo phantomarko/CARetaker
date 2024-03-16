@@ -2,7 +2,7 @@
 
 public sealed class Car : Vehicle
 {
-    private Car(VehicleId id, VehicleName name, CarPlate plate) 
+    private Car(Guid id, VehicleName name, CarPlate plate) 
         : base(id, name)
     {
         Plate = plate;
@@ -10,7 +10,7 @@ public sealed class Car : Vehicle
 
     public CarPlate Plate { get; private set; }
 
-    public static Car Create(VehicleId id, VehicleName name, CarPlate plate)
+    public static Car Create(Guid id, VehicleName name, CarPlate plate)
     {
         return new Car(
             id,
