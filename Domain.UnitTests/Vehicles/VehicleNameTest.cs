@@ -1,41 +1,50 @@
-﻿using Domain.Vehicles;
-using Domain.Vehicles.Exceptions;
+﻿using Domain.Vehicles.Exceptions;
+using Domain.Vehicles;
 
 namespace Domain.UnitTests.Vehicles;
 
-[TestFixture]
-internal class VehicleNameTest
+public class VehicleNameTest
 {
-    private static IEnumerable<TestCaseData> ValidNames
-    {
-        get
-        {
-            yield return new TestCaseData("A");
-            yield return new TestCaseData("Str4ng3 name!");
-            yield return new TestCaseData(new string('A', VehicleName.MaximumLength - 1));
-            yield return new TestCaseData(new string('A', VehicleName.MaximumLength));
-        }
-    }
-
-    [TestCaseSource(nameof(ValidNames))]
+    [Theory]
+    [ClassData(typeof(VehicleNameCreateValidData))]
     public void Create_Should_ReturnVehicleName(string value)
     {
         VehicleName name = VehicleName.Create(value);
 
-        Assert.That(name.Value, Is.EqualTo(value));
+        Assert.Equal(name.Value, value);
     }
 
-    [Test]
-    public void Create_Should_ThrowVehicleNameLengthIsInvalidException()
+    [Theory]
+    [ClassData(typeof(VehicleNameCreateInvalidData))]
+    public void Create_Should_ThrowException(Type expectedException, string value)
     {
-        string value = new string('a', VehicleName.MaximumLength + 1);
-        Assert.Throws<VehicleNameLengthIsInvalidException>(() => VehicleName.Create(value));
+        Assert.Throws(expectedException, () => VehicleName.Create(value));
     }
+}
 
-    [TestCase("")]
-    [TestCase("     ")]
-    public void Create_Should_ThrowVehicleNameIsEmptyException(string value)
+public class VehicleNameCreateValidData : TheoryData<string>
+{
+    public VehicleNameCreateValidData()
     {
-        Assert.Throws<VehicleNameIsEmptyException>(() => VehicleName.Create(value));
+        Add("A");
+        Add("Str4ng3 name!");
+        Add(new string('A', VehicleName.MaximumLength - 1));
+        Add(new string('A', VehicleName.MaximumLength));
+    }
+}
+
+public class VehicleNameCreateInvalidData : TheoryData<Type, string>
+{
+    public VehicleNameCreateInvalidData()
+    {
+        Add(
+            typeof(VehicleNameIsEmptyException),
+            "");
+        Add(
+            typeof(VehicleNameIsEmptyException),
+            "     ");
+        Add(
+            typeof(VehicleNameLengthIsInvalidException),
+            new string('A', VehicleName.MaximumLength + 1));
     }
 }
