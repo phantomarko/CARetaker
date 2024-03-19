@@ -7,12 +7,12 @@ public static class VehiclesMother
     private const string VehicleNameDefault = "Some car";
     private const string PlateDefault = "0000BBB";
 
-    public static Car MakeCar(
+    public static Vehicle MakeVehicle(
         Guid? id = null,
         VehicleName? name = null,
         RegistrationPlate? plate = null)
     {
-        return Car.Create(
+        return Vehicle.Create(
             id ?? Guid.NewGuid(),
             name ?? MakeVehicleName(),
             plate ?? MakeRegistrationPlate());
