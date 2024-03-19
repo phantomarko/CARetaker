@@ -7,7 +7,7 @@ public class CarTest
 {
     [Theory]
     [ClassData(typeof(CarCreateValidData))]
-    public void Create_Should_ReturnCar(Guid id, VehicleName name, CarPlate plate)
+    public void Create_Should_ReturnCar(Guid id, VehicleName name, RegistrationPlate plate)
     {
         var car = Car.Create(id, name, plate);
 
@@ -17,13 +17,13 @@ public class CarTest
     }
 }
 
-public class CarCreateValidData : TheoryData<Guid, VehicleName, CarPlate>
+public class CarCreateValidData : TheoryData<Guid, VehicleName, RegistrationPlate>
 {
     public CarCreateValidData()
     {
         Add(
-            VehiclesMother.CreateVehicleId(),
-            VehiclesMother.CreateVehicleName(),
-            VehiclesMother.CreateCarPlate());
+            Guid.NewGuid(),
+            VehiclesMother.MakeVehicleName(),
+            VehiclesMother.MakeRegistrationPlate());
     }
 }

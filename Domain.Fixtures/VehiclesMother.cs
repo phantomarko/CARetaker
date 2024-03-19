@@ -4,32 +4,27 @@ namespace Domain.Fixtures;
 
 public static class VehiclesMother
 {
-    private const string CarPlateDefault = "0000BBB";
     private const string VehicleNameDefault = "Some car";
+    private const string PlateDefault = "0000BBB";
 
-    public static Car CreateCar(
+    public static Car MakeCar(
         Guid? id = null,
         VehicleName? name = null,
-        CarPlate? plate = null)
+        RegistrationPlate? plate = null)
     {
         return Car.Create(
-            id ?? CreateVehicleId(),
-            name ?? CreateVehicleName(),
-            plate ?? CreateCarPlate());
+            id ?? Guid.NewGuid(),
+            name ?? MakeVehicleName(),
+            plate ?? MakeRegistrationPlate());
     }
 
-    public static Guid CreateVehicleId(string? value = null)
-    {
-        return value is null ? Guid.NewGuid() : new Guid(value);
-    }
-
-    public static VehicleName CreateVehicleName(string? value = null)
+    public static VehicleName MakeVehicleName(string? value = null)
     {
         return VehicleName.Create(value ?? VehicleNameDefault);
     }
 
-    public static CarPlate CreateCarPlate(string? value = null)
+    public static RegistrationPlate MakeRegistrationPlate(string? value = null)
     {
-        return CarPlate.Create(value ?? CarPlateDefault);
+        return RegistrationPlate.Create(value ?? PlateDefault);
     }
 }

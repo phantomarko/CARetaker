@@ -17,7 +17,7 @@ public sealed class CreateCarCommandHandler : IRequestHandler<CreateCarCommand, 
         var car = Car.Create(
             id: Guid.NewGuid(),
             name: VehicleName.Create(request.Name),
-            plate: CarPlate.Create(request.Plate));
+            plate: RegistrationPlate.Create(request.Plate));
 
         _productRepository.Add(car);
 
