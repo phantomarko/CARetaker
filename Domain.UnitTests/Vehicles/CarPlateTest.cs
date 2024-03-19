@@ -12,7 +12,7 @@ public class CarPlateTest
     [InlineData("M2888AZ")] // provinces with one letter
     public void Create_Should_ReturnCarPlate(string value)
     {
-        CarPlate plate = CarPlate.Create(value);
+        var plate = CarPlate.Create(value);
 
         Assert.Equal(plate.Value, value);
     }

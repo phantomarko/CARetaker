@@ -9,7 +9,7 @@ public class CarTest
     [ClassData(typeof(CarCreateValidData))]
     public void Create_Should_ReturnCar(Guid id, VehicleName name, CarPlate plate)
     {
-        Car car = Car.Create(id, name, plate);
+        var car = Car.Create(id, name, plate);
 
         Assert.Equal(car.Id, id);
         Assert.Equal(car.Name, name);

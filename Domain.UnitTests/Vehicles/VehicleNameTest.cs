@@ -9,7 +9,7 @@ public class VehicleNameTest
     [ClassData(typeof(VehicleNameCreateValidData))]
     public void Create_Should_ReturnVehicleName(string value)
     {
-        VehicleName name = VehicleName.Create(value);
+        var name = VehicleName.Create(value);
 
         Assert.Equal(name.Value, value);
     }
