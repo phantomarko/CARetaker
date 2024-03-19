@@ -1,5 +1,4 @@
-﻿using Domain.Abstractions;
-using Domain.Vehicles;
+﻿using Domain.Vehicles;
 using MediatR;
 
 namespace Application.Vehicles.Command.CreateCar;
