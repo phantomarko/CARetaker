@@ -10,13 +10,16 @@ namespace Infrastructure;
 
 public static class DependencyInjection
 {
-    private const string DatabaseConnectionString = "Database";
-
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<ApplicationContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString(DatabaseConnectionString));
+            // TODO: add options class to automatically map connection strings
+            string host = configuration.GetConnectionString("DbHost") ?? "";
+            string user = configuration.GetConnectionString("DbUser") ?? "";
+            string password = configuration.GetConnectionString("DbPassword") ?? "";
+            options.UseSqlServer($"Server={host};Database=caretaker;User Id={user};Password={password};TrustServerCertificate=True;");
+
             options.EnableDetailedErrors(true);
             options.EnableSensitiveDataLogging(true);
         });

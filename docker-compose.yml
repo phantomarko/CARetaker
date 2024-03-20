@@ -8,6 +8,10 @@ services:
       dockerfile: Ui.Api/Dockerfile
     container_name: caretaker.api
     restart: on-failure
+    environment:
+      - "CUSTOMCONNSTR_DbHost=database"
+      - "CUSTOMCONNSTR_DbUser=sa"
+      - "CUSTOMCONNSTR_DbPassword=${DATABASE_PASSWORD}"
     networks:
       - caretaker-network
   database:
@@ -17,7 +21,7 @@ services:
     ports:
       - 1433:1433
     environment:
-      - MSSQL_SA_PASSWORD=yourStrong(!)Password
+      - "MSSQL_SA_PASSWORD=${DATABASE_PASSWORD}"
       - ACCEPT_EULA=Y
     networks:
       - caretaker-network
