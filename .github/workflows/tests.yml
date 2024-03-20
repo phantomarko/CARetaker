@@ -19,6 +19,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./CARetaker.sln
     - name: Build
-      run: dotnet build ./CARetaker.sln --configuration Release --no-restore
+      run: dotnet build ./CARetaker.sln --no-restore
     - name: Test
       run: dotnet test ./CARetaker.sln --no-build --verbosity normal
