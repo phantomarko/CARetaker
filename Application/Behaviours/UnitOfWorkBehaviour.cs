@@ -25,7 +25,7 @@ public sealed class UnitOfWorkBehaviour<TRequest, TResponse>
             return await next();
         }
 
-        using (var transactionScope = new TransactionScope())
+        using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
         {
             var response = await next();
 

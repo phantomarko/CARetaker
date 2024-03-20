@@ -16,7 +16,6 @@ public class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
         .HasConversion(
             v => v.ToString(),
             v => VehicleName.Create(v))
-        .HasMaxLength(NameMaxLength)
         .IsRequired();
 
         builder
@@ -24,7 +23,6 @@ public class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
         .HasConversion(
             v => v.ToString(),
             v => RegistrationPlate.Create(v))
-        .HasMaxLength(PlateMaxLength)
         .IsRequired();
     }
 }

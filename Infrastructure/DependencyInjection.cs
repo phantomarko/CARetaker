@@ -17,6 +17,8 @@ public static class DependencyInjection
         services.AddDbContext<ApplicationContext>(options =>
         {
             options.UseSqlServer(configuration.GetConnectionString(DatabaseConnectionString));
+            options.EnableDetailedErrors(true);
+            options.EnableSensitiveDataLogging(true);
         });
 
         services.AddScoped<IVehicleRepository, VehicleRepository>();
