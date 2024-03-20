@@ -7,11 +7,13 @@ namespace Infrastructure;
 
 public static class DependencyInjection
 {
+    private const string DatabaseConnectionString = "Database";
+
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<ApplicationContext>(options =>
         {
-            options.UseSqlServer("Server=localhost;Database=caretaker;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;");
+            options.UseSqlServer(configuration.GetConnectionString(DatabaseConnectionString));
         });
 
         return services;
