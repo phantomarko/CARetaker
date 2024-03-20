@@ -1,4 +1,7 @@
-﻿using Infrastructure.Persistence;
+﻿using Domain.Abstractions;
+using Domain.Vehicles;
+using Infrastructure.Persistence;
+using Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +18,9 @@ public static class DependencyInjection
         {
             options.UseSqlServer(configuration.GetConnectionString(DatabaseConnectionString));
         });
+
+        services.AddScoped<IVehicleRepository, VehicleRepository>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }

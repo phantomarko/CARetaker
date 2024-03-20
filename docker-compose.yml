@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  ui.api:
+    image: ${DOCKER_REGISTRY-}caretaker.ui.api
+    build:
+      context: .
+      dockerfile: Ui.Api/Dockerfile
+    container_name: caretaker.api
+    restart: on-failure
+    networks:
+      - caretaker-network
+  database:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: caretaker.database
+    restart: always
+    ports:
+      - 1433:1433
+    environment:
+      - MSSQL_SA_PASSWORD=yourStrong(!)Password
+      - ACCEPT_EULA=Y
+    networks:
+      - caretaker-network
+
+networks:
+  caretaker-network:
+    driver: bridge
