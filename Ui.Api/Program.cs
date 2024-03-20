@@ -1,11 +1,11 @@
+using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<ApplicationContext>(
-    options => options.UseSqlServer("Server=localhost;Database=caretaker;User Id=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"));
+builder.Services.AddPersistence(builder.Configuration);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
