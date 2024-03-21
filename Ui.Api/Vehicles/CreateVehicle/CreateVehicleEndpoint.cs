@@ -2,13 +2,13 @@
 using FastEndpoints;
 using MediatR;
 
-namespace Ui.Api.Vehicles.Create;
+namespace Ui.Api.Vehicles.CreateVehicle;
 
 public class CreateVehicleEndpoint(ISender sender) : Endpoint<CreateVehicleRequest, CreateVehicleResponse>
 {
     public override void Configure()
     {
-        Post("api/products");
+        Post("api/vehicles");
         AllowAnonymous();
     }
 
