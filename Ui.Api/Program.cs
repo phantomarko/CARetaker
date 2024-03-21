@@ -20,13 +20,13 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 
-// fastendpoints
+// FastEndpoints
 app.UseDefaultExceptionHandler();
 app.UseFastEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
-    // swagger
+    // FE swagger
     app.UseSwaggerGen();
 }
 
