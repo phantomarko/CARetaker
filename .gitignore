@@ -399,3 +399,7 @@ FodyWeavers.xsd
 
 # Environment
 .env
+
+# Docker
+.docker/sqlserver/data/*
+.docker/sqlserver/log/*

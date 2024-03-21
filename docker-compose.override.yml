@@ -6,6 +6,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
+      - CUSTOMCONNSTR_DbHost=database
+      - CUSTOMCONNSTR_DbUser=sa
+      - "CUSTOMCONNSTR_DbPassword=${DATABASE_PASSWORD}"
     ports:
       - "8080"
       - "8081"
