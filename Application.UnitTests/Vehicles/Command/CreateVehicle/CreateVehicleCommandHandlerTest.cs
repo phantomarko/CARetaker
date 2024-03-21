@@ -20,9 +20,10 @@ public class CreateVehicleCommandHandlerTest
     [ClassData(typeof(CreateCarCommandHandlerHandleValidData))]
     public async Task Handle_Should_ReturnGuid(CreateVehicleCommand command)
     {
-        var result = await _handler.Handle(command);
+        var cancellationTokenSource = new CancellationTokenSource();
+        var result = await _handler.Handle(command, cancellationTokenSource.Token);
 
-        _vehicleRepository.Verify(mock => mock.Add(It.IsAny<Vehicle>()), Times.Once);
+        _vehicleRepository.Verify(mock => mock.AddAsync(It.IsAny<Vehicle>(), cancellationTokenSource.Token), Times.Once);
         Assert.IsType<Guid>(result);
     }
 }

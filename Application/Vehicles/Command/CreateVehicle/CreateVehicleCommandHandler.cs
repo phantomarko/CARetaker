@@ -12,15 +12,15 @@ public sealed class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleC
         _vehicleRepository = vehicleRepository;
     }
 
-    public Task<Guid> Handle(CreateVehicleCommand request, CancellationToken cancellationToken = default)
+    public async Task<Guid> Handle(CreateVehicleCommand request, CancellationToken cancellationToken = default)
     {
         var vehicle = Vehicle.Create(
             id: Guid.NewGuid(),
             name: VehicleName.Create(request.Name),
             plate: RegistrationPlate.Create(request.Plate));
 
-        _vehicleRepository.Add(vehicle);
+        await _vehicleRepository.AddAsync(vehicle, cancellationToken);
 
-        return Task.FromResult(vehicle.Id);
+        return vehicle.Id;
     }
 }

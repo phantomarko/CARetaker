@@ -1,7 +1,7 @@
 ﻿using Domain.Abstractions;
 using Domain.Vehicles;
 using Infrastructure.Persistence;
-using Infrastructure.Persistence.Repositories;
+using Infrastructure.Persistence.Vehicles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,7 +12,7 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<ApplicationContext>(options =>
+        services.AddDbContext<ApplicationDbContext>(options =>
         {
             // TODO: add options class to automatically map connection strings
             string host = configuration.GetConnectionString("DbHost") ?? "";
