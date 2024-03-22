@@ -3,25 +3,25 @@ using System.Text.RegularExpressions;
 
 namespace Domain.Vehicles;
 
-public sealed record CarPlate
+public sealed record RegistrationPlate
 {
     private const string EuropeFormat = "^H{0,1}\\d{4}[A-Z]{3}$";
     private const string ProvinceFormat = "^[A-Z]{1,2}\\d{4}[A-Z]{1,2}$";
     private static string[] ValidFormats => [EuropeFormat, ProvinceFormat];
 
-    private CarPlate(string value) => Value = value;
+    private RegistrationPlate(string value) => Value = value;
 
     public string Value { get; init; }
 
-    public static CarPlate Create(string value)
+    public static RegistrationPlate Create(string value)
     {
         if (
             string.IsNullOrEmpty(value)
             || !ValidFormats.Any(format => Regex.IsMatch(value, format)))
         {
-            throw new CarPlateFormatIsInvalidException();
+            throw new RegistrationPlateFormatIsInvalidException();
         }
 
-        return new CarPlate(value);
+        return new RegistrationPlate(value);
     }
 }

@@ -396,3 +396,10 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+# Environment
+.env
+
+# Docker
+.docker/sqlserver/data/*
+.docker/sqlserver/log/*

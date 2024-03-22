@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  ui.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - "ASPNETCORE_Database__Server=${DATABASE_SERVER}"
+      - "ASPNETCORE_Database__Port=${DATABASE_PORT}"
+      - "ASPNETCORE_Database__Name=${DATABASE_NAME}"
+      - "ASPNETCORE_Database__User=${DATABASE_USER}"
+      - "ASPNETCORE_Database__Password=${DATABASE_PASSWORD}"
+    ports:
+      - "8080"
+      - "8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
