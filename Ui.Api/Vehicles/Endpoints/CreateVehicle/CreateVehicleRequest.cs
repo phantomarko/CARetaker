@@ -1,4 +1,4 @@
-﻿namespace Ui.Api.Vehicles.CreateVehicle;
+﻿namespace Ui.Api.Vehicles.Endpoints.CreateVehicle;
 
 public sealed record CreateVehicleRequest
 {

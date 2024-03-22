@@ -2,7 +2,7 @@
 using FastEndpoints;
 using MediatR;
 
-namespace Ui.Api.Vehicles.CreateVehicle;
+namespace Ui.Api.Vehicles.Endpoints.CreateVehicle;
 
 public class CreateVehicleEndpoint(ISender sender) : Endpoint<CreateVehicleRequest, CreateVehicleResponse>
 {
