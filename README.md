@@ -25,7 +25,7 @@ Using `dotnet-ef`. Execute the following command setting the correct connection 
 dotnet-ef database update --project .\Infrastructure\ --startup-project .\Tool.MigrationRunner\ --connection "YOUR_CONNECTION"
 ```
 
-Using `VS Package Manager Console`. Using the referred console, execute the following command setting the correct connection string.
+Using `VS Package Manager Console`. Using the referred console, set `Tool.MigrationRunner` as startup project and `Infrastructure` as default project and then execute the following command setting the correct connection string.
 
 ```console
 Update-Database -Connection "YOUR_CONNECTION"
