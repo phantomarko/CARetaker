@@ -30,3 +30,11 @@ Using `VS Package Manager Console`. Using the referred console, set `Tool.Migrat
 ```console
 Update-Database -Connection "YOUR_CONNECTION"
 ```
+
+### Connection Strings
+
+Use the following template to build a valid connection string:
+
+```
+Server={STRING},{INTEGER};Database={STRING};User Id={STRING};Password={STRING};Encrypt={BOOLEAN};
+```
