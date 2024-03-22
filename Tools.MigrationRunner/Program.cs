@@ -1,7 +1,7 @@
 ﻿using Infrastructure;
 using Microsoft.Extensions.Hosting;
 
-namespace Tool.MigrationRunner;
+namespace Tools.MigrationRunner;
 
 internal class Program
 {
