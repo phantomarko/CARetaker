@@ -1,7 +1,7 @@
 ﻿using Domain.Vehicles;
 using MediatR;
 
-namespace Application.Vehicles.Command.CreateVehicle;
+namespace Application.Vehicles.Commands.CreateVehicle;
 
 public sealed class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleCommand, Guid>
 {

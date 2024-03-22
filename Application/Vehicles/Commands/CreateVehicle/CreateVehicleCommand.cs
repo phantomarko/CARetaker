@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace Application.Vehicles.Command.CreateVehicle;
+namespace Application.Vehicles.Commands.CreateVehicle;
 
 public sealed record CreateVehicleCommand(
     string Name,

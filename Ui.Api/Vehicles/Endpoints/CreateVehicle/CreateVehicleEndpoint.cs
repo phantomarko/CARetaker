@@ -1,4 +1,4 @@
-﻿using Application.Vehicles.Command.CreateVehicle;
+﻿using Application.Vehicles.Commands.CreateVehicle;
 using FastEndpoints;
 using MediatR;
 
