@@ -6,10 +6,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
-      - ASPNETCORE_Database__Server=database
-      - ASPNETCORE_Database__Port=1433
-      - ASPNETCORE_Database__Name=caretaker
-      - ASPNETCORE_Database__User=sa
+      - "ASPNETCORE_Database__Server=${DATABASE_SERVER}"
+      - "ASPNETCORE_Database__Port=${DATABASE_PORT}"
+      - "ASPNETCORE_Database__Name=${DATABASE_NAME}"
+      - "ASPNETCORE_Database__User=${DATABASE_USER}"
       - "ASPNETCORE_Database__Password=${DATABASE_PASSWORD}"
     ports:
       - "8080"
