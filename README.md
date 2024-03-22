@@ -22,10 +22,10 @@ Create, share and assign maintenance plans for your car.
 Using `dotnet-ef`. Execute the following command setting the correct connection string.
 
 ```console
-dotnet-ef database update --project .\Infrastructure\ --startup-project .\Tool.MigrationRunner\ --connection "YOUR_CONNECTION"
+dotnet-ef database update --project .\Infrastructure\ --startup-project .\Tools.MigrationRunner\ --connection "YOUR_CONNECTION"
 ```
 
-Using `VS Package Manager Console`. Using the referred console, set `Tool.MigrationRunner` as startup project and `Infrastructure` as default project and then execute the following command setting the correct connection string.
+Using `VS Package Manager Console`. Using the referred console, set `Tools.MigrationRunner` as startup project and `Infrastructure` as default project and then execute the following command setting the correct connection string.
 
 ```console
 Update-Database -Connection "YOUR_CONNECTION"
