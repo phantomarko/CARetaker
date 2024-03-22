@@ -21,7 +21,7 @@ public static class DependencyInjection
             DatabaseOptions dbOptions = serviceProvider.GetService<IOptions<DatabaseOptions>>()!.Value;
 
             dbContextOptionsBuilder.UseSqlServer(
-                $"Server={dbOptions.Server};Database={dbOptions.Name};User Id={dbOptions.User};Password={dbOptions.Password};Encrypt={dbOptions.Encrypt};");
+                $"Server={dbOptions.Server},{dbOptions.Port};Database={dbOptions.Name};User Id={dbOptions.User};Password={dbOptions.Password};Encrypt={dbOptions.Encrypt};");
 
             dbContextOptionsBuilder.EnableDetailedErrors(dbOptions.DetailedErrors);
             dbContextOptionsBuilder.EnableSensitiveDataLogging(dbOptions.SensitiveDataLogging);
