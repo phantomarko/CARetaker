@@ -4,7 +4,7 @@ namespace Domain.Vehicles;
 
 public sealed record VehicleName
 {
-    public const int MaximumLength = 30;
+    public const int MaximumLength = 100;
 
     private VehicleName(string value) => Value = value;
 
