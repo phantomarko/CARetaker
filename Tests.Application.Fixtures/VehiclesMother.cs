@@ -1,8 +1,8 @@
 ﻿using Application.Vehicles.Command.CreateVehicle;
 
-namespace Application.Fixtures;
+namespace Tests.Application.Fixtures;
 
-public static class VehiclesMother
+public class VehiclesMother
 {
     private const string NameDefault = "Example Car";
     private const string PlateDefault = "0000BBB";

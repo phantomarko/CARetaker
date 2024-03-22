@@ -1,7 +1,7 @@
 ﻿using Domain.Vehicles.Exceptions;
 using Domain.Vehicles;
 
-namespace Domain.UnitTests.Vehicles;
+namespace Tests.Domain.Unit.Vehicles;
 
 public class RegistrationPlateTest
 {

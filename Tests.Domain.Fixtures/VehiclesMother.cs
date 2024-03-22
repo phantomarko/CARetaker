@@ -1,8 +1,8 @@
 ﻿using Domain.Vehicles;
 
-namespace Domain.Fixtures;
+namespace Tests.Domain.Fixtures;
 
-public static class VehiclesMother
+public class VehiclesMother
 {
     private const string VehicleNameDefault = "Some car";
     private const string PlateDefault = "0000BBB";

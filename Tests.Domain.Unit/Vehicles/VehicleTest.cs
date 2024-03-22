@@ -1,7 +1,7 @@
-﻿using Domain.Fixtures;
-using Domain.Vehicles;
+﻿using Domain.Vehicles;
+using Tests.Domain.Fixtures;
 
-namespace Domain.UnitTests.Vehicles;
+namespace Tests.Domain.Unit.Vehicles;
 
 public class VehicleTest
 {

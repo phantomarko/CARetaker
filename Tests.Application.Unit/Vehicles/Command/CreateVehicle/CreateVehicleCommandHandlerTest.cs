@@ -1,9 +1,9 @@
-﻿using Application.Fixtures;
-using Application.Vehicles.Command.CreateVehicle;
+﻿using Application.Vehicles.Command.CreateVehicle;
 using Domain.Vehicles;
 using Moq;
+using Tests.Application.Fixtures;
 
-namespace Application.UnitTests.Vehicles.Command.CreateVehicle;
+namespace Tests.Application.Unit.Vehicles.Command.CreateVehicle;
 
 public class CreateVehicleCommandHandlerTest
 {
