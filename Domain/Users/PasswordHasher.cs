@@ -14,9 +14,9 @@ public sealed class PasswordHasher
         _iterations = iterations;
     }
 
-    public string Compute(string password, string salt)
+    public string Compute(string plainPassword, string salt)
     {
-        return ComputeWithCondiments(password, salt, _pepper, _iterations);
+        return ComputeWithCondiments(plainPassword, salt, _pepper, _iterations);
     }
 
     private string ComputeWithCondiments(string password, string salt, string pepper, int iteration)

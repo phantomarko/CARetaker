@@ -23,10 +23,10 @@ public sealed class User : Entity
     private string PasswordHash { get; init; }
 
     public bool PasswordMatches(
-        string password,
+        string plainPassword,
         PasswordHasher passwordHasher)
     {
-        var passwordHash = passwordHasher.Compute(password, PasswordSalt);
+        var passwordHash = passwordHasher.Compute(plainPassword, PasswordSalt);
 
         return passwordHash == PasswordHash;
     }
