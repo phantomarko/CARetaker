@@ -1,5 +1,4 @@
 ﻿using Domain.Users.Exceptions;
-using Domain.Vehicles.Exceptions;
 using System.Text.RegularExpressions;
 
 namespace Domain.Users;
