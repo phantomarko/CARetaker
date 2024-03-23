@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Domain.Users;
 
-public class PasswordHasher
+public sealed class PasswordHasher
 {
     private readonly string _pepper;
     private readonly int _iterations;

@@ -18,9 +18,9 @@ public sealed class User : Entity
 
     public Email Email { get; init; }
 
-    public string PasswordSalt { get; init; }
+    private string PasswordSalt { get; init; }
 
-    public string PasswordHash { get; init; }
+    private string PasswordHash { get; init; }
 
     public bool PasswordMatches(
         string password,
@@ -34,11 +34,11 @@ public sealed class User : Entity
     public static User Create(
         Guid id,
         Email email,
-        string password,
+        Password password,
         PasswordHasher passwordHasher)
     {
         var passwordSalt = GenerateSalt();
-        var passwordHash = passwordHasher.Compute(password, passwordSalt);
+        var passwordHash = passwordHasher.Compute(password.Value, passwordSalt);
         return new User(
             id,
             email,
