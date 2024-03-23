@@ -22,8 +22,6 @@ public sealed class Vehicle : Entity
         VehicleName name,
         RegistrationPlate plate)
     {
-        // TODO: validate plate not in use by passing a IVehicleRepository as parameter
-
         return new Vehicle(
             id,
             name,
