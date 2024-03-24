@@ -9,7 +9,7 @@ Create, share and assign maintenance plans for your car.
 
 1. Ensure the containers are not up and running.
 
-2. Set environment variables. Create a `.env` from `.env.example` and assign a value to the database password.
+2. Set environment variables. Create a `.env` from `.env.example` and assign the missings values.
 
 3. Start containers.
 

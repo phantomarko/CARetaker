@@ -5,10 +5,10 @@ namespace Infrastructure.Persistence.Options;
 
 public class DatabaseOptionsSetup(IConfiguration configuration) : IConfigureOptions<DatabaseOptions>
 {
-    private const string DatabaseSection = "Database";
+    private const string Section = "Database";
 
     public void Configure(DatabaseOptions options)
     {
-        configuration.GetSection(DatabaseSection).Bind(options);
+        configuration.GetSection(Section).Bind(options);
     }
 }

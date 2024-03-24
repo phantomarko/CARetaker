@@ -11,6 +11,8 @@ services:
       - "ASPNETCORE_Database__Name=${DATABASE_NAME}"
       - "ASPNETCORE_Database__User=${DATABASE_USER}"
       - "ASPNETCORE_Database__Password=${DATABASE_PASSWORD}"
+      - "ASPNETCORE_PasswordHasher__Pepper=${PASSWORD_HASHER_PEPPER}"
+      - "ASPNETCORE_PasswordHasher__Iterations=${PASSWORD_HASHER_ITERATIONS}"
     ports:
       - "8080"
       - "8081"

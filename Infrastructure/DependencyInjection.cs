@@ -5,6 +5,7 @@ using Infrastructure.Persistence;
 using Infrastructure.Persistence.Options;
 using Infrastructure.Persistence.Users;
 using Infrastructure.Persistence.Vehicles;
+using Infrastructure.Security.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -35,9 +36,16 @@ public static class DependencyInjection
         return services;
     }
 
-    public static IServiceCollection AddPasswordHasher(this IServiceCollection services)
+    public static IServiceCollection AddSecurity(this IServiceCollection services)
     {
-        services.AddScoped(serviceProvider => new PasswordHasher("P3pp3r", 3));
+        services.ConfigureOptions<PasswordHasherOptionsSetup>();
+
+        services.AddScoped(serviceProvider =>
+        {
+            PasswordHasherOptions options = serviceProvider.GetService<IOptions<PasswordHasherOptions>>()!.Value;
+
+            return new PasswordHasher(options.Pepper, options.Iterations);
+        });
 
         return services;
     }
