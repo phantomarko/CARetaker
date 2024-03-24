@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tests.Application.Fixtures\Tests.Application.Fixtures.csproj" />
+    <ProjectReference Include="..\Tests.Domain.Fixtures\Tests.Domain.Fixtures.csproj" />
   </ItemGroup>
 
   <ItemGroup>
