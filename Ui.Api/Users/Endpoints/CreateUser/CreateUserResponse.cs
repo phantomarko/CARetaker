@@ -1,3 +1,3 @@
 ﻿namespace Ui.Api.Users.Endpoints.CreateUser;
 
-public sealed record CreateUserResponse(Guid id);
+public sealed record CreateUserResponse(Guid Id);
