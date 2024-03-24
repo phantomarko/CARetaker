@@ -3,20 +3,11 @@ using System.Text;
 
 namespace Domain.Users;
 
-public sealed class PasswordHasher
+public sealed class PasswordHasher(string pepper, int iterations)
 {
-    private readonly string _pepper;
-    private readonly int _iterations;
-
-    public PasswordHasher(string pepper, int iterations)
-    {
-        _pepper = pepper;
-        _iterations = iterations;
-    }
-
     public string Compute(string plainPassword, string salt)
     {
-        return ComputeWithCondiments(plainPassword, salt, _pepper, _iterations);
+        return ComputeWithCondiments(plainPassword, salt, pepper, iterations);
     }
 
     private string ComputeWithCondiments(string password, string salt, string pepper, int iteration)
