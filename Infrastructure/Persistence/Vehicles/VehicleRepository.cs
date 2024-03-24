@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Persistence.Vehicles;
 
-public class VehicleRepository(ApplicationDbContext context) : IVehicleRepository
+public sealed class VehicleRepository(ApplicationDbContext context) : IVehicleRepository
 {
     public async Task AddAsync(Vehicle vehicle, CancellationToken cancellationToken = default)
     {

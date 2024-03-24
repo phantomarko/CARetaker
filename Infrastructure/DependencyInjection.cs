@@ -1,7 +1,9 @@
 ﻿using Domain.Abstractions;
+using Domain.Users;
 using Domain.Vehicles;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Options;
+using Infrastructure.Persistence.Users;
 using Infrastructure.Persistence.Vehicles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,8 +13,7 @@ namespace Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddPersistence(
-        this IServiceCollection services)
+    public static IServiceCollection AddPersistence(this IServiceCollection services)
     {
         services.ConfigureOptions<DatabaseOptionsSetup>();
 
@@ -27,8 +28,16 @@ public static class DependencyInjection
             dbContextOptionsBuilder.EnableSensitiveDataLogging(dbOptions.SensitiveDataLogging);
         });
 
+        services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IVehicleRepository, VehicleRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddPasswordHasher(this IServiceCollection services)
+    {
+        services.AddScoped(serviceProvider => new PasswordHasher("P3pp3r", 3));
 
         return services;
     }

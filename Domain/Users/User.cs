@@ -16,11 +16,11 @@ public sealed class User : Entity
         PasswordHash = passwordHash;
     }
 
-    public Email Email { get; init; }
+    public Email Email { get; private set; }
 
-    private string PasswordSalt { get; init; }
+    public string PasswordSalt { get; private set; }
 
-    private string PasswordHash { get; init; }
+    public string PasswordHash { get; private set; }
 
     public bool PasswordMatches(
         string plainPassword,

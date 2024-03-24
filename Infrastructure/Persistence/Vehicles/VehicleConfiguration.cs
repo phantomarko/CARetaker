@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Vehicles;
 
-public class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
+public sealed class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
 {
     private const int NameMaxLength = 50;
     private const int PlateMaxLength = 16;

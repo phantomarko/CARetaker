@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Ui.Api.Vehicles.Endpoints.CreateVehicle;
 
-public class CreateVehicleEndpoint(ISender sender) : Endpoint<CreateVehicleRequest, CreateVehicleResponse>
+public sealed class CreateVehicleEndpoint(ISender sender) : Endpoint<CreateVehicleRequest, CreateVehicleResponse>
 {
     public override void Configure()
     {
