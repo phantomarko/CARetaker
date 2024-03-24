@@ -3,15 +3,9 @@ using MediatR;
 
 namespace Application.Vehicles.Commands.CreateVehicle;
 
-public sealed class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleCommand, Guid>
+public sealed class CreateVehicleCommandHandler(IVehicleRepository vehicleRepository)
+    : IRequestHandler<CreateVehicleCommand, Guid>
 {
-    private readonly IVehicleRepository _vehicleRepository;
-
-    public CreateVehicleCommandHandler(IVehicleRepository vehicleRepository)
-    {
-        _vehicleRepository = vehicleRepository;
-    }
-
     public async Task<Guid> Handle(CreateVehicleCommand request, CancellationToken cancellationToken = default)
     {
         var vehicle = Vehicle.Create(
@@ -19,7 +13,7 @@ public sealed class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleC
             name: VehicleName.Create(request.Name),
             plate: RegistrationPlate.Create(request.Plate));
 
-        await _vehicleRepository.AddAsync(vehicle, cancellationToken);
+        await vehicleRepository.AddAsync(vehicle, cancellationToken);
 
         return vehicle.Id;
     }
