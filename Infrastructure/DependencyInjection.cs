@@ -1,10 +1,12 @@
-﻿using Domain.Abstractions;
+﻿using Application.Abstractions;
+using Domain.Abstractions;
 using Domain.Users;
 using Domain.Vehicles;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Options;
 using Infrastructure.Persistence.Users;
 using Infrastructure.Persistence.Vehicles;
+using Infrastructure.Security.Jwt;
 using Infrastructure.Security.Options;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +40,7 @@ public static class DependencyInjection
 
     public static IServiceCollection AddSecurity(this IServiceCollection services)
     {
+        services.ConfigureOptions<JwtOptionsSetup>();
         services.ConfigureOptions<PasswordHasherOptionsSetup>();
 
         services.AddScoped(serviceProvider =>
@@ -46,6 +49,9 @@ public static class DependencyInjection
 
             return new PasswordHasher(options.Pepper, options.Iterations);
         });
+
+
+        services.AddScoped<IJwtProvider, JwtProvider>();
 
         return services;
     }

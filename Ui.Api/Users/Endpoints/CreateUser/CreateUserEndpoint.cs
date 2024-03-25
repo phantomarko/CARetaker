@@ -10,6 +10,9 @@ public sealed class CreateUserEndpoint(ISender sender) : Endpoint<CreateUserRequ
     {
         Post("api/users");
         AllowAnonymous();
+        Description(b => b
+            .ClearDefaultProduces(StatusCodes.Status200OK)
+            .Produces<CreateUserResponse>(StatusCodes.Status201Created));
     }
 
     public override async Task HandleAsync(CreateUserRequest request, CancellationToken cancellationToken)
@@ -19,6 +22,9 @@ public sealed class CreateUserEndpoint(ISender sender) : Endpoint<CreateUserRequ
                 request.Email,
                 request.Password), cancellationToken);
 
-        await SendAsync(new CreateUserResponse(result), 201, cancellationToken);
+        await SendAsync(
+            new CreateUserResponse(result),
+            StatusCodes.Status201Created,
+            cancellationToken);
     }
 }

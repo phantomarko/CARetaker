@@ -13,6 +13,7 @@ services:
       - "ASPNETCORE_Database__Password=${DATABASE_PASSWORD}"
       - "ASPNETCORE_PasswordHasher__Pepper=${PASSWORD_HASHER_PEPPER}"
       - "ASPNETCORE_PasswordHasher__Iterations=${PASSWORD_HASHER_ITERATIONS}"
+      - "ASPNETCORE_Jwt__SecretKey=${JWT_SECRET_KEY}"
     ports:
       - "8080"
       - "8081"

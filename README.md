@@ -7,13 +7,14 @@ Create, share and assign maintenance plans for your car.
 
 ## Set Up
 
-1. Ensure the containers are not up and running.
+1. **Set environment variables.** Create a `.env` using `.env.example` as template and assign the missings values. The `JWT_SECRET_KEY` needs a sha256 hash, so you have to generate one. This could be done by using a linux terminal:
+	```bash
+	echo YOUR_STRING_HERE | sha256sum
+	```
 
-2. Set environment variables. Create a `.env` from `.env.example` and assign the missings values.
+2. **Build and start the containers.**
 
-3. Start containers.
-
-4. Execute migrations. Check the doc in *Migrations > Update Database*.
+3. **Execute migrations.** Check the doc in *Migrations > Update Database*.
 
 ## Migrations
 
