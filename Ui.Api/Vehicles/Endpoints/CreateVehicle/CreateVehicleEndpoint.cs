@@ -10,7 +10,6 @@ public sealed class CreateVehicleEndpoint(ISender sender) : Endpoint<CreateVehic
     public override void Configure()
     {
         Post("api/vehicles");
-        AllowAnonymous();
         Description(b => b
             .ClearDefaultProduces(StatusCodes.Status200OK)
             .Produces<CreateUserResponse>(StatusCodes.Status201Created));
