@@ -16,8 +16,7 @@ public class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
     {
         var claims = new Claim[]
         {
-            new (JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-            new (JwtRegisteredClaimNames.Email, user.Email.Value)
+            new (JwtRegisteredClaimNames.Sub, user.Id.ToString())
         };
 
         var signingCredentials = new SigningCredentials(

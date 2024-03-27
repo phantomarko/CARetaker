@@ -4,10 +4,8 @@ using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using Infrastructure;
 using Infrastructure.Security.Jwt;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Ui.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,11 +15,9 @@ builder.Services.AddPersistence();
 builder.Services.AddSecurity();
 
 // API services
-builder.Services.AddControllers(); // try to remove this line
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddFastEndpoints();
 builder.Services.SwaggerDocument();
-
 builder.Services.AddAuthenticationJwtBearer(s => {}, options =>
 {
     var jwtOptions = builder.Configuration.GetSection("Jwt").Get<JwtOptions>()!;
