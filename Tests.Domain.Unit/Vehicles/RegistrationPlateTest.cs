@@ -18,7 +18,6 @@ public class RegistrationPlateTest
     }
 
     [Theory]
-    [InlineData("")]
     [InlineData("plate")]
     [InlineData("7465bzd")]
     [InlineData("h7465bzd")]
@@ -27,5 +26,13 @@ public class RegistrationPlateTest
     public void Create_Should_ThrowRegistrationPlateFormatIsInvalidException(string value)
     {
         Assert.Throws<RegistrationPlateFormatIsInvalidException>(() => RegistrationPlate.Create(value));
+    }
+
+    [Theory]
+    [InlineData("")]
+    [InlineData("       ")]
+    public void Create_Should_ThrowRegistrationPlateFormatIsEmptyException(string value)
+    {
+        Assert.Throws<RegistrationPlateIsEmptyException>(() => RegistrationPlate.Create(value));
     }
 }

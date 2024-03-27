@@ -15,9 +15,12 @@ public sealed record RegistrationPlate
 
     public static RegistrationPlate Create(string value)
     {
-        if (
-            string.IsNullOrEmpty(value)
-            || !ValidFormats.Any(format => Regex.IsMatch(value, format)))
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            throw new RegistrationPlateIsEmptyException();
+        }
+
+        if (!ValidFormats.Any(format => Regex.IsMatch(value, format)))
         {
             throw new RegistrationPlateFormatIsInvalidException();
         }

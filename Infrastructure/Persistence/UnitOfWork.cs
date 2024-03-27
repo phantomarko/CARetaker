@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence;
 
-public class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
+public sealed class UnitOfWork(ApplicationDbContext context) : IUnitOfWork
 {
     public async Task SaveChangesAsync(CancellationToken cancellationToken)
     {

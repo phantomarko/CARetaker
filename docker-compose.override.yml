@@ -11,9 +11,12 @@ services:
       - "ASPNETCORE_Database__Name=${DATABASE_NAME}"
       - "ASPNETCORE_Database__User=${DATABASE_USER}"
       - "ASPNETCORE_Database__Password=${DATABASE_PASSWORD}"
+      - "ASPNETCORE_PasswordHasher__Pepper=${PASSWORD_HASHER_PEPPER}"
+      - "ASPNETCORE_PasswordHasher__Iterations=${PASSWORD_HASHER_ITERATIONS}"
+      - "ASPNETCORE_Jwt__SecretKey=${JWT_SECRET_KEY}"
     ports:
-      - "8080"
-      - "8081"
+      - 8080:8080
+      - 8081:8081
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro

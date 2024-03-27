@@ -1,13 +1,16 @@
-﻿using Domain.Vehicles;
+﻿using Domain.Users;
+using Domain.Vehicles;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence;
 
-public class ApplicationDbContext : DbContext
+public sealed class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }
+
+    public DbSet<User> Users { get; set; }
 
     public DbSet<Vehicle> Vehicles { get; set; }
 
