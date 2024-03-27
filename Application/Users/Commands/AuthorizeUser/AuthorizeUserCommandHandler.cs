@@ -5,7 +5,10 @@ using MediatR;
 
 namespace Application.Users.Commands.AuthorizeUser;
 
-public sealed class AuthorizeUserCommandHandler(IUserRepository userRepository, PasswordHasher passwordHasher, IJwtProvider jwtProvider)
+public sealed class AuthorizeUserCommandHandler(
+    IUserRepository userRepository,
+    PasswordHasher passwordHasher,
+    IJwtProvider jwtProvider)
     : IRequestHandler<AuthorizeUserCommand, string>
 {
     public async Task<string> Handle(AuthorizeUserCommand request, CancellationToken cancellationToken)

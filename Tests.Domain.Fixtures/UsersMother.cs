@@ -9,6 +9,19 @@ public static class UsersMother
     private const string PasswordHasherPepperDefault = "P3pp3r";
     private const int PasswordHasherIterationsDefault = 2;
 
+    public static User MakeUser(
+        Guid? id = null,
+        Email? email = null,
+        Password? password = null,
+        PasswordHasher? passwordHasher = null)
+    {
+        return User.Create(
+            id ?? Guid.NewGuid(),
+            email ?? MakeEmail(),
+            password ?? MakePassword(),
+            passwordHasher ?? MakePasswordHasher());
+    }
+
     public static Email MakeEmail(string? value = null)
     {
         return Email.Create(value ?? EmailDefault);
