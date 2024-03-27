@@ -15,8 +15,8 @@ services:
       - "ASPNETCORE_PasswordHasher__Iterations=${PASSWORD_HASHER_ITERATIONS}"
       - "ASPNETCORE_Jwt__SecretKey=${JWT_SECRET_KEY}"
     ports:
-      - "8080"
-      - "8081"
+      - 8080:8080
+      - 8081:8081
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro

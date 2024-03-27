@@ -8,9 +8,6 @@ services:
       dockerfile: Ui.Api/Dockerfile
     container_name: caretaker.api
     restart: on-failure
-    ports:
-      - 8080:8080
-      - 8081:8081
     networks:
       - caretaker-network
   database:
