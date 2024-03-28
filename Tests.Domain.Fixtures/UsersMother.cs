@@ -1,4 +1,5 @@
 ﻿using Domain.Users;
+using Moq;
 
 namespace Tests.Domain.Fixtures;
 
@@ -19,7 +20,8 @@ public static class UsersMother
             id ?? Guid.NewGuid(),
             email ?? MakeEmail(),
             password ?? MakePassword(),
-            passwordHasher ?? MakePasswordHasher());
+            passwordHasher ?? MakePasswordHasher(),
+            new Mock<IUserRepository>().Object);
     }
 
     public static Email MakeEmail(string? value = null)

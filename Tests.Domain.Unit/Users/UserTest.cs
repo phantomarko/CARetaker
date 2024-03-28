@@ -1,36 +1,57 @@
 ﻿using Domain.Users;
+using Domain.Users.Exceptions;
+using Moq;
 using Tests.Domain.Fixtures;
 
 namespace Tests.Domain.Unit.Users;
 
 public class UserTest
 {
+    private readonly Guid _id;
+    private readonly Email _email;
+    private readonly Password _password;
     private readonly PasswordHasher _passwordHasher;
+    private readonly Mock<IUserRepository> _userRepository;
 
     public UserTest()
     {
+        _id = Guid.NewGuid();
+        _email = UsersMother.MakeEmail();
+        _password = UsersMother.MakePassword();
         _passwordHasher = UsersMother.MakePasswordHasher();
+        _userRepository = new Mock<IUserRepository>();
     }
 
-    [Theory]
-    [ClassData(typeof(UserCreateValidData))]
-    public void Create_Should_ReturnUser(Guid id, Email email, Password password)
+    [Fact]
+    public void Create_Should_ReturnUser()
     {
-        var user = User.Create(id, email, password, _passwordHasher);
+        _userRepository.Setup(mock => mock.FindByEmail(_email));
 
-        Assert.Equal(user.Id, id);
-        Assert.Equal(user.Email, email);
-        Assert.True(user.PasswordMatches(password.Value, _passwordHasher));
+        var user = User.Create(
+            _id,
+            _email,
+            _password,
+            _passwordHasher,
+            _userRepository.Object);
+
+        Assert.Equal(user.Id, _id);
+        Assert.Equal(user.Email, _email);
+        Assert.True(user.PasswordMatches(_password.Value, _passwordHasher));
+        _userRepository.VerifyAll();
     }
-}
 
-public class UserCreateValidData : TheoryData<Guid, Email, Password>
-{
-    public UserCreateValidData()
+    [Fact]
+    public void Create_Should_ThrowException_WhenEmailIsUsed()
     {
-        Add(
-            Guid.NewGuid(),
-            UsersMother.MakeEmail(),
-            UsersMother.MakePassword());
+        _userRepository.Setup(mock => mock.FindByEmail(_email)).Returns(UsersMother.MakeUser());
+
+        Assert.Throws<EmailIsAlreadyInUseException>(() => User.Create(
+            _id,
+            _email,
+            _password,
+            _passwordHasher,
+            _userRepository.Object));
+
+        _userRepository.VerifyAll();
     }
 }

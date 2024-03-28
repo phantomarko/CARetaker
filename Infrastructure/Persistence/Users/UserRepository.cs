@@ -14,4 +14,9 @@ public sealed class UserRepository(ApplicationDbContext context) : IUserReposito
     {
         return await context.Users.FirstOrDefaultAsync(user => user.Email == email, cancellationToken);
     }
+
+    public User? FindByEmail(Email email)
+    {
+        return context.Users.FirstOrDefault(user => user.Email == email);
+    }
 }
