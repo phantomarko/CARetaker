@@ -11,10 +11,10 @@ public sealed class AuthorizeUserCommandHandler(
     IJwtProvider jwtProvider)
     : IRequestHandler<AuthorizeUserCommand, string>
 {
-    public async Task<string> Handle(AuthorizeUserCommand request, CancellationToken cancellationToken)
+    public Task<string> Handle(AuthorizeUserCommand request, CancellationToken cancellationToken)
     {
         var email = Email.Create(request.Email);
-        User? user = await userRepository.FindByEmailAsync(email, cancellationToken);
+        User? user = userRepository.FindByEmail(email);
 
         if (
             user is null
@@ -23,6 +23,6 @@ public sealed class AuthorizeUserCommandHandler(
             throw new InvalidCredentialsException();
         }
 
-        return jwtProvider.Generate(user);
+        return Task.FromResult(jwtProvider.Generate(user));
     }
 }
