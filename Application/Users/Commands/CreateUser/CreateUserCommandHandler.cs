@@ -12,7 +12,8 @@ public sealed class CreateUserCommandHandler(PasswordHasher passwordHasher, IUse
             Guid.NewGuid(),
             Email.Create(request.Email),
             Password.Create(request.Password),
-            passwordHasher);
+            passwordHasher,
+            userRepository);
 
         await userRepository.AddAsync(user, cancellationToken);
 

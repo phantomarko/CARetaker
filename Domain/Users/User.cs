@@ -1,4 +1,5 @@
 ﻿using Domain.Primitives;
+using Domain.Users.Exceptions;
 using System.Security.Cryptography;
 
 namespace Domain.Users;
@@ -35,8 +36,14 @@ public sealed class User : Entity
         Guid id,
         Email email,
         Password password,
-        PasswordHasher passwordHasher)
+        PasswordHasher passwordHasher,
+        IUserRepository userRepository)
     {
+        if (userRepository.FindByEmail(email) is not null)
+        {
+            throw new EmailIsAlreadyInUseException();
+        }
+
         var passwordSalt = GenerateSalt();
         var passwordHash = passwordHasher.Compute(password.Value, passwordSalt);
         return new User(

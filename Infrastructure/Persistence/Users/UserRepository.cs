@@ -10,8 +10,8 @@ public sealed class UserRepository(ApplicationDbContext context) : IUserReposito
         await context.Users.AddAsync(user);
     }
 
-    public async Task<User?> FindByEmailAsync(Email email, CancellationToken cancellationToken = default)
+    public User? FindByEmail(Email email)
     {
-        return await context.Users.FirstOrDefaultAsync(user => user.Email == email, cancellationToken);
+        return context.Users.FirstOrDefault(user => user.Email == email);
     }
 }
