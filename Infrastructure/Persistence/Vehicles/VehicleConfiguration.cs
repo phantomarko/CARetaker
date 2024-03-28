@@ -6,8 +6,8 @@ namespace Infrastructure.Persistence.Vehicles;
 
 public sealed class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
 {
-    private const int NameMaxLength = 50;
-    private const int PlateMaxLength = 16;
+    private const int NameMaxLength = 100;
+    private const int PlateMaxLength = 20;
 
     public void Configure(EntityTypeBuilder<Vehicle> builder)
     {
@@ -16,6 +16,7 @@ public sealed class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
         .HasConversion(
             v => v.Value,
             v => VehicleName.Create(v))
+        .HasMaxLength(NameMaxLength)
         .IsRequired();
 
         builder
@@ -23,6 +24,7 @@ public sealed class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
         .HasConversion(
             v => v.Value,
             v => RegistrationPlate.Create(v))
+        .HasMaxLength(PlateMaxLength)
         .IsRequired();
     }
 }
