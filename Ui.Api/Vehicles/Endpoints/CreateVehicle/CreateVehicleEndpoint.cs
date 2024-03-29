@@ -1,5 +1,6 @@
 ﻿using Application.Vehicles.Commands.CreateVehicle;
 using FastEndpoints;
+using Infrastructure.Security.Authorization;
 using MediatR;
 using Ui.Api.Users.Endpoints.CreateUser;
 
@@ -10,6 +11,7 @@ public sealed class CreateVehicleEndpoint(ISender sender) : Endpoint<CreateVehic
     public override void Configure()
     {
         Post("api/vehicles");
+        Policies(ApplicationPolicies.User);
         Description(b => b
             .ClearDefaultProduces(StatusCodes.Status200OK)
             .Produces<CreateUserResponse>(StatusCodes.Status201Created));

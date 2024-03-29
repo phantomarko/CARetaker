@@ -3,7 +3,7 @@ using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using Infrastructure;
-using Infrastructure.Security.Jwt;
+using Infrastructure.Security.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -18,9 +18,9 @@ builder.Services.AddSecurity();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddFastEndpoints();
 builder.Services.SwaggerDocument();
-builder.Services.AddAuthenticationJwtBearer(s => {}, options =>
+builder.Services.AddAuthenticationJwtBearer(s => { }, options =>
 {
-    var jwtOptions = builder.Configuration.GetSection("Jwt").Get<JwtOptions>()!;
+    var jwtOptions = builder.Configuration.GetSection(JwtOptions.Section).Get<JwtOptions>()!;
     options.TokenValidationParameters = new()
     {
         ValidateIssuer = true,
