@@ -6,33 +6,49 @@ namespace Tests.Domain.Unit.Vehicles;
 public class RegistrationPlateTest
 {
     [Theory]
-    [InlineData("7465BZD")] // EU
-    [InlineData("H7465BZD")] // EU historical
-    [InlineData("MA2888AZ")] // provinces with 2 letter
-    [InlineData("M2888AZ")] // provinces with one letter
+    [ClassData(typeof(RegistrationPlateCreateValidData))]
     public void Create_Should_ReturnPlate(string value)
     {
         var plate = RegistrationPlate.Create(value);
 
-        Assert.Equal(plate.Value, value);
+        Assert.Equal(plate.Value, value.ToUpper());
     }
 
     [Theory]
-    [InlineData("plate")]
-    [InlineData("7465bzd")]
-    [InlineData("h7465bzd")]
-    [InlineData("ma2888az")]
-    [InlineData("m2888az")]
-    public void Create_Should_ThrowRegistrationPlateFormatIsInvalidException(string value)
+    [ClassData(typeof(RegistrationPlateCreateInvalidData))]
+    public void Create_Should_ThrowException(Type expectedException, string value)
     {
-        Assert.Throws<RegistrationPlateFormatIsInvalidException>(() => RegistrationPlate.Create(value));
+        Assert.Throws(expectedException, () => RegistrationPlate.Create(value));
     }
+}
 
-    [Theory]
-    [InlineData("")]
-    [InlineData("       ")]
-    public void Create_Should_ThrowRegistrationPlateFormatIsEmptyException(string value)
+public class RegistrationPlateCreateValidData : TheoryData<string>
+{
+    public RegistrationPlateCreateValidData()
     {
-        Assert.Throws<RegistrationPlateIsEmptyException>(() => RegistrationPlate.Create(value));
+        Add("A");
+        Add("1");
+        Add("TH3PH4NT0M");
+        Add("lower");
+        Add(new string('A', RegistrationPlate.MaximumLength));
+        Add("7465BZD");
+        Add("H0000BBB");
+        Add("MA0288AC");
+        Add("MYKSM704");
+        Add("AA-111-AA");
+        Add("BD51SMR");
+    }
+}
+
+public class RegistrationPlateCreateInvalidData : TheoryData<Type, string>
+{
+    public RegistrationPlateCreateInvalidData()
+    {
+        Add(typeof(RegistrationPlateIsEmptyException), "");
+        Add(typeof(RegistrationPlateIsEmptyException), new string(' ', RegistrationPlate.MaximumLength));
+        Add(typeof(RegistrationPlateLengthIsInvalidException), new string('A', RegistrationPlate.MaximumLength + 1));
+        Add(typeof(RegistrationPlateFormatIsInvalidException), "7465 BZD");
+        Add(typeof(RegistrationPlateFormatIsInvalidException), "7465_BZD");
+        Add(typeof(RegistrationPlateFormatIsInvalidException), "$M0N3Y$");
     }
 }
