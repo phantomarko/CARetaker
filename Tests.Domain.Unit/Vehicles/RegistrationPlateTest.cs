@@ -47,6 +47,7 @@ public class RegistrationPlateCreateInvalidData : TheoryData<Type, string>
         Add(typeof(RegistrationPlateIsEmptyException), "");
         Add(typeof(RegistrationPlateIsEmptyException), new string(' ', RegistrationPlate.MaximumLength));
         Add(typeof(RegistrationPlateLengthIsInvalidException), new string('A', RegistrationPlate.MaximumLength + 1));
+        Add(typeof(RegistrationPlateFormatIsInvalidException), "-");
         Add(typeof(RegistrationPlateFormatIsInvalidException), "7465 BZD");
         Add(typeof(RegistrationPlateFormatIsInvalidException), "7465_BZD");
         Add(typeof(RegistrationPlateFormatIsInvalidException), "$M0N3Y$");
