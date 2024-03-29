@@ -6,7 +6,8 @@ using Infrastructure.Persistence;
 using Infrastructure.Persistence.Options;
 using Infrastructure.Persistence.Users;
 using Infrastructure.Persistence.Vehicles;
-using Infrastructure.Security.Jwt;
+using Infrastructure.Security.Authentication;
+using Infrastructure.Security.Authorization;
 using Infrastructure.Security.PasswordHasher;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,6 +41,7 @@ public static class DependencyInjection
 
     public static IServiceCollection AddSecurity(this IServiceCollection services)
     {
+        services.ConfigureOptions<AuthorizationOptionsSetup>();
         services.ConfigureOptions<PasswordHasherOptionsSetup>();
         services.ConfigureOptions<JwtOptionsSetup>();
 

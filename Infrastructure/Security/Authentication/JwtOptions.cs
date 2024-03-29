@@ -1,7 +1,9 @@
-﻿namespace Infrastructure.Security.Jwt;
+﻿namespace Infrastructure.Security.Authentication;
 
 public class JwtOptions
 {
+    public const string Section = "Jwt";
+
     public string Issuer { get; init; } = string.Empty;
 
     public string Audience { get; init; } = string.Empty;
