@@ -1,5 +1,4 @@
 ﻿using Domain.Vehicles.Exceptions;
-using System.Reflection.PortableExecutable;
 
 namespace Domain.Vehicles;
 
