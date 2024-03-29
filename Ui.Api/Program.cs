@@ -1,9 +1,11 @@
 using Application;
+using Application.Abstractions;
 using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;
 using Infrastructure;
 using Infrastructure.Security.Authentication;
+using Infrastructure.Security.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -33,6 +35,7 @@ builder.Services.AddAuthenticationJwtBearer(s => { }, options =>
             Encoding.UTF8.GetBytes(jwtOptions.SecretKey))
     };
 }).AddAuthorization();
+builder.Services.AddScoped<IIdentityProvider, HttpContextIdentityProvider>();
 
 var app = builder.Build();
 
