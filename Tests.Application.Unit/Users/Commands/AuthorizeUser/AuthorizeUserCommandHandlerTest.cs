@@ -11,7 +11,7 @@ public class AuthorizeUserCommandHandlerTest
     private readonly Email _email;
     private readonly Password _password;
     private readonly User _user;
-    private readonly CancellationTokenSource _tokenSource;
+    private readonly CancellationToken _cancellationToken;
     private readonly Mock<IUserRepository> _userRepository;
     private readonly Mock<IJwtProvider> _jwtProvider;
     private readonly AuthorizeUserCommandHandler _handler;
@@ -26,7 +26,7 @@ public class AuthorizeUserCommandHandlerTest
             email: _email,
             password: _password,
             passwordHasher: passwordHasher);
-        _tokenSource = new CancellationTokenSource();
+        _cancellationToken = new CancellationTokenSource().Token;
 
         _userRepository = new Mock<IUserRepository>();
         _jwtProvider = new Mock<IJwtProvider>();
@@ -43,7 +43,7 @@ public class AuthorizeUserCommandHandlerTest
         UserExistsWithTheGivenEmail();
         _jwtProvider.Setup(mock => mock.Generate(_user)).Returns("token");
 
-        string token = await _handler.Handle(command, _tokenSource.Token);
+        string token = await _handler.Handle(command, _cancellationToken);
 
         Assert.IsType<String>(token);
         _userRepository.VerifyAll();
@@ -56,7 +56,7 @@ public class AuthorizeUserCommandHandlerTest
         var command = MakeCommand();
         UserNotExistsWithTheGivenEmail();
 
-        await Assert.ThrowsAsync<InvalidCredentialsException>(async () => await _handler.Handle(command, _tokenSource.Token));
+        await Assert.ThrowsAsync<InvalidCredentialsException>(async () => await _handler.Handle(command, _cancellationToken));
 
         _userRepository.VerifyAll();
     }
@@ -67,7 +67,7 @@ public class AuthorizeUserCommandHandlerTest
         var command = MakeCommand("wrongpassword");
         UserExistsWithTheGivenEmail();
 
-        await Assert.ThrowsAsync<InvalidCredentialsException>(async () => await _handler.Handle(command, _tokenSource.Token));
+        await Assert.ThrowsAsync<InvalidCredentialsException>(async () => await _handler.Handle(command, _cancellationToken));
 
         _userRepository.VerifyAll();
     }

@@ -9,13 +9,15 @@ public class VehiclesMother
 
     public static Vehicle MakeVehicle(
         Guid? id = null,
-        VehicleName? name = null,
-        RegistrationPlate? plate = null)
+        Guid? userId = null,
+        RegistrationPlate? plate = null,
+        VehicleName? name = null)
     {
         return Vehicle.Create(
             id ?? Guid.NewGuid(),
-            name ?? MakeVehicleName(),
-            plate ?? MakeRegistrationPlate());
+            userId ?? Guid.NewGuid(),
+            plate ?? MakeRegistrationPlate(),
+            name ?? MakeVehicleName());
     }
 
     public static VehicleName MakeVehicleName(string? value = null)
