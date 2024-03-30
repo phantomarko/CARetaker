@@ -1,4 +1,5 @@
 ﻿using Domain.Users;
+using Domain.Vehicles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -21,5 +22,11 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<User>
         builder
         .HasIndex(b => b.Email)
         .IsUnique();
+
+        builder
+            .HasMany<Vehicle>()
+            .WithOne()
+            .HasForeignKey(e => e.UserId)
+            .IsRequired();
     }
 }

@@ -6,25 +6,31 @@ public sealed class Vehicle : Entity
 {
     private Vehicle(
         Guid id,
-        VehicleName name,
-        RegistrationPlate plate) : base(id)
+        Guid userId,
+        RegistrationPlate plate,
+        VehicleName name) : base(id)
     {
+        UserId = userId;
         Name = name;
         Plate = plate;
     }
 
-    public VehicleName Name { get; private set; }
+    public Guid UserId { get; init; }
 
-    public RegistrationPlate Plate { get; private set; }
+    public RegistrationPlate Plate { get; init; }
+
+    public VehicleName Name { get; private set; }
 
     public static Vehicle Create(
         Guid id,
-        VehicleName name,
-        RegistrationPlate plate)
+        Guid userId,
+        RegistrationPlate plate,
+        VehicleName name)
     {
         return new Vehicle(
             id,
-            name,
-            plate);
+            userId,
+            plate,
+            name);
     }
 }
