@@ -403,3 +403,6 @@ FodyWeavers.xsd
 # Docker
 .docker/sqlserver/data/*
 .docker/sqlserver/log/*
+
+# Migrations tool
+Tools.MigrationRunner/appsettings.json

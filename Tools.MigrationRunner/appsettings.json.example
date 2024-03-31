@@ -1,0 +1,12 @@
+{
+  "Database": {
+    "Server": "server",
+    "Port": 1433,
+    "Name": "name",
+    "User": "user",
+    "Password": "password",
+    "Encrypt": false,
+    "DetailedErrors": true,
+    "SensitiveDataLogging": false
+  }
+}
