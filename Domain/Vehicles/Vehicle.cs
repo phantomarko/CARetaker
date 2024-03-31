@@ -1,4 +1,5 @@
 ﻿using Domain.Primitives;
+using Domain.Vehicles.Exceptions;
 
 namespace Domain.Vehicles;
 
@@ -25,8 +26,14 @@ public sealed class Vehicle : Entity
         Guid id,
         Guid userId,
         RegistrationPlate plate,
-        VehicleName name)
+        VehicleName name,
+        IVehicleRepository vehicleRepository)
     {
+        if (vehicleRepository.FindByUserAndPlate(userId, plate) is not null)
+        {
+            throw new RegistrationPlateIsAlreadyInUseException();
+        }
+
         return new Vehicle(
             id,
             userId,

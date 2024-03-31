@@ -1,4 +1,5 @@
 ﻿using Domain.Vehicles;
+using Moq;
 
 namespace Tests.Domain.Fixtures;
 
@@ -17,7 +18,8 @@ public class VehiclesMother
             id ?? Guid.NewGuid(),
             userId ?? Guid.NewGuid(),
             plate ?? MakeRegistrationPlate(),
-            name ?? MakeVehicleName());
+            name ?? MakeVehicleName(),
+            new Mock<IVehicleRepository>().Object);
     }
 
     public static VehicleName MakeVehicleName(string? value = null)
