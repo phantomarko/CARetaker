@@ -1,31 +1,59 @@
 ﻿using Domain.Vehicles;
+using Domain.Vehicles.Exceptions;
+using Moq;
 using Tests.Domain.Fixtures;
 
 namespace Tests.Domain.Unit.Vehicles;
 
 public class VehicleTest
 {
-    [Theory]
-    [ClassData(typeof(VehicleCreateValidData))]
-    public void Create_Should_ReturnVehicle(Guid id, Guid userId, VehicleName name, RegistrationPlate plate)
-    {
-        var vehicle = Vehicle.Create(id, userId, plate, name);
+    private readonly Guid _id;
+    private readonly Guid _userId;
+    private readonly VehicleName _name;
+    private readonly RegistrationPlate _plate;
+    private readonly Mock<IVehicleRepository> _vehicleRepository;
 
-        Assert.Equal(vehicle.Id, id);
-        Assert.Equal(vehicle.UserId, userId);
-        Assert.Equal(vehicle.Plate, plate);
-        Assert.Equal(vehicle.Name, name);
+    public VehicleTest()
+    {
+        _id = Guid.NewGuid();
+        _userId = Guid.NewGuid();
+        _name = VehiclesMother.MakeVehicleName();
+        _plate = VehiclesMother.MakeRegistrationPlate();
+        _vehicleRepository = new Mock<IVehicleRepository>();
     }
-}
 
-public class VehicleCreateValidData : TheoryData<Guid, Guid, VehicleName, RegistrationPlate>
-{
-    public VehicleCreateValidData()
+    [Fact]
+    public void Create_Should_ReturnVehicle()
     {
-        Add(
-            Guid.NewGuid(),
-            Guid.NewGuid(),
-            VehiclesMother.MakeVehicleName(),
-            VehiclesMother.MakeRegistrationPlate());
+        _vehicleRepository.Setup(mock => mock.FindByUserAndPlate(_userId, _plate));
+
+        var vehicle = Vehicle.Create(
+            _id,
+            _userId,
+            _plate,
+            _name,
+            _vehicleRepository.Object);
+
+        Assert.Equal(vehicle.Id, _id);
+        Assert.Equal(vehicle.UserId, _userId);
+        Assert.Equal(vehicle.Plate, _plate);
+        Assert.Equal(vehicle.Name, _name);
+        _vehicleRepository.VerifyAll();
+    }
+
+    [Fact]
+    public void Create_Should_ThrowException_WhenPlateIsUsed()
+    {
+        _vehicleRepository.Setup(mock => mock.FindByUserAndPlate(_userId, _plate))
+            .Returns(VehiclesMother.MakeVehicle());
+
+        Assert.Throws<RegistrationPlateIsAlreadyInUseException>(() => Vehicle.Create(
+            _id,
+            _userId,
+            _plate,
+            _name,
+            _vehicleRepository.Object));
+
+        _vehicleRepository.VerifyAll();
     }
 }

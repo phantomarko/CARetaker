@@ -14,7 +14,8 @@ public sealed class CreateVehicleCommandHandler(IVehicleRepository vehicleReposi
             Guid.NewGuid(),
             GetAuthenticatedUserId(),
             RegistrationPlate.Create(request.Plate),
-            VehicleName.Create(request.Name));
+            VehicleName.Create(request.Name),
+            vehicleRepository);
 
         await vehicleRepository.AddAsync(vehicle, cancellationToken);
 
