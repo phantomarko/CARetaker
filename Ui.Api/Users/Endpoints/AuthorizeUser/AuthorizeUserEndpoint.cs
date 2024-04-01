@@ -8,7 +8,7 @@ public sealed class AuthorizeUserEndpoint(ISender sender) : Endpoint<AuthorizeUs
 {
     public override void Configure()
     {
-        Post("api/users/authorize");
+        Post("users/authorize");
         AllowAnonymous();
     }
 

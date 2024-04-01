@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.env = .env
 		.env.example = .env.example
 		.gitignore = .gitignore
+		insomnia_collection.json = insomnia_collection.json
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -36,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Application.Unit", "T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Application.Fixtures", "Tests.Application.Fixtures\Tests.Application.Fixtures.csproj", "{E3583445-ECBF-4783-B0E9-B8EE216BDFF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools.MigrationRunner", "Tools.MigrationRunner\Tools.MigrationRunner.csproj", "{9E3BDA0D-9741-4C75-8996-0867CDE77929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.MigrationRunner", "Tools.MigrationRunner\Tools.MigrationRunner.csproj", "{9E3BDA0D-9741-4C75-8996-0867CDE77929}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

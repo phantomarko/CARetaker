@@ -8,7 +8,7 @@ public sealed class CreateUserEndpoint(ISender sender) : Endpoint<CreateUserRequ
 {
     public override void Configure()
     {
-        Post("api/users");
+        Post("users");
         AllowAnonymous();
         Description(b => b
             .ClearDefaultProduces(StatusCodes.Status200OK)

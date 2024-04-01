@@ -10,6 +10,9 @@
     <DockerServiceName>ui.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="insomnia_collection.json" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="docker-compose.override.yml">
       <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
