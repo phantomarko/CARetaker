@@ -10,7 +10,7 @@ public sealed class CreateVehicleEndpoint(ISender sender) : Endpoint<CreateVehic
 {
     public override void Configure()
     {
-        Post("api/vehicles");
+        Post("vehicles");
         Policies(ApplicationPolicies.User);
         Description(b => b
             .ClearDefaultProduces(StatusCodes.Status200OK)
