@@ -24,8 +24,8 @@ public static class DependencyInjection
         {
             DatabaseOptions dbOptions = serviceProvider.GetService<IOptions<DatabaseOptions>>()!.Value;
 
-            dbContextOptionsBuilder.UseSqlServer(
-                $"Server={dbOptions.Server},{dbOptions.Port};Database={dbOptions.Name};User Id={dbOptions.User};Password={dbOptions.Password};Encrypt={dbOptions.Encrypt};");
+            dbContextOptionsBuilder.UseNpgsql(
+                $"Server={dbOptions.Server};Port={dbOptions.Port};Database={dbOptions.Name};User Id={dbOptions.User};Password={dbOptions.Password};");
 
             dbContextOptionsBuilder.EnableDetailedErrors(dbOptions.DetailedErrors);
             dbContextOptionsBuilder.EnableSensitiveDataLogging(dbOptions.SensitiveDataLogging);

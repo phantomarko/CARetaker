@@ -5,7 +5,6 @@
     "Name": "name",
     "User": "user",
     "Password": "password",
-    "Encrypt": false,
     "DetailedErrors": true,
     "SensitiveDataLogging": false
   }
