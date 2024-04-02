@@ -2,7 +2,9 @@
 
 public class PasswordHasherOptions
 {
-    public string Pepper { get; set; } = string.Empty;
+    public const string Section = "PasswordHasher";
 
-    public int Iterations { get; set; }
+    public string Pepper { get; init; } = string.Empty;
+
+    public int Iterations { get; init; }
 }
