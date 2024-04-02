@@ -28,5 +28,7 @@ README.md
 !.git/config
 !.git/packed-refs
 !.git/refs/heads/**
-.docker/sqlserver/data
-.docker/sqlserver/log
+**/.docker/postgresql/data/*
+**/.github
+**/.env.example
+**/insomnia_collection.json

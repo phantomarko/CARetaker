@@ -8,20 +8,24 @@ services:
       dockerfile: Ui.Api/Dockerfile
     container_name: caretaker.api
     restart: on-failure
+    depends_on:
+      - database
     networks:
       - caretaker-network
+
   database:
-    image: mcr.microsoft.com/mssql/server:2022-latest
+    image: postgres:16.2-alpine
     container_name: caretaker.database
     restart: always
-    ports:
-      - 1433:1433
-    volumes:
-      - ./.docker/sqlserver/data:/var/opt/mssql/data
-      - ./.docker/sqlserver/log:/var/opt/mssql/log
-    environment:
-      - "MSSQL_SA_PASSWORD=${DATABASE_PASSWORD}"
-      - ACCEPT_EULA=Y
+    networks:
+      - caretaker-network
+
+  adminer:
+    image: adminer
+    container_name: caretaker.adminer
+    restart: always
+    depends_on:
+      - database
     networks:
       - caretaker-network
 
