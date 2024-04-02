@@ -3,7 +3,6 @@ using Domain.Abstractions;
 using Domain.Users;
 using Domain.Vehicles;
 using Infrastructure.Persistence;
-using Infrastructure.Persistence.Options;
 using Infrastructure.Persistence.Users;
 using Infrastructure.Persistence.Vehicles;
 using Infrastructure.Security.Authentication;
