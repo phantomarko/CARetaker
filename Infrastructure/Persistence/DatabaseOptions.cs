@@ -14,8 +14,6 @@ public class DatabaseOptions
 
     public string Password { get; init; } = string.Empty;
 
-    public bool Encrypt { get; init; }
-
     public bool DetailedErrors { get; init; }
 
     public bool SensitiveDataLogging { get; init; }
