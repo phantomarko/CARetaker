@@ -3,7 +3,7 @@ using Domain.Vehicles.Exceptions;
 
 namespace Domain.Vehicles;
 
-public sealed class Vehicle : Entity
+public sealed class Vehicle : AggregateRoot
 {
     private Vehicle(
         Guid id,

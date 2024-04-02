@@ -4,7 +4,7 @@ using System.Security.Cryptography;
 
 namespace Domain.Users;
 
-public sealed class User : Entity
+public sealed class User : AggregateRoot
 {
     private User(
         Guid id,
