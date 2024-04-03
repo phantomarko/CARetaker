@@ -6,7 +6,7 @@ public sealed record MaintenanceName
 {
     public const int MaximumLength = 100;
 
-    public MaintenanceName(string value) => Value = value;
+    private MaintenanceName(string value) => Value = value;
 
     public string Value { get; init; }
 
