@@ -1,8 +1,11 @@
 ﻿using Application.Abstractions;
 using Domain.Abstractions;
+using Domain.Maintenances;
+using Domain.Maintenances.Proxies;
 using Domain.Users;
 using Domain.Vehicles;
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.Maintenances;
 using Infrastructure.Persistence.Users;
 using Infrastructure.Persistence.Vehicles;
 using Infrastructure.Security.Authentication;
@@ -31,8 +34,10 @@ public static class DependencyInjection
             dbContextOptionsBuilder.EnableSensitiveDataLogging(dbOptions.SensitiveDataLogging);
         });
 
+        services.AddScoped<IMaintenanceRepository, MaintenanceRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IVehicleRepository, VehicleRepository>();
+        services.AddScoped<VehicleRepositoryProxy>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;

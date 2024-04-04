@@ -1,5 +1,4 @@
-﻿using Application.Abstractions;
-using Application.Primitives;
+﻿using Application.Exceptions;
 using Application.Vehicles.Commands.CreateVehicle;
 using Domain.Vehicles;
 using Moq;
@@ -7,23 +6,23 @@ using Tests.Application.Fixtures;
 
 namespace Tests.Application.Unit.Vehicles.Commands.CreateVehicle;
 
-public class CreateVehicleCommandHandlerTest
+public class CreateVehicleCommandHandlerTest : AbstractCommandHandlerTestCase
 {
     private readonly Mock<IVehicleRepository> _vehicleRepository;
-    private readonly Mock<IIdentityProvider> _identityProvider;
     private readonly CreateVehicleCommandHandler _handler;
     private readonly CancellationToken _cancellationToken;
 
     public CreateVehicleCommandHandlerTest()
     {
         _vehicleRepository = new Mock<IVehicleRepository>();
-        _identityProvider = new Mock<IIdentityProvider>();
-        _handler = new CreateVehicleCommandHandler(_vehicleRepository.Object, _identityProvider.Object);
+        _handler = new CreateVehicleCommandHandler(
+            _identityProvider.Object,
+            _vehicleRepository.Object);
         _cancellationToken = new CancellationTokenSource().Token;
     }
 
     [Theory]
-    [ClassData(typeof(CreateCarCommandHandlerHandleValidData))]
+    [ClassData(typeof(CreateVehicleCommandHandlerHandleValidData))]
     public async Task Handle_Should_ReturnGuid(CreateVehicleCommand command)
     {
         UserIsAuthenticated();
@@ -39,14 +38,9 @@ public class CreateVehicleCommandHandlerTest
     [Fact]
     public async Task Handle_Should_ThrowException_WhenUserIsNotAuthenticated()
     {
-        await Assert.ThrowsAsync<AuthorizationNeededException>(async () => await _handler.Handle(
+        await Assert.ThrowsAsync<AuthenticatedUserRequiredException>(async () => await _handler.Handle(
             VehiclesMother.MakeCreateVehicleCommand(),
             _cancellationToken));
-    }
-
-    private void UserIsAuthenticated()
-    {
-        _identityProvider.Setup(mock => mock.GetAuthenticatedUserId()).Returns(Guid.NewGuid());
     }
 
     private void VehicleWillBePersisted()
@@ -55,9 +49,9 @@ public class CreateVehicleCommandHandlerTest
     }
 }
 
-public class CreateCarCommandHandlerHandleValidData : TheoryData<CreateVehicleCommand>
+public class CreateVehicleCommandHandlerHandleValidData : TheoryData<CreateVehicleCommand>
 {
-    public CreateCarCommandHandlerHandleValidData()
+    public CreateVehicleCommandHandlerHandleValidData()
     {
         Add(VehiclesMother.MakeCreateVehicleCommand());
     }

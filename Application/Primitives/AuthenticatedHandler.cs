@@ -1,18 +1,10 @@
 ﻿using Application.Abstractions;
+using Application.Exceptions;
 
 namespace Application.Primitives;
 
 public abstract class AuthenticatedHandler(IIdentityProvider identityProvider)
 {
-    protected Guid GetAuthenticatedUserId()
-    {
-        var userId = identityProvider.GetAuthenticatedUserId();
-
-        if (userId is null)
-        {
-            throw new AuthorizationNeededException();
-        }
-
-        return (Guid)userId;
-    }
+    protected Guid AuthenticatedUserId =>
+        identityProvider.GetAuthenticatedUserId() ?? throw new AuthenticatedUserRequiredException();
 }

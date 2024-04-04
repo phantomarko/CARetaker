@@ -9,33 +9,38 @@ public class MaintenanceTest
     [ClassData(typeof(MaintenanceCreateValidData))]
     public void Create_Should_ReturnMaintenance(
         Guid id,
-        Guid carId,
+        Guid userId,
+        Guid vehicleId,
         MaintenanceName name,
         MaintenanceDescription? description)
     {
         var maintenance = Maintenance.Create(
             id,
-            carId,
+            userId,
+            vehicleId,
             name,
             description);
 
         Assert.Equal(id, maintenance.Id);
-        Assert.Equal(carId, maintenance.CarId);
+        Assert.Equal(userId, maintenance.UserId);
+        Assert.Equal(vehicleId, maintenance.VehicleId);
         Assert.Equal(name, maintenance.Name);
         Assert.Equal(description, maintenance.Description);
     }
 }
 
-public class MaintenanceCreateValidData : TheoryData<Guid, Guid, MaintenanceName, MaintenanceDescription?>
+public class MaintenanceCreateValidData : TheoryData<Guid, Guid, Guid, MaintenanceName, MaintenanceDescription?>
 {
     public MaintenanceCreateValidData()
     {
         Add(
             Guid.NewGuid(),
             Guid.NewGuid(),
+            Guid.NewGuid(),
             MaintenancesMother.MakeMaintenanceName(),
             MaintenancesMother.MakeMaintenanceDescription());
         Add(
+            Guid.NewGuid(),
             Guid.NewGuid(),
             Guid.NewGuid(),
             MaintenancesMother.MakeMaintenanceName(),

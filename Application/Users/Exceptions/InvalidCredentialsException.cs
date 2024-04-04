@@ -1,4 +1,4 @@
 ﻿namespace Application.Users.Exceptions;
 
 public sealed class InvalidCredentialsException()
-    : System.Exception("Incorrect email or password");
+    : Exception("The credentials are invalid");

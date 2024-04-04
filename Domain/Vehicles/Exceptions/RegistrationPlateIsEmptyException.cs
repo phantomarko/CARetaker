@@ -1,4 +1,6 @@
-﻿namespace Domain.Vehicles.Exceptions;
+﻿using Domain.Exceptions;
+
+namespace Domain.Vehicles.Exceptions;
 
 public sealed class RegistrationPlateIsEmptyException()
-    : Primitives.Exception("The plate cannot be empty");
+    : DomainException("The plate cannot be empty");

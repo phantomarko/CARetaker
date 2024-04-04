@@ -1,4 +1,6 @@
-﻿namespace Domain.Vehicles.Exceptions;
+﻿using Domain.Exceptions;
+
+namespace Domain.Vehicles.Exceptions;
 
 public sealed class RegistrationPlateLengthIsInvalidException()
-    : Primitives.Exception($"The plate length must be less than {RegistrationPlate.MaximumLength}");
+    : DomainException($"The plate length must be less than {RegistrationPlate.MaximumLength}");
