@@ -9,16 +9,18 @@ namespace Tests.Application.Unit.Vehicles.Commands.CreateVehicle;
 
 public class CreateVehicleCommandHandlerTest
 {
-    private readonly Mock<IVehicleRepository> _vehicleRepository;
     private readonly Mock<IIdentityProvider> _identityProvider;
+    private readonly Mock<IVehicleRepository> _vehicleRepository;
     private readonly CreateVehicleCommandHandler _handler;
     private readonly CancellationToken _cancellationToken;
 
     public CreateVehicleCommandHandlerTest()
     {
-        _vehicleRepository = new Mock<IVehicleRepository>();
         _identityProvider = new Mock<IIdentityProvider>();
-        _handler = new CreateVehicleCommandHandler(_vehicleRepository.Object, _identityProvider.Object);
+        _vehicleRepository = new Mock<IVehicleRepository>();
+        _handler = new CreateVehicleCommandHandler(
+            _identityProvider.Object,
+            _vehicleRepository.Object);
         _cancellationToken = new CancellationTokenSource().Token;
     }
 

@@ -5,8 +5,11 @@ using MediatR;
 
 namespace Application.Vehicles.Commands.CreateVehicle;
 
-public sealed class CreateVehicleCommandHandler(IVehicleRepository vehicleRepository, IIdentityProvider identityProvider)
-    : AuthenticatedHandler(identityProvider), IRequestHandler<CreateVehicleCommand, Guid>
+public sealed class CreateVehicleCommandHandler(
+    IIdentityProvider identityProvider,
+    IVehicleRepository vehicleRepository) 
+    : AuthenticatedHandler(identityProvider),
+    IRequestHandler<CreateVehicleCommand, Guid>
 {
     public async Task<Guid> Handle(CreateVehicleCommand request, CancellationToken cancellationToken = default)
     {
