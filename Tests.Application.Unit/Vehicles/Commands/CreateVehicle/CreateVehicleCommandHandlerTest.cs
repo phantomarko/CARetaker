@@ -1,5 +1,4 @@
-﻿using Application.Abstractions;
-using Application.Primitives;
+﻿using Application.Primitives;
 using Application.Vehicles.Commands.CreateVehicle;
 using Domain.Vehicles;
 using Moq;
@@ -7,16 +6,14 @@ using Tests.Application.Fixtures;
 
 namespace Tests.Application.Unit.Vehicles.Commands.CreateVehicle;
 
-public class CreateVehicleCommandHandlerTest
+public class CreateVehicleCommandHandlerTest : AbstractCommandHandlerTestCase
 {
-    private readonly Mock<IIdentityProvider> _identityProvider;
     private readonly Mock<IVehicleRepository> _vehicleRepository;
     private readonly CreateVehicleCommandHandler _handler;
     private readonly CancellationToken _cancellationToken;
 
     public CreateVehicleCommandHandlerTest()
     {
-        _identityProvider = new Mock<IIdentityProvider>();
         _vehicleRepository = new Mock<IVehicleRepository>();
         _handler = new CreateVehicleCommandHandler(
             _identityProvider.Object,
@@ -25,7 +22,7 @@ public class CreateVehicleCommandHandlerTest
     }
 
     [Theory]
-    [ClassData(typeof(CreateCarCommandHandlerHandleValidData))]
+    [ClassData(typeof(CreateVehicleCommandHandlerHandleValidData))]
     public async Task Handle_Should_ReturnGuid(CreateVehicleCommand command)
     {
         UserIsAuthenticated();
@@ -46,20 +43,15 @@ public class CreateVehicleCommandHandlerTest
             _cancellationToken));
     }
 
-    private void UserIsAuthenticated()
-    {
-        _identityProvider.Setup(mock => mock.GetAuthenticatedUserId()).Returns(Guid.NewGuid());
-    }
-
     private void VehicleWillBePersisted()
     {
         _vehicleRepository.Setup(mock => mock.AddAsync(It.IsAny<Vehicle>(), _cancellationToken));
     }
 }
 
-public class CreateCarCommandHandlerHandleValidData : TheoryData<CreateVehicleCommand>
+public class CreateVehicleCommandHandlerHandleValidData : TheoryData<CreateVehicleCommand>
 {
-    public CreateCarCommandHandlerHandleValidData()
+    public CreateVehicleCommandHandlerHandleValidData()
     {
         Add(VehiclesMother.MakeCreateVehicleCommand());
     }

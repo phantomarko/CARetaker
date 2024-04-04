@@ -6,16 +6,20 @@ public sealed class Maintenance : AggregateRoot
 {
     private Maintenance(
         Guid id,
-        Guid carId,
+        Guid userId,
+        Guid vehicleId,
         MaintenanceName name,
         MaintenanceDescription? description) : base(id)
     {
-        CarId = carId;
+        UserId = userId;
+        VehicleId = vehicleId;
         Name = name;
         Description = description;
     }
 
-    public Guid CarId { get; init; }
+    public Guid UserId { get; init; }
+
+    public Guid VehicleId { get; init; }
 
     public MaintenanceName Name { get; private set; }
 
@@ -23,10 +27,16 @@ public sealed class Maintenance : AggregateRoot
 
     public static Maintenance Create(
         Guid id,
-        Guid carId,
+        Guid userId,
+        Guid vehicleId,
         MaintenanceName name,
         MaintenanceDescription? description)
     {
-        return new Maintenance(id, carId, name, description);
+        return new Maintenance(
+            id,
+            userId,
+            vehicleId,
+            name,
+            description);
     }
 }
