@@ -1,5 +1,4 @@
 ﻿using Domain.Users;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Users;
 

@@ -11,11 +11,13 @@ public sealed class CreateVehicleCommandHandler(
     : AuthenticatedHandler(identityProvider),
     IRequestHandler<CreateVehicleCommand, Guid>
 {
-    public async Task<Guid> Handle(CreateVehicleCommand request, CancellationToken cancellationToken = default)
+    public async Task<Guid> Handle(
+        CreateVehicleCommand request,
+        CancellationToken cancellationToken = default)
     {
         var vehicle = Vehicle.Create(
             Guid.NewGuid(),
-            GetAuthenticatedUserId(),
+            AuthenticatedUserId,
             RegistrationPlate.Create(request.Plate),
             VehicleName.Create(request.Name),
             vehicleRepository);

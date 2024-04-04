@@ -1,4 +1,4 @@
-﻿using Application.Primitives;
+﻿using Application.Exceptions;
 using Application.Vehicles.Commands.CreateVehicle;
 using Domain.Vehicles;
 using Moq;

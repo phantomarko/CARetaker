@@ -1,22 +1,32 @@
 ﻿using Application.Abstractions;
+using Application.Exceptions;
 using Application.Primitives;
 using Domain.Maintenances;
+using Domain.Maintenances.Proxies;
 using MediatR;
 
 namespace Application.Maintenances.Commands.CreateMaintenance;
 
 public sealed class CreateMaintenanceCommandHandler(
     IIdentityProvider identityProvider,
-    IMaintenanceRepository maintenanceRepository)
+    IMaintenanceRepository maintenanceRepository,
+    VehicleRepositoryProxy vehicleRepository)
     : AuthenticatedHandler(identityProvider),
     IRequestHandler<CreateMaintenanceCommand, Guid>
 {
-    public async Task<Guid> Handle(CreateMaintenanceCommand request, CancellationToken cancellationToken = default)
+    public async Task<Guid> Handle(
+        CreateMaintenanceCommand request,
+        CancellationToken cancellationToken = default)
     {
+        var userId = AuthenticatedUserId;
+        var vehicleId = new Guid(request.VehicleId);
+
+        GuardAgainstNotExistingVehicle(userId, vehicleId);
+
         var maintenance = Maintenance.Create(
             Guid.NewGuid(),
-            GetAuthenticatedUserId(),
-            new Guid(request.VehicleId),
+            userId,
+            vehicleId,
             MaintenanceName.Create(request.Name),
             request.Description is null
                 ? null
@@ -25,5 +35,13 @@ public sealed class CreateMaintenanceCommandHandler(
         await maintenanceRepository.AddAsync(maintenance, cancellationToken);
 
         return maintenance.Id;
+    }
+
+    private void GuardAgainstNotExistingVehicle(Guid userId, Guid vehicleId)
+    {
+        if (vehicleRepository.FindByUserAndId(userId, vehicleId) is null)
+        {
+            throw NotFoundException.CreateVehicleNotFound(vehicleId.ToString());
+        }
     }
 }
