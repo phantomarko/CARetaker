@@ -1,4 +1,6 @@
-﻿namespace Domain.Users.Exceptions;
+﻿using Domain.Exceptions;
+
+namespace Domain.Users.Exceptions;
 
 public sealed class EmailIsAlreadyInUseException() 
-    : Primitives.Exception("The email is already in use");
+    : DomainException("The email is already in use");

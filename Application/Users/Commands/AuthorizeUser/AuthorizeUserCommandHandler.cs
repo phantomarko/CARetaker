@@ -1,5 +1,5 @@
 ﻿using Application.Abstractions;
-using Application.Exceptions;
+using Application.Users.Exceptions;
 using Domain.Users;
 using MediatR;
 

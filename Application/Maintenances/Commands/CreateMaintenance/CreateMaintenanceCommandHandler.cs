@@ -41,7 +41,7 @@ public sealed class CreateMaintenanceCommandHandler(
     {
         if (vehicleRepository.FindByUserAndId(userId, vehicleId) is null)
         {
-            throw NotFoundException.CreateVehicleNotFound(vehicleId.ToString());
+            throw new VehicleNotFoundException(vehicleId.ToString());
         }
     }
 }

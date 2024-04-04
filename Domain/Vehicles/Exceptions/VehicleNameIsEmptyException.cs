@@ -1,4 +1,6 @@
-﻿namespace Domain.Vehicles.Exceptions;
+﻿using Domain.Exceptions;
+
+namespace Domain.Vehicles.Exceptions;
 
 public sealed class VehicleNameIsEmptyException() 
-    : Primitives.Exception("The name cannot be empty");
+    : DomainException("The name cannot be empty");

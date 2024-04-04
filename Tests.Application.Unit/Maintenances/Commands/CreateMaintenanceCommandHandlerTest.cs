@@ -44,7 +44,7 @@ public class CreateMaintenanceCommandHandlerTest : AbstractCommandHandlerTestCas
     [Fact]
     public async Task Handle_Should_ThrowException_WhenUserIsNotAuthenticated()
     {
-        await Assert.ThrowsAsync<AuthorizationNeededException>(async () => await _handler.Handle(
+        await Assert.ThrowsAsync<AuthenticatedUserRequiredException>(async () => await _handler.Handle(
             Application.Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand()));
     }
 
@@ -53,7 +53,7 @@ public class CreateMaintenanceCommandHandlerTest : AbstractCommandHandlerTestCas
     {
         UserIsAuthenticated();
 
-        await Assert.ThrowsAsync<NotFoundException>(async () => await _handler.Handle(
+        await Assert.ThrowsAsync<VehicleNotFoundException>(async () => await _handler.Handle(
             Application.Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand()));
     }
 

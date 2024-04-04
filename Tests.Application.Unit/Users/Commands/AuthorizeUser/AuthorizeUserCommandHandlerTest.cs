@@ -1,6 +1,6 @@
 ﻿using Application.Abstractions;
-using Application.Exceptions;
 using Application.Users.Commands.AuthorizeUser;
+using Application.Users.Exceptions;
 using Domain.Users;
 using Moq;
 

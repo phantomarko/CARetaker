@@ -1,5 +1,5 @@
-﻿using Domain.Maintenances.Proxies;
-using Domain.Primitives;
+﻿using Domain.Exceptions;
+using Domain.Maintenances.Proxies;
 using Domain.Vehicles;
 using Moq;
 using Tests.Domain.Fixtures;

@@ -1,4 +1,6 @@
-﻿namespace Domain.Users.Exceptions;
+﻿using Domain.Exceptions;
+
+namespace Domain.Users.Exceptions;
 
 public sealed class EmailFormatIsInvalidException() 
-    : Primitives.Exception("The email is invalid");
+    : DomainException("The email is invalid");

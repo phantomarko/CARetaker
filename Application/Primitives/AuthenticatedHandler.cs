@@ -6,5 +6,5 @@ namespace Application.Primitives;
 public abstract class AuthenticatedHandler(IIdentityProvider identityProvider)
 {
     protected Guid AuthenticatedUserId =>
-        identityProvider.GetAuthenticatedUserId() ?? throw new AuthorizationNeededException();
+        identityProvider.GetAuthenticatedUserId() ?? throw new AuthenticatedUserRequiredException();
 }

@@ -1,4 +1,6 @@
-﻿namespace Domain.Vehicles.Exceptions;
+﻿using Domain.Exceptions;
+
+namespace Domain.Vehicles.Exceptions;
 
 public sealed class RegistrationPlateIsAlreadyInUseException()
-    : Primitives.Exception("The plate is already in use");
+    : DomainException("The plate is already in use");

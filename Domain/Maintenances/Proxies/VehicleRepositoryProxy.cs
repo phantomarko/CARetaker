@@ -1,4 +1,4 @@
-﻿using Domain.Primitives;
+﻿using Domain.Exceptions;
 using Domain.Vehicles;
 
 namespace Domain.Maintenances.Proxies;

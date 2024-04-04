@@ -38,7 +38,7 @@ public class CreateVehicleCommandHandlerTest : AbstractCommandHandlerTestCase
     [Fact]
     public async Task Handle_Should_ThrowException_WhenUserIsNotAuthenticated()
     {
-        await Assert.ThrowsAsync<AuthorizationNeededException>(async () => await _handler.Handle(
+        await Assert.ThrowsAsync<AuthenticatedUserRequiredException>(async () => await _handler.Handle(
             VehiclesMother.MakeCreateVehicleCommand(),
             _cancellationToken));
     }
