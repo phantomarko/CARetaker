@@ -29,7 +29,8 @@ public class MaintenanceTest
     }
 }
 
-public class MaintenanceCreateValidData : TheoryData<Guid, Guid, Guid, MaintenanceName, MaintenanceDescription?>
+public class MaintenanceCreateValidData
+    : TheoryData<Guid, Guid, Guid, MaintenanceName, MaintenanceDescription?>
 {
     public MaintenanceCreateValidData()
     {

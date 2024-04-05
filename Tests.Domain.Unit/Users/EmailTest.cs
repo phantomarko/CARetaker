@@ -11,7 +11,7 @@ public class EmailTest
     {
         var email = Email.Create(value);
 
-        Assert.Equal(email.Value, value);
+        Assert.Equal(value, email.Value);
     }
 
     [Theory]

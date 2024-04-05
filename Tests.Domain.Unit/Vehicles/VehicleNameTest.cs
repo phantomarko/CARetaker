@@ -11,7 +11,7 @@ public class VehicleNameTest
     {
         var name = VehicleName.Create(value);
 
-        Assert.Equal(name.Value, value);
+        Assert.Equal(value, name.Value);
     }
 
     [Theory]

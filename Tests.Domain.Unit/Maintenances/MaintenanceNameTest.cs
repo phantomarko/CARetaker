@@ -11,7 +11,7 @@ public class MaintenanceNameTest
     {
         var name = MaintenanceName.Create(value);
 
-        Assert.Equal(name.Value, value);
+        Assert.Equal(value, name.Value);
     }
 
     [Theory]

@@ -34,8 +34,8 @@ public class UserTest
             _passwordHasher,
             _userRepository.Object);
 
-        Assert.Equal(user.Id, _id);
-        Assert.Equal(user.Email, _email);
+        Assert.Equal(_id, user.Id);
+        Assert.Equal(_email, user.Email);
         Assert.True(user.PasswordMatches(_password.Value, _passwordHasher));
         _userRepository.VerifyAll();
     }
@@ -43,7 +43,8 @@ public class UserTest
     [Fact]
     public void Create_Should_ThrowException_WhenEmailIsUsed()
     {
-        _userRepository.Setup(mock => mock.FindByEmail(_email)).Returns(UsersMother.MakeUser());
+        _userRepository.Setup(mock => mock.FindByEmail(_email))
+            .Returns(UsersMother.MakeUser());
 
         Assert.Throws<EmailIsAlreadyInUseException>(() => User.Create(
             _id,

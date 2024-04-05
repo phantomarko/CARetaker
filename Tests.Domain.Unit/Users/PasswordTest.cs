@@ -11,7 +11,7 @@ public class PasswordTest
     {
         var password = Password.Create(value);
 
-        Assert.Equal(password.Value, value);
+        Assert.Equal(value, password.Value);
     }
 
     [Theory]

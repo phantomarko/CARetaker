@@ -34,7 +34,9 @@ public static class UsersMother
         return Password.Create(value ?? PasswordDefault);
     }
 
-    public static PasswordHasher MakePasswordHasher(string? pepper = null, int? iterations = null)
+    public static PasswordHasher MakePasswordHasher(
+        string? pepper = null,
+        int? iterations = null)
     {
         return new PasswordHasher(
             pepper ?? PasswordHasherPepperDefault,

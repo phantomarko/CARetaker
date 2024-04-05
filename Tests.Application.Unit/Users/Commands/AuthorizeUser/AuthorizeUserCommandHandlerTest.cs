@@ -56,7 +56,8 @@ public class AuthorizeUserCommandHandlerTest
         var command = MakeCommand();
         UserNotExistsWithTheGivenEmail();
 
-        await Assert.ThrowsAsync<InvalidCredentialsException>(async () => await _handler.Handle(command, _cancellationToken));
+        await Assert.ThrowsAsync<InvalidCredentialsException>(async () =>
+            await _handler.Handle(command, _cancellationToken));
 
         _userRepository.VerifyAll();
     }
@@ -67,7 +68,8 @@ public class AuthorizeUserCommandHandlerTest
         var command = MakeCommand("wrongpassword");
         UserExistsWithTheGivenEmail();
 
-        await Assert.ThrowsAsync<InvalidCredentialsException>(async () => await _handler.Handle(command, _cancellationToken));
+        await Assert.ThrowsAsync<InvalidCredentialsException>(async () =>
+            await _handler.Handle(command, _cancellationToken));
 
         _userRepository.VerifyAll();
     }
@@ -81,7 +83,8 @@ public class AuthorizeUserCommandHandlerTest
 
     private void UserExistsWithTheGivenEmail()
     {
-        _userRepository.Setup(mock => mock.FindByEmail(_email)).Returns(_user);
+        _userRepository.Setup(mock => mock.FindByEmail(_email))
+            .Returns(_user);
     }
 
     private void UserNotExistsWithTheGivenEmail()

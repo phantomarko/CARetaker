@@ -3,12 +3,12 @@ using Moq;
 
 namespace Tests.Application.Unit;
 
-public abstract class AbstractCommandHandlerTestCase
+public abstract class AuthenticatedHandlerTestCase
 {
     protected readonly Mock<IIdentityProvider> _identityProvider;
     protected readonly Guid _userId;
 
-    protected AbstractCommandHandlerTestCase()
+    protected AuthenticatedHandlerTestCase()
     {
         _identityProvider = new Mock<IIdentityProvider>();
         _userId = Guid.NewGuid();

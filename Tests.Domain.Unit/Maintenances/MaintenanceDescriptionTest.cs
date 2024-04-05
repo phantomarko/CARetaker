@@ -9,9 +9,9 @@ public class MaintenanceDescriptionTest
     [ClassData(typeof(MaintenanceDescriptionCreateValidData))]
     public void Create_Should_ReturnMaintenanceDescription(string value)
     {
-        var name = MaintenanceDescription.Create(value);
+        var description = MaintenanceDescription.Create(value);
 
-        Assert.Equal(name.Value, value);
+        Assert.Equal(value, description.Value);
     }
 
     [Theory]

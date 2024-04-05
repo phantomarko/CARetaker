@@ -34,10 +34,10 @@ public class VehicleTest
             _name,
             _vehicleRepository.Object);
 
-        Assert.Equal(vehicle.Id, _id);
-        Assert.Equal(vehicle.UserId, _userId);
-        Assert.Equal(vehicle.Plate, _plate);
-        Assert.Equal(vehicle.Name, _name);
+        Assert.Equal(_id, vehicle.Id);
+        Assert.Equal(_userId, vehicle.UserId);
+        Assert.Equal(_plate, vehicle.Plate);
+        Assert.Equal(_name, vehicle.Name);
         _vehicleRepository.VerifyAll();
     }
 

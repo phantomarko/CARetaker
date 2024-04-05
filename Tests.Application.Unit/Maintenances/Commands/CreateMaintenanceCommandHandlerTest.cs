@@ -7,7 +7,7 @@ using Moq;
 
 namespace Tests.Application.Unit.Maintenances.Commands;
 
-public class CreateMaintenanceCommandHandlerTest : AbstractCommandHandlerTestCase
+public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
 {
     private readonly Mock<IMaintenanceRepository> _maintenanceRepository;
     private readonly Mock<IVehicleRepository> _vehicleRepository;
@@ -44,8 +44,8 @@ public class CreateMaintenanceCommandHandlerTest : AbstractCommandHandlerTestCas
     [Fact]
     public async Task Handle_Should_ThrowException_WhenUserIsNotAuthenticated()
     {
-        await Assert.ThrowsAsync<AuthenticatedUserRequiredException>(async () => await _handler.Handle(
-            Application.Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand()));
+        await Assert.ThrowsAsync<AuthenticatedUserRequiredException>(async () =>
+            await _handler.Handle(MakeCommand()));
     }
 
     [Fact]
@@ -53,19 +53,27 @@ public class CreateMaintenanceCommandHandlerTest : AbstractCommandHandlerTestCas
     {
         UserIsAuthenticated();
 
-        await Assert.ThrowsAsync<VehicleNotFoundException>(async () => await _handler.Handle(
-            Application.Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand()));
+        await Assert.ThrowsAsync<VehicleNotFoundException>(async () =>
+            await _handler.Handle(MakeCommand()));
     }
 
     private void MaintenanceWillBePersisted()
     {
-        _maintenanceRepository.Setup(mock => mock.AddAsync(It.IsAny<Maintenance>(), _cancellationToken));
+        _maintenanceRepository.Setup(mock => mock.AddAsync(
+            It.IsAny<Maintenance>(),
+            _cancellationToken));
     }
 
     private void VehicleExists(Guid userId, Guid vehicleId)
     {
-        _vehicleRepository.Setup(mock => mock.FindByUserAndId(userId, vehicleId)).Returns(
-            Domain.Fixtures.VehiclesMother.MakeVehicle());
+        _vehicleRepository.Setup(mock => mock.FindByUserAndId(userId, vehicleId))
+            .Returns(Domain.Fixtures.VehiclesMother.MakeVehicle());
+    }
+
+    public static CreateMaintenanceCommand MakeCommand(string? description = null)
+    {
+        return Application.Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand(
+            description: description);
     }
 }
 
@@ -73,9 +81,8 @@ public class CreateMaintenanceCommandHandlerHandleValidData : TheoryData<CreateM
 {
     public CreateMaintenanceCommandHandlerHandleValidData()
     {
-        Add(Application.Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand());
+        Add(CreateMaintenanceCommandHandlerTest.MakeCommand());
 
-        Add(Application.Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand(
-            description: "This is a description"));
+        Add(CreateMaintenanceCommandHandlerTest.MakeCommand("This is a description"));
     }
 }

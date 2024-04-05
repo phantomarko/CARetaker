@@ -6,7 +6,7 @@ using Tests.Application.Fixtures;
 
 namespace Tests.Application.Unit.Vehicles.Commands.CreateVehicle;
 
-public class CreateVehicleCommandHandlerTest : AbstractCommandHandlerTestCase
+public class CreateVehicleCommandHandlerTest : AuthenticatedHandlerTestCase
 {
     private readonly Mock<IVehicleRepository> _vehicleRepository;
     private readonly CreateVehicleCommandHandler _handler;
@@ -38,9 +38,10 @@ public class CreateVehicleCommandHandlerTest : AbstractCommandHandlerTestCase
     [Fact]
     public async Task Handle_Should_ThrowException_WhenUserIsNotAuthenticated()
     {
-        await Assert.ThrowsAsync<AuthenticatedUserRequiredException>(async () => await _handler.Handle(
-            VehiclesMother.MakeCreateVehicleCommand(),
-            _cancellationToken));
+        await Assert.ThrowsAsync<AuthenticatedUserRequiredException>(async () =>
+            await _handler.Handle(
+                VehiclesMother.MakeCreateVehicleCommand(),
+                _cancellationToken));
     }
 
     private void VehicleWillBePersisted()

@@ -11,7 +11,7 @@ public class RegistrationPlateTest
     {
         var plate = RegistrationPlate.Create(value);
 
-        Assert.Equal(plate.Value, value.ToUpper());
+        Assert.Equal(value.ToUpper(), plate.Value);
     }
 
     [Theory]
@@ -44,12 +44,26 @@ public class RegistrationPlateCreateInvalidData : TheoryData<Type, string>
 {
     public RegistrationPlateCreateInvalidData()
     {
-        Add(typeof(RegistrationPlateIsEmptyException), "");
-        Add(typeof(RegistrationPlateIsEmptyException), new string(' ', RegistrationPlate.MaximumLength));
-        Add(typeof(RegistrationPlateLengthIsInvalidException), new string('A', RegistrationPlate.MaximumLength + 1));
-        Add(typeof(RegistrationPlateFormatIsInvalidException), "-");
-        Add(typeof(RegistrationPlateFormatIsInvalidException), "7465 BZD");
-        Add(typeof(RegistrationPlateFormatIsInvalidException), "7465_BZD");
-        Add(typeof(RegistrationPlateFormatIsInvalidException), "$M0N3Y$");
+        Add(
+            typeof(RegistrationPlateIsEmptyException),
+            "");
+        Add(
+            typeof(RegistrationPlateIsEmptyException),
+            new string(' ', RegistrationPlate.MaximumLength));
+        Add(
+            typeof(RegistrationPlateLengthIsInvalidException),
+            new string('A', RegistrationPlate.MaximumLength + 1));
+        Add(
+            typeof(RegistrationPlateFormatIsInvalidException),
+            "-");
+        Add(
+            typeof(RegistrationPlateFormatIsInvalidException),
+            "7465 BZD");
+        Add(
+            typeof(RegistrationPlateFormatIsInvalidException),
+            "7465_BZD");
+        Add(
+            typeof(RegistrationPlateFormatIsInvalidException),
+            "$M0N3Y$");
     }
 }
