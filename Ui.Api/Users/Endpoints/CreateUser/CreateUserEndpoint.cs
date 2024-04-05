@@ -4,7 +4,8 @@ using MediatR;
 
 namespace Ui.Api.Users.Endpoints.CreateUser;
 
-public sealed class CreateUserEndpoint(ISender sender) : Endpoint<CreateUserRequest, CreateUserResponse>
+public sealed class CreateUserEndpoint(ISender sender)
+    : Endpoint<CreateUserRequest, CreateUserResponse>
 {
     public override void Configure()
     {
@@ -15,7 +16,9 @@ public sealed class CreateUserEndpoint(ISender sender) : Endpoint<CreateUserRequ
             .Produces<CreateUserResponse>(StatusCodes.Status201Created));
     }
 
-    public override async Task HandleAsync(CreateUserRequest request, CancellationToken cancellationToken)
+    public override async Task HandleAsync(
+        CreateUserRequest request,
+        CancellationToken cancellationToken)
     {
         Guid result = await sender.Send(
             new CreateUserCommand(
