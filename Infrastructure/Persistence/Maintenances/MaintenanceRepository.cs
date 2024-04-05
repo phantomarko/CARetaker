@@ -2,12 +2,13 @@
 
 namespace Infrastructure.Persistence.Maintenances;
 
-public sealed class MaintenanceRepository : IMaintenanceRepository
+public sealed class MaintenanceRepository(ApplicationDbContext context)
+    : IMaintenanceRepository
 {
-    public Task AddAsync(
+    public async Task AddAsync(
         Maintenance maintenance,
         CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        await context.Maintenances.AddAsync(maintenance, cancellationToken);
     }
 }

@@ -2,11 +2,14 @@
 
 namespace Infrastructure.Persistence.Users;
 
-public sealed class UserRepository(ApplicationDbContext context) : IUserRepository
+public sealed class UserRepository(ApplicationDbContext context)
+    : IUserRepository
 {
-    public async Task AddAsync(User user, CancellationToken cancellationToken = default)
+    public async Task AddAsync(
+        User user,
+        CancellationToken cancellationToken = default)
     {
-        await context.Users.AddAsync(user);
+        await context.Users.AddAsync(user, cancellationToken);
     }
 
     public User? FindByEmail(Email email)
