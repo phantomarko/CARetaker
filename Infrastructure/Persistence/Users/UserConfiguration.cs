@@ -1,4 +1,5 @@
-﻿using Domain.Users;
+﻿using Domain.Maintenances;
+using Domain.Users;
 using Domain.Vehicles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -25,6 +26,12 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder
             .HasMany<Vehicle>()
+            .WithOne()
+            .HasForeignKey(e => e.UserId)
+            .IsRequired();
+
+        builder
+            .HasMany<Maintenance>()
             .WithOne()
             .HasForeignKey(e => e.UserId)
             .IsRequired();

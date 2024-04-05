@@ -4,7 +4,8 @@ using MediatR;
 
 namespace Ui.Api.Users.Endpoints.LoginUser;
 
-public sealed class AuthorizeUserEndpoint(ISender sender) : Endpoint<AuthorizeUserRequest, AuthorizeUserResponse>
+public sealed class AuthorizeUserEndpoint(ISender sender)
+    : Endpoint<AuthorizeUserRequest, AuthorizeUserResponse>
 {
     public override void Configure()
     {
@@ -12,7 +13,9 @@ public sealed class AuthorizeUserEndpoint(ISender sender) : Endpoint<AuthorizeUs
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(AuthorizeUserRequest request, CancellationToken cancellationToken)
+    public override async Task HandleAsync(
+        AuthorizeUserRequest request,
+        CancellationToken cancellationToken)
     {
         string token = await sender.Send(
             new AuthorizeUserCommand(

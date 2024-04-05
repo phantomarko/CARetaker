@@ -1,4 +1,5 @@
-﻿using Domain.Vehicles;
+﻿using Domain.Maintenances;
+using Domain.Vehicles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -26,5 +27,11 @@ public sealed class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
             v => RegistrationPlate.Create(v))
         .HasMaxLength(PlateMaxLength)
         .IsRequired();
+
+        builder
+            .HasMany<Maintenance>()
+            .WithOne()
+            .HasForeignKey(e => e.VehicleId)
+            .IsRequired();
     }
 }

@@ -3,11 +3,14 @@ using Domain.Vehicles;
 
 namespace Infrastructure.Persistence.Vehicles;
 
-public sealed class VehicleRepository(ApplicationDbContext context) : IVehicleRepository
+public sealed class VehicleRepository(ApplicationDbContext context)
+    : IVehicleRepository
 {
-    public async Task AddAsync(Vehicle vehicle, CancellationToken cancellationToken = default)
+    public async Task AddAsync(
+        Vehicle vehicle,
+        CancellationToken cancellationToken = default)
     {
-        await context.Vehicles.AddAsync(vehicle);
+        await context.Vehicles.AddAsync(vehicle, cancellationToken);
     }
 
     public Vehicle? FindByUserAndId(Guid userId, Guid id)
