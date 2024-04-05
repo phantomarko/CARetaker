@@ -7,10 +7,18 @@ public sealed class PasswordHasher(string pepper, int iterations)
 {
     public string Compute(string plainPassword, string salt)
     {
-        return ComputeWithCondiments(plainPassword, salt, pepper, iterations);
+        return ComputeWithCondiments(
+            plainPassword,
+            salt,
+            pepper,
+            iterations);
     }
 
-    private string ComputeWithCondiments(string password, string salt, string pepper, int iteration)
+    private string ComputeWithCondiments(
+        string password,
+        string salt,
+        string pepper,
+        int iteration)
     {
         if (iteration <= 0)
         {

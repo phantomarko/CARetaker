@@ -8,7 +8,8 @@ using System.Text;
 
 namespace Infrastructure.Security.Authentication;
 
-public class JwtProvider(IOptions<JwtOptions> options) : IJwtProvider
+public sealed class JwtProvider(IOptions<JwtOptions> options)
+    : IJwtProvider
 {
     private readonly JwtOptions _jwtOptions = options.Value;
 

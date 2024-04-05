@@ -11,7 +11,9 @@ public sealed class AuthorizeUserCommandHandler(
     IJwtProvider jwtProvider)
     : IRequestHandler<AuthorizeUserCommand, string>
 {
-    public Task<string> Handle(AuthorizeUserCommand request, CancellationToken cancellationToken)
+    public Task<string> Handle(
+        AuthorizeUserCommand request,
+        CancellationToken cancellationToken)
     {
         var email = Email.Create(request.Email);
         User? user = userRepository.FindByEmail(email);

@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure.Persistence;
 
-public class DatabaseOptions
+public sealed class DatabaseOptions
 {
     public const string Section = "Database";
 

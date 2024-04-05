@@ -11,8 +11,7 @@ public sealed class CreateMaintenanceCommandHandler(
     IIdentityProvider identityProvider,
     IMaintenanceRepository maintenanceRepository,
     VehicleRepositoryProxy vehicleRepository)
-    : AuthenticatedHandler(identityProvider),
-    IRequestHandler<CreateMaintenanceCommand, Guid>
+    : AuthenticatedHandler(identityProvider), IRequestHandler<CreateMaintenanceCommand, Guid>
 {
     public async Task<Guid> Handle(
         CreateMaintenanceCommand request,

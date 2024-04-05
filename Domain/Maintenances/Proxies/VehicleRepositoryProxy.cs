@@ -3,9 +3,12 @@ using Domain.Vehicles;
 
 namespace Domain.Maintenances.Proxies;
 
-public class VehicleRepositoryProxy(IVehicleRepository vehicleRepository) : IVehicleRepository
+public class VehicleRepositoryProxy(IVehicleRepository vehicleRepository)
+    : IVehicleRepository
 {
-    public Task AddAsync(Vehicle vehicle, CancellationToken cancellationToken = default)
+    public Task AddAsync(
+        Vehicle vehicle,
+        CancellationToken cancellationToken = default)
     {
         throw new MethodNotAllowedException();
     }

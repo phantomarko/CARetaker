@@ -27,7 +27,9 @@ public sealed class User : AggregateRoot
         string plainPassword,
         PasswordHasher passwordHasher)
     {
-        var passwordHash = passwordHasher.Compute(plainPassword, PasswordSalt);
+        var passwordHash = passwordHasher.Compute(
+            plainPassword,
+            PasswordSalt);
 
         return passwordHash == PasswordHash;
     }
@@ -45,7 +47,10 @@ public sealed class User : AggregateRoot
         }
 
         var passwordSalt = GenerateSalt();
-        var passwordHash = passwordHasher.Compute(password.Value, passwordSalt);
+        var passwordHash = passwordHasher.Compute(
+            password.Value,
+            passwordSalt);
+
         return new User(
             id,
             email,

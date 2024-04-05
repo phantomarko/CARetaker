@@ -2,7 +2,9 @@
 
 public interface IUserRepository
 {
-    Task AddAsync(User user, CancellationToken cancellationToken = default);
+    Task AddAsync(
+        User user,
+        CancellationToken cancellationToken = default);
 
     User? FindByEmail(Email email);
 }

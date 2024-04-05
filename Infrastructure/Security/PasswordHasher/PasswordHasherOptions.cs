@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure.Security.PasswordHasher;
 
-public class PasswordHasherOptions
+public sealed class PasswordHasherOptions
 {
     public const string Section = "PasswordHasher";
 

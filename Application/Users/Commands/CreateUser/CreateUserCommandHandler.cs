@@ -3,10 +3,14 @@ using MediatR;
 
 namespace Application.Users.Commands.CreateUser;
 
-public sealed class CreateUserCommandHandler(PasswordHasher passwordHasher, IUserRepository userRepository)
+public sealed class CreateUserCommandHandler(
+    PasswordHasher passwordHasher,
+    IUserRepository userRepository)
     : IRequestHandler<CreateUserCommand, Guid>
 {
-    public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken = default)
+    public async Task<Guid> Handle(
+        CreateUserCommand request,
+        CancellationToken cancellationToken = default)
     {
         var user = User.Create(
             Guid.NewGuid(),

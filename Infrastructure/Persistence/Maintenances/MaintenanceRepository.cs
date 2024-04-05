@@ -9,6 +9,8 @@ public sealed class MaintenanceRepository(ApplicationDbContext context)
         Maintenance maintenance,
         CancellationToken cancellationToken = default)
     {
-        await context.Maintenances.AddAsync(maintenance, cancellationToken);
+        await context.Maintenances.AddAsync(
+            maintenance,
+            cancellationToken);
     }
 }

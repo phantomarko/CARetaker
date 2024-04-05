@@ -2,7 +2,9 @@
 
 public interface IVehicleRepository
 {
-    Task AddAsync(Vehicle vehicle, CancellationToken cancellationToken = default);
+    Task AddAsync(
+        Vehicle vehicle,
+        CancellationToken cancellationToken = default);
 
     Vehicle? FindByUserAndId(Guid userId, Guid id);
 

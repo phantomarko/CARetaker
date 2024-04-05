@@ -5,7 +5,8 @@ using System.Security.Claims;
 
 namespace Infrastructure.Security.Authorization;
 
-public class HttpContextIdentityProvider(IHttpContextAccessor context) : IIdentityProvider
+public sealed class HttpContextIdentityProvider(IHttpContextAccessor context)
+    : IIdentityProvider
 {
     public Guid? GetAuthenticatedUserId()
     {

@@ -4,7 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 
 namespace Infrastructure.Security.Authorization;
 
-public class AuthorizationOptionsSetup : IConfigureOptions<AuthorizationOptions>
+public sealed class AuthorizationOptionsSetup : IConfigureOptions<AuthorizationOptions>
 {
     public void Configure(AuthorizationOptions options)
     {

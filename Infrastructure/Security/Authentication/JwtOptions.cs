@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure.Security.Authentication;
 
-public class JwtOptions
+public sealed class JwtOptions
 {
     public const string Section = "Jwt";
 
