@@ -8,9 +8,9 @@ public class MileageTest
     [ClassData(typeof(MileageCreateValidData))]
     public void Create_Should_ReturnMileage(int value, string unit)
     {
-        var log = Mileage.Create(value, unit);
+        var mileage = Mileage.Create(value, unit);
 
-        Assert.Equal(value, log.Value);
+        Assert.Equal(value, mileage.Value);
     }
 
     [Theory]

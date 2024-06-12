@@ -2,8 +2,6 @@
 
 public sealed record Mileage
 {
-    private const int MinimumValue = 0;
-
     private Mileage(int value, MileageUnit unit)
     {
         Value = value;
@@ -16,7 +14,7 @@ public sealed record Mileage
 
     public static Mileage Create(int value, string unit)
     {
-        if (value < MinimumValue)
+        if (value < 0)
         {
             throw new MileageValueIsLessThanZeroException();
         }
