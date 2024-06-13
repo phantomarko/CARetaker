@@ -5,7 +5,7 @@ using Domain.Maintenances.Proxies;
 using Domain.Vehicles;
 using Moq;
 
-namespace Tests.Application.Unit.Maintenances.Commands;
+namespace Tests.Application.Unit.Maintenances.Commands.CreateMaintenance;
 
 public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
 {
@@ -72,7 +72,7 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
 
     public static CreateMaintenanceCommand MakeCommand(string? description = null)
     {
-        return Application.Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand(
+        return Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand(
             description: description);
     }
 }
