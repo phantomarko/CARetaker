@@ -28,12 +28,12 @@ public class MileageCreateValidData : TheoryData<int, string>
 {
     public MileageCreateValidData()
     {
-        Add(0, MileageUnit.Kilometers.ToString());
-        Add(1, MileageUnit.Kilometers.ToString());
-        Add(288, MileageUnit.Kilometers.ToString());
-        Add(0, MileageUnit.Miles.ToString());
-        Add(1, MileageUnit.Miles.ToString());
-        Add(666, MileageUnit.Miles.ToString());
+        Add(0, MileageUnit.km.ToString());
+        Add(1, MileageUnit.km.ToString());
+        Add(288, MileageUnit.km.ToString());
+        Add(0, MileageUnit.mi.ToString());
+        Add(1, MileageUnit.mi.ToString());
+        Add(666, MileageUnit.mi.ToString());
     }
 }
 
@@ -44,18 +44,14 @@ public class MileageCreateInvalidData : TheoryData<Type, int, string>
         Add(
             typeof(MileageValueIsLessThanZeroException),
             -1,
-            MileageUnit.Kilometers.ToString());
+            MileageUnit.km.ToString());
         Add(
             typeof(MileageUnitIsInvalidException),
             1,
-            MileageUnit.Kilometers.ToString().ToUpper());
+            MileageUnit.km.ToString().ToUpper());
         Add(
             typeof(MileageUnitIsInvalidException),
             1,
-            MileageUnit.Kilometers.ToString().ToLower());
-        Add(
-            typeof(MileageUnitIsInvalidException),
-            1,
-            "Meters");
+            "m");
     }
 }

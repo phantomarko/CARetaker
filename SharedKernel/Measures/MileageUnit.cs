@@ -2,6 +2,6 @@
 
 public enum MileageUnit
 {
-    Kilometers,
-    Miles
+    km,
+    mi
 }
