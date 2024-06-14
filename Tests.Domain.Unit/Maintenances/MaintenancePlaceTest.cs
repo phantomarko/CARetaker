@@ -7,7 +7,7 @@ public class MaintenancePlaceTest
 {
     [Theory]
     [ClassData(typeof(MaintenancePlaceCreateValidData))]
-    public void Create_Should_ReturnMaintenanceName(string value)
+    public void Create_Should_ReturnPlace(string value)
     {
         var place = MaintenancePlace.Create(value);
 
@@ -27,8 +27,8 @@ public class MaintenancePlaceCreateValidData : TheoryData<string>
     public MaintenancePlaceCreateValidData()
     {
         Add("Buddys Workshop");
-        Add(new string('A', MaintenanceName.MaximumLength - 1));
-        Add(new string('A', MaintenanceName.MaximumLength));
+        Add(new string('A', MaintenancePlace.MaximumLength - 1));
+        Add(new string('A', MaintenancePlace.MaximumLength));
     }
 }
 
@@ -44,6 +44,6 @@ public class MaintenancePlaceCreateInvalidData : TheoryData<Type, string>
             "     ");
         Add(
             typeof(MaintenancePlaceLengthIsInvalidException),
-            new string('A', MaintenanceName.MaximumLength + 1));
+            new string('A', MaintenancePlace.MaximumLength + 1));
     }
 }
