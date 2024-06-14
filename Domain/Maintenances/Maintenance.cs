@@ -8,7 +8,7 @@ public sealed class Maintenance : AggregateRoot
         Guid id,
         Guid userId,
         Guid vehicleId,
-        MaintenanceName name,
+        Name name,
         MaintenanceDescription? description) : base(id)
     {
         UserId = userId;
@@ -21,7 +21,7 @@ public sealed class Maintenance : AggregateRoot
 
     public Guid VehicleId { get; init; }
 
-    public MaintenanceName Name { get; private set; }
+    public Name Name { get; private set; }
 
     public MaintenanceDescription? Description { get; private set; }
 
@@ -29,7 +29,7 @@ public sealed class Maintenance : AggregateRoot
         Guid id,
         Guid userId,
         Guid vehicleId,
-        MaintenanceName name,
+        Name name,
         MaintenanceDescription? description)
     {
         return new Maintenance(

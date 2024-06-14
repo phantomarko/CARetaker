@@ -11,7 +11,7 @@ public class MaintenanceTest
         Guid id,
         Guid userId,
         Guid vehicleId,
-        MaintenanceName name,
+        Name name,
         MaintenanceDescription? description)
     {
         var maintenance = Maintenance.Create(
@@ -30,7 +30,7 @@ public class MaintenanceTest
 }
 
 public class MaintenanceCreateValidData
-    : TheoryData<Guid, Guid, Guid, MaintenanceName, MaintenanceDescription?>
+    : TheoryData<Guid, Guid, Guid, Name, MaintenanceDescription?>
 {
     public MaintenanceCreateValidData()
     {
@@ -38,13 +38,13 @@ public class MaintenanceCreateValidData
             Guid.NewGuid(),
             Guid.NewGuid(),
             Guid.NewGuid(),
-            MaintenancesMother.MakeMaintenanceName(),
+            MaintenancesMother.MakeName(),
             MaintenancesMother.MakeMaintenanceDescription());
         Add(
             Guid.NewGuid(),
             Guid.NewGuid(),
             Guid.NewGuid(),
-            MaintenancesMother.MakeMaintenanceName(),
+            MaintenancesMother.MakeName(),
             null);
     }
 }

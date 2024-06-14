@@ -7,9 +7,9 @@ public static class MaintenancesMother
     private const string NameDefault = "Change ABC";
     private const string DescriptionDefault = "The ABC has to be changed carefully";
 
-    public static MaintenanceName MakeMaintenanceName(string? value = null)
+    public static Name MakeName(string? value = null)
     {
-        return MaintenanceName.Create(value ?? NameDefault);
+        return Name.Create(value ?? NameDefault);
     }
 
     public static MaintenanceDescription MakeMaintenanceDescription(string? value = null)

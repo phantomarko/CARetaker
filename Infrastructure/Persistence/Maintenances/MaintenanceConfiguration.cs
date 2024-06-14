@@ -15,7 +15,7 @@ public sealed class MaintenanceConfiguration : IEntityTypeConfiguration<Maintena
             .Property(e => e.Name)
             .HasConversion(
                 v => v.Value,
-                v => MaintenanceName.Create(v))
+                v => Name.Create(v))
             .HasMaxLength(NameMaxLength)
             .IsRequired();
 
