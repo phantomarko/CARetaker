@@ -12,8 +12,8 @@ public static class MaintenancesMother
         return Name.Create(value ?? NameDefault);
     }
 
-    public static MaintenanceDescription MakeMaintenanceDescription(string? value = null)
+    public static Description MakeDescription(string? value = null)
     {
-        return MaintenanceDescription.Create(value ?? DescriptionDefault);
+        return Description.Create(value ?? DescriptionDefault);
     }
 }
