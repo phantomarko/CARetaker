@@ -15,7 +15,7 @@ public sealed class MaintenanceConfiguration : IEntityTypeConfiguration<Maintena
             .Property(e => e.Name)
             .HasConversion(
                 v => v.Value,
-                v => MaintenanceName.Create(v))
+                v => Name.Create(v))
             .HasMaxLength(NameMaxLength)
             .IsRequired();
 
@@ -23,7 +23,7 @@ public sealed class MaintenanceConfiguration : IEntityTypeConfiguration<Maintena
             .Property(e => e.Description)
             .HasConversion(
                 v => v == null ? null : v.Value,
-                v => v == null ? null : MaintenanceDescription.Create(v))
+                v => v == null ? null : Description.Create(v))
             .HasMaxLength(DescriptionMaxLength)
             .IsRequired(false);
     }

@@ -26,10 +26,10 @@ public sealed class CreateMaintenanceCommandHandler(
             Guid.NewGuid(),
             userId,
             vehicleId,
-            MaintenanceName.Create(request.Name),
+            Name.Create(request.Name),
             request.Description is null
                 ? null
-                : MaintenanceDescription.Create(request.Description));
+                : Description.Create(request.Description));
 
         await maintenanceRepository.AddAsync(maintenance, cancellationToken);
 

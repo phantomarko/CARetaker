@@ -1,5 +1,4 @@
-﻿using Domain.Exceptions;
-using Domain.Vehicles;
+﻿using Domain.Vehicles;
 
 namespace Domain.Maintenances.Proxies;
 
@@ -10,7 +9,7 @@ public class VehicleRepositoryProxy(IVehicleRepository vehicleRepository)
         Vehicle vehicle,
         CancellationToken cancellationToken = default)
     {
-        throw new MethodNotAllowedException();
+        throw new NotSupportedException();
     }
 
     public Vehicle? FindByUserAndId(Guid userId, Guid id)
@@ -20,6 +19,6 @@ public class VehicleRepositoryProxy(IVehicleRepository vehicleRepository)
 
     public Vehicle? FindByUserAndPlate(Guid userId, RegistrationPlate plate)
     {
-        throw new MethodNotAllowedException();
+        throw new NotSupportedException();
     }
 }

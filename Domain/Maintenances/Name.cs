@@ -2,26 +2,26 @@
 
 namespace Domain.Maintenances;
 
-public sealed record MaintenanceName
+public sealed record Name
 {
     public const int MaximumLength = 100;
 
-    private MaintenanceName(string value) => Value = value;
+    private Name(string value) => Value = value;
 
     public string Value { get; init; }
 
-    public static MaintenanceName Create(string value)
+    public static Name Create(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new MaintenanceNameIsEmptyException();
+            throw new NameIsEmptyException();
         }
 
         if (MaximumLength < value.Length)
         {
-            throw new MaintenanceNameLengthIsInvalidException();
+            throw new NameLengthIsInvalidException();
         }
 
-        return new MaintenanceName(value);
+        return new Name(value);
     }
 }

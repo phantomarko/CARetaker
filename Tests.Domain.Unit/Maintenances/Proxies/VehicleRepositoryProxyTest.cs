@@ -1,5 +1,4 @@
-﻿using Domain.Exceptions;
-using Domain.Maintenances.Proxies;
+﻿using Domain.Maintenances.Proxies;
 using Domain.Vehicles;
 using Moq;
 using Tests.Domain.Fixtures;
@@ -20,14 +19,14 @@ public class VehicleRepositoryProxyTest
     [Fact]
     public async Task AddAsync_Should_ThrowException()
     {
-        await Assert.ThrowsAsync<MethodNotAllowedException>(
+        await Assert.ThrowsAsync<NotSupportedException>(
             async () => await _proxy.AddAsync(VehiclesMother.MakeVehicle()));
     }
 
     [Fact]
     public void FindByUserAndPlate_Should_ThrowException()
     {
-        Assert.Throws<MethodNotAllowedException>(
+        Assert.Throws<NotSupportedException>(
             () => _proxy.FindByUserAndPlate(
                 Guid.NewGuid(),
                 VehiclesMother.MakeRegistrationPlate()));

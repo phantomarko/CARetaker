@@ -12,6 +12,7 @@ WORKDIR /src
 COPY ["Ui.Api/Ui.Api.csproj", "Ui.Api/"]
 COPY ["Application/Application.csproj", "Application/"]
 COPY ["Domain/Domain.csproj", "Domain/"]
+COPY ["SharedKernel/SharedKernel.csproj", "SharedKernel/"]
 COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
 RUN dotnet restore "./Ui.Api/Ui.Api.csproj"
 COPY . .
