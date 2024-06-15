@@ -2,7 +2,7 @@
 
 public sealed record StringDate : BaseDateTime
 {
-    private const string DateFormat = "dd/MM/yyyy";
+    public const string DateFormat = "dd/MM/yyyy";
 
     private StringDate(DateTime value) : base(value)
     {
