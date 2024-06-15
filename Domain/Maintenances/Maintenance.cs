@@ -17,9 +17,9 @@ public sealed class Maintenance : AggregateRoot
         Description = description;
     }
 
-    public Guid UserId { get; init; }
+    public Guid UserId { get; }
 
-    public Guid VehicleId { get; init; }
+    public Guid VehicleId { get; }
 
     public Name Name { get; private set; }
 
