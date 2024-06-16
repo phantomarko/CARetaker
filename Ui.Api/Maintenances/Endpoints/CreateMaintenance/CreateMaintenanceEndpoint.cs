@@ -25,7 +25,8 @@ public sealed class CreateMaintenanceEndpoint(ISender sender)
             new CreateMaintenanceCommand(
                 request.VehicleId,
                 request.Name,
-                request.Description), cancellationToken);
+                request.Description),
+            cancellationToken);
 
         await SendAsync(
             new CreateMaintenanceResponse(result),
