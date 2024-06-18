@@ -1,6 +1,4 @@
-﻿using Domain.Primitives;
-
-namespace Domain.Users.Exceptions;
+﻿namespace Domain.Users.Exceptions;
 
 public sealed class EmailIsEmptyException() 
-    : DomainException("The email cannot be empty");
+    : System.Exception("The email cannot be empty");

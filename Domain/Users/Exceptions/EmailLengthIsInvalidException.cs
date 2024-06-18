@@ -1,6 +1,4 @@
-﻿using Domain.Primitives;
-
-namespace Domain.Users.Exceptions;
+﻿namespace Domain.Users.Exceptions;
 
 public sealed class EmailLengthIsInvalidException() 
-    : DomainException($"The email length must be less than {Email.MaximumLength}");
+    : System.Exception($"The email length must be less than {Email.MaximumLength}");
