@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Options;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace Infrastructure.Security.Authorization;
+namespace Ui.Api.Infrastructure.Authorization;
 
 public sealed class AuthorizationOptionsSetup : IConfigureOptions<AuthorizationOptions>
 {

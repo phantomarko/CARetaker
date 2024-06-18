@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 
-namespace Infrastructure.Security.Authentication;
+namespace Ui.Api.Infrastructure.Authentication;
 
 public sealed class JwtOptionsSetup(IConfiguration configuration)
     : IConfigureOptions<JwtOptions>

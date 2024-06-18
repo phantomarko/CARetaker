@@ -1,7 +1,7 @@
 ﻿using Application.Vehicles.Commands.CreateVehicle;
 using FastEndpoints;
-using Infrastructure.Security.Authorization;
 using MediatR;
+using Ui.Api.Infrastructure.Authorization;
 
 namespace Ui.Api.Vehicles.Endpoints.CreateVehicle;
 

@@ -7,9 +7,7 @@ using Infrastructure.Persistence;
 using Infrastructure.Persistence.Maintenances;
 using Infrastructure.Persistence.Users;
 using Infrastructure.Persistence.Vehicles;
-using Infrastructure.Security.Authentication;
-using Infrastructure.Security.Authorization;
-using Infrastructure.Security.PasswordHasher;
+using Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -18,6 +16,21 @@ namespace Infrastructure;
 
 public static class DependencyInjection
 {
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+    {
+        services.AddPersistence();
+
+        services.ConfigureOptions<PasswordHasherOptionsSetup>();
+        services.AddScoped(serviceProvider =>
+        {
+            PasswordHasherOptions options = serviceProvider.GetService<IOptions<PasswordHasherOptions>>()!.Value;
+
+            return new PasswordHasher(options.Pepper, options.Iterations);
+        });
+
+        return services;
+    }
+
     public static IServiceCollection AddPersistence(this IServiceCollection services)
     {
         services.ConfigureOptions<DatabaseOptionsSetup>();
@@ -38,24 +51,6 @@ public static class DependencyInjection
         services.AddScoped<IVehicleRepository, VehicleRepository>();
         services.AddScoped<VehicleRepositoryProxy>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-        return services;
-    }
-
-    public static IServiceCollection AddSecurity(this IServiceCollection services)
-    {
-        services.ConfigureOptions<AuthorizationOptionsSetup>();
-        services.ConfigureOptions<PasswordHasherOptionsSetup>();
-        services.ConfigureOptions<JwtOptionsSetup>();
-
-        services.AddScoped(serviceProvider =>
-        {
-            PasswordHasherOptions options = serviceProvider.GetService<IOptions<PasswordHasherOptions>>()!.Value;
-
-            return new PasswordHasher(options.Pepper, options.Iterations);
-        });
-
-        services.AddScoped<IJwtProvider, JwtProvider>();
 
         return services;
     }

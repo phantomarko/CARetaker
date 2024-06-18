@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Security.Authentication;
+﻿namespace Ui.Api.Infrastructure.Authentication;
 
 public sealed class JwtOptions
 {

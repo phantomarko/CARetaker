@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace Infrastructure.Security.PasswordHasher;
+namespace Infrastructure.Security;
 
 public sealed class PasswordHasherOptionsSetup(IConfiguration configuration)
     : IConfigureOptions<PasswordHasherOptions>

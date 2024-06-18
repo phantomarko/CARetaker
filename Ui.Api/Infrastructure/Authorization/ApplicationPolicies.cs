@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Security.Authorization;
+﻿namespace Ui.Api.Infrastructure.Authorization;
 
 public static class ApplicationPolicies
 {

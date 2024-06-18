@@ -6,7 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace Infrastructure.Security.Authentication;
+namespace Ui.Api.Infrastructure.Authentication;
 
 public sealed class JwtProvider(IOptions<JwtOptions> options)
     : IJwtProvider

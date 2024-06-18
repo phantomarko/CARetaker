@@ -1,7 +1,7 @@
 ﻿using Application.Maintenances.Commands.CreateMaintenance;
 using FastEndpoints;
-using Infrastructure.Security.Authorization;
 using MediatR;
+using Ui.Api.Infrastructure.Authorization;
 
 namespace Ui.Api.Maintenances.Endpoints.CreateMaintenance;
 
