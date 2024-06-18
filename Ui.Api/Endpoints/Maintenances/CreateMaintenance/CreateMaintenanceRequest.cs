@@ -1,4 +1,4 @@
-﻿namespace Ui.Api.Maintenances.Endpoints.CreateMaintenance;
+﻿namespace Ui.Api.Endpoints.Maintenances.CreateMaintenance;
 
 public sealed record CreateMaintenanceRequest(
     string VehicleId,

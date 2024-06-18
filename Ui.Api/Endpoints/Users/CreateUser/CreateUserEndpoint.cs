@@ -2,7 +2,7 @@
 using FastEndpoints;
 using MediatR;
 
-namespace Ui.Api.Users.Endpoints.CreateUser;
+namespace Ui.Api.Endpoints.Users.CreateUser;
 
 public sealed class CreateUserEndpoint(ISender sender)
     : Endpoint<CreateUserRequest, CreateUserResponse>

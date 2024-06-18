@@ -3,9 +3,9 @@ using FastEndpoints;
 using MediatR;
 using Ui.Api.Infrastructure.Authorization;
 
-namespace Ui.Api.Maintenances.Endpoints.CreateMaintenance;
+namespace Ui.Api.Endpoints.Maintenances.CreateMaintenance;
 
-public sealed class CreateMaintenanceEndpoint(ISender sender) 
+public sealed class CreateMaintenanceEndpoint(ISender sender)
     : Endpoint<CreateMaintenanceRequest, CreateMaintenanceResponse>
 {
     public override void Configure()

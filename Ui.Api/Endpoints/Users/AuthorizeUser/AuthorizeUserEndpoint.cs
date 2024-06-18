@@ -2,7 +2,7 @@
 using FastEndpoints;
 using MediatR;
 
-namespace Ui.Api.Users.Endpoints.LoginUser;
+namespace Ui.Api.Endpoints.Users.AuthorizeUser;
 
 public sealed class AuthorizeUserEndpoint(ISender sender)
     : Endpoint<AuthorizeUserRequest, AuthorizeUserResponse>

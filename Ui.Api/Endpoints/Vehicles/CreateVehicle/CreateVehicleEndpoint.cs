@@ -3,9 +3,9 @@ using FastEndpoints;
 using MediatR;
 using Ui.Api.Infrastructure.Authorization;
 
-namespace Ui.Api.Vehicles.Endpoints.CreateVehicle;
+namespace Ui.Api.Endpoints.Vehicles.CreateVehicle;
 
-public sealed class CreateVehicleEndpoint(ISender sender) 
+public sealed class CreateVehicleEndpoint(ISender sender)
     : Endpoint<CreateVehicleRequest, CreateVehicleResponse>
 {
     public override void Configure()
