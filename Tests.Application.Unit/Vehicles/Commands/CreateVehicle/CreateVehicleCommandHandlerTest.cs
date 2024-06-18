@@ -35,15 +35,6 @@ public class CreateVehicleCommandHandlerTest : AuthenticatedHandlerTestCase
         _vehicleRepository.VerifyAll();
     }
 
-    [Fact]
-    public async Task Handle_Should_ThrowException_WhenUserIsNotAuthenticated()
-    {
-        await Assert.ThrowsAsync<AuthenticatedUserRequiredException>(async () =>
-            await _handler.Handle(
-                VehiclesMother.MakeCreateVehicleCommand(),
-                _cancellationToken));
-    }
-
     private void VehicleWillBePersisted()
     {
         _vehicleRepository.Setup(mock => mock.AddAsync(It.IsAny<Vehicle>(), _cancellationToken));

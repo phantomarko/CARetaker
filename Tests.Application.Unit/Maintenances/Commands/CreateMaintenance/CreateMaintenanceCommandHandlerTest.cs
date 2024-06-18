@@ -42,13 +42,6 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
     }
 
     [Fact]
-    public async Task Handle_Should_ThrowException_WhenUserIsNotAuthenticated()
-    {
-        await Assert.ThrowsAsync<AuthenticatedUserRequiredException>(async () =>
-            await _handler.Handle(MakeCommand()));
-    }
-
-    [Fact]
     public async Task Handle_Should_ThrowException_WhenVehicleDoNotExists()
     {
         UserIsAuthenticated();

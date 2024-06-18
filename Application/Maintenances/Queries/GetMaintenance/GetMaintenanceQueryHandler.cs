@@ -1,7 +1,6 @@
 ﻿using Application.Abstractions;
 using Application.Abstractions.Messaging;
 using Application.Exceptions;
-using Application.Primitives;
 using Domain.Maintenances;
 
 namespace Application.Maintenances.Queries.GetMaintenance;
@@ -9,8 +8,7 @@ namespace Application.Maintenances.Queries.GetMaintenance;
 public sealed class GetMaintenanceQueryHandler(
     IIdentityProvider identityProvider,
     IMaintenanceRepository maintenanceRepository)
-    : AuthenticatedHandler(identityProvider),
-    IQueryHandler<GetMaintenanceQuery, GetMaintenanceQueryResponse>
+    : IQueryHandler<GetMaintenanceQuery, GetMaintenanceQueryResponse>
 {
     public Task<GetMaintenanceQueryResponse> Handle(GetMaintenanceQuery request, CancellationToken cancellationToken)
     {
@@ -28,7 +26,7 @@ public sealed class GetMaintenanceQueryHandler(
         var maintenance = maintenanceRepository.GetById(new Guid(maintenanceId));
         if (
             maintenance is null 
-            || !maintenance.UserId.Equals(AuthenticatedUserId))
+            || !maintenance.UserId.Equals(identityProvider.GetAuthenticatedUserId()))
         {
             throw new MaintenanceNotFoundException(maintenanceId);
         }

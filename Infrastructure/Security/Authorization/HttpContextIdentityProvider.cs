@@ -8,11 +8,11 @@ namespace Infrastructure.Security.Authorization;
 public sealed class HttpContextIdentityProvider(IHttpContextAccessor context)
     : IIdentityProvider
 {
-    public Guid? GetAuthenticatedUserId()
+    public Guid GetAuthenticatedUserId()
     {
         var id = GetClaimFromContext(JwtRegisteredClaimNames.Sub);
 
-        return id is null ? null : new Guid(id);
+        return id is null ? throw new System.Exception("User not available") : new Guid(id);
     }
 
     private string? GetClaimFromContext(string claim)

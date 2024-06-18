@@ -2,5 +2,5 @@
 
 public interface IIdentityProvider
 {
-    Guid? GetAuthenticatedUserId();
+    Guid GetAuthenticatedUserId();
 }

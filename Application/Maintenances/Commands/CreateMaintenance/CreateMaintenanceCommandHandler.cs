@@ -1,7 +1,6 @@
 ﻿using Application.Abstractions;
 using Application.Abstractions.Messaging;
 using Application.Exceptions;
-using Application.Primitives;
 using Domain.Maintenances;
 using Domain.Maintenances.Proxies;
 
@@ -11,14 +10,13 @@ public sealed class CreateMaintenanceCommandHandler(
     IIdentityProvider identityProvider,
     IMaintenanceRepository maintenanceRepository,
     VehicleRepositoryProxy vehicleRepository)
-    : AuthenticatedHandler(identityProvider),
-    ICommandHandler<CreateMaintenanceCommand, Guid>
+    : ICommandHandler<CreateMaintenanceCommand, Guid>
 {
     public async Task<Guid> Handle(
         CreateMaintenanceCommand request,
         CancellationToken cancellationToken = default)
     {
-        var userId = AuthenticatedUserId;
+        var userId = identityProvider.GetAuthenticatedUserId();
         var vehicleId = new Guid(request.VehicleId);
 
         GuardAgainstNotExistingVehicle(userId, vehicleId);
