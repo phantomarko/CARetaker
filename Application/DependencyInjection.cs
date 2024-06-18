@@ -11,7 +11,7 @@ public static class DependencyInjection
         {
             configuration.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
 
-            configuration.AddOpenBehavior(typeof(UnitOfWorkBehaviour<,>));
+            configuration.AddOpenBehavior(typeof(TransactionalPipelineBehaviour<,>));
         });
 
         return services;

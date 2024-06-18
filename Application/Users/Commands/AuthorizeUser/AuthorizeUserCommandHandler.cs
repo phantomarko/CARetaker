@@ -1,7 +1,7 @@
 ﻿using Application.Abstractions;
+using Application.Abstractions.Messaging;
 using Application.Users.Exceptions;
 using Domain.Users;
-using MediatR;
 
 namespace Application.Users.Commands.AuthorizeUser;
 
@@ -9,7 +9,7 @@ public sealed class AuthorizeUserCommandHandler(
     IUserRepository userRepository,
     PasswordHasher passwordHasher,
     IJwtProvider jwtProvider)
-    : IRequestHandler<AuthorizeUserCommand, string>
+    : ICommandHandler<AuthorizeUserCommand, string>
 {
     public Task<string> Handle(
         AuthorizeUserCommand request,

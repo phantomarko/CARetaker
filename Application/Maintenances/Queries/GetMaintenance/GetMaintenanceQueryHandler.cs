@@ -1,8 +1,8 @@
 ﻿using Application.Abstractions;
+using Application.Abstractions.Messaging;
 using Application.Exceptions;
 using Application.Primitives;
 using Domain.Maintenances;
-using MediatR;
 
 namespace Application.Maintenances.Queries.GetMaintenance;
 
@@ -10,7 +10,7 @@ public sealed class GetMaintenanceQueryHandler(
     IIdentityProvider identityProvider,
     IMaintenanceRepository maintenanceRepository)
     : AuthenticatedHandler(identityProvider),
-    IRequestHandler<GetMaintenanceQuery, GetMaintenanceQueryResponse>
+    IQueryHandler<GetMaintenanceQuery, GetMaintenanceQueryResponse>
 {
     public Task<GetMaintenanceQueryResponse> Handle(GetMaintenanceQuery request, CancellationToken cancellationToken)
     {

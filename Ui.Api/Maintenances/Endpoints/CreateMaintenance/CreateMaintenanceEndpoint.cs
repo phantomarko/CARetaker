@@ -21,7 +21,7 @@ public sealed class CreateMaintenanceEndpoint(ISender sender)
         CreateMaintenanceRequest request,
         CancellationToken cancellationToken)
     {
-        Guid result = await sender.Send(
+        var result = await sender.Send(
             new CreateMaintenanceCommand(
                 request.VehicleId,
                 request.Name,

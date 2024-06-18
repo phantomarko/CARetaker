@@ -1,12 +1,12 @@
-﻿using Domain.Users;
-using MediatR;
+﻿using Application.Abstractions.Messaging;
+using Domain.Users;
 
 namespace Application.Users.Commands.CreateUser;
 
 public sealed class CreateUserCommandHandler(
     PasswordHasher passwordHasher,
     IUserRepository userRepository)
-    : IRequestHandler<CreateUserCommand, Guid>
+    : ICommandHandler<CreateUserCommand, Guid>
 {
     public async Task<Guid> Handle(
         CreateUserCommand request,

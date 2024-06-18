@@ -1,4 +1,5 @@
 ﻿using Application.Abstractions;
+using Application.Abstractions.Messaging;
 using Application.Primitives;
 using Domain.Vehicles;
 using MediatR;
@@ -8,7 +9,8 @@ namespace Application.Vehicles.Commands.CreateVehicle;
 public sealed class CreateVehicleCommandHandler(
     IIdentityProvider identityProvider,
     IVehicleRepository vehicleRepository) 
-    : AuthenticatedHandler(identityProvider), IRequestHandler<CreateVehicleCommand, Guid>
+    : AuthenticatedHandler(identityProvider),
+    ICommandHandler<CreateVehicleCommand, Guid>
 {
     public async Task<Guid> Handle(
         CreateVehicleCommand request,

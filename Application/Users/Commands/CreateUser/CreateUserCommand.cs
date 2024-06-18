@@ -1,6 +1,6 @@
-﻿using MediatR;
+﻿using Application.Abstractions.Messaging;
 
 namespace Application.Users.Commands.CreateUser;
 
 public sealed record CreateUserCommand(string Email, string Password)
-    : IRequest<Guid>;
+    : ITransactionalCommand<Guid>;

@@ -1,9 +1,9 @@
 ﻿using Application.Abstractions;
+using Application.Abstractions.Messaging;
 using Application.Exceptions;
 using Application.Primitives;
 using Domain.Maintenances;
 using Domain.Maintenances.Proxies;
-using MediatR;
 
 namespace Application.Maintenances.Commands.CreateMaintenance;
 
@@ -12,7 +12,7 @@ public sealed class CreateMaintenanceCommandHandler(
     IMaintenanceRepository maintenanceRepository,
     VehicleRepositoryProxy vehicleRepository)
     : AuthenticatedHandler(identityProvider),
-    IRequestHandler<CreateMaintenanceCommand, Guid>
+    ICommandHandler<CreateMaintenanceCommand, Guid>
 {
     public async Task<Guid> Handle(
         CreateMaintenanceCommand request,
