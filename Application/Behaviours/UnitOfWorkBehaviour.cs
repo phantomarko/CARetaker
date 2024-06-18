@@ -1,4 +1,4 @@
-﻿using Domain.Abstractions;
+﻿using Application.Abstractions;
 using MediatR;
 using System.Transactions;
 
