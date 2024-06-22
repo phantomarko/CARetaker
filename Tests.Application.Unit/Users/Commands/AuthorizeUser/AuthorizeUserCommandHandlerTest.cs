@@ -1,4 +1,4 @@
-﻿using Application.Abstractions;
+﻿using Application.Abstractions.Authentication;
 using Application.Users.Commands.AuthorizeUser;
 using Application.Users.Exceptions;
 using Domain.Users;

@@ -1,4 +1,4 @@
-﻿using Application.Abstractions;
+﻿using Application.Abstractions.Authentication;
 using FastEndpoints;
 using FastEndpoints.Security;
 using FastEndpoints.Swagger;

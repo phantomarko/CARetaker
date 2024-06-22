@@ -1,4 +1,4 @@
-﻿using Application.Abstractions;
+﻿using Application.Abstractions.Data;
 
 namespace Infrastructure.Persistence;
 

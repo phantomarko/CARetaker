@@ -1,4 +1,4 @@
-﻿using Application.Abstractions;
+﻿using Application.Abstractions.Data;
 using Domain.Maintenances;
 using Domain.Maintenances.Proxies;
 using Domain.Users;

@@ -1,4 +1,4 @@
-﻿using Application.Abstractions;
+﻿using Application.Abstractions.Authentication;
 using Application.Abstractions.Messaging;
 using Application.Exceptions;
 using Domain.Maintenances;
