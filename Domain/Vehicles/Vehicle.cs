@@ -8,28 +8,30 @@ public sealed class Vehicle : AggregateRoot
     private Vehicle(
         Guid id,
         Guid userId,
-        RegistrationPlate plate,
-        VehicleName name) : base(id)
+        Name name,
+        RegistrationPlate? plate) : base(id)
     {
         UserId = userId;
         Name = name;
         Plate = plate;
     }
 
-    public Guid UserId { get; init; }
+    public Guid UserId { get; }
 
-    public RegistrationPlate Plate { get; init; }
+    public Name Name { get; }
 
-    public VehicleName Name { get; private set; }
+    public RegistrationPlate? Plate { get; }
 
     public static Vehicle Create(
         Guid id,
         Guid userId,
-        RegistrationPlate plate,
-        VehicleName name,
+        Name name,
+        RegistrationPlate? plate,
         IVehicleRepository vehicleRepository)
     {
-        if (vehicleRepository.FindByUserAndPlate(userId, plate) is not null)
+        if (
+            plate is not null 
+            && vehicleRepository.FindByUserAndPlate(userId, plate) is not null)
         {
             throw new RegistrationPlateIsAlreadyInUseException();
         }
@@ -37,7 +39,7 @@ public sealed class Vehicle : AggregateRoot
         return new Vehicle(
             id,
             userId,
-            plate,
-            name);
+            name,
+            plate);
     }
 }

@@ -16,17 +16,17 @@ public sealed class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
         .Property(e => e.Name)
         .HasConversion(
             v => v.Value,
-            v => VehicleName.Create(v))
+            v => Domain.Vehicles.Name.Create(v))
         .HasMaxLength(NameMaxLength)
         .IsRequired();
 
         builder
         .Property(e => e.Plate)
         .HasConversion(
-            v => v.Value,
-            v => RegistrationPlate.Create(v))
+            v => v == null ? null : v.Value,
+            v => v == null ? null : RegistrationPlate.Create(v))
         .HasMaxLength(PlateMaxLength)
-        .IsRequired();
+        .IsRequired(false);
 
         builder
             .HasMany<Maintenance>()

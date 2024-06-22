@@ -1,34 +1,34 @@
-﻿using Domain.Vehicles;
+﻿using Bogus;
+using Domain.Vehicles;
 using Moq;
 
 namespace Tests.Domain.Fixtures;
 
 public class VehiclesMother
 {
-    private const string VehicleNameDefault = "Some car";
-    private const string PlateDefault = "0000BBB";
+    private static Faker Faker => new();
 
     public static Vehicle MakeVehicle(
         Guid? id = null,
         Guid? userId = null,
-        RegistrationPlate? plate = null,
-        VehicleName? name = null)
+        Name? name = null,
+        RegistrationPlate? plate = null)
     {
         return Vehicle.Create(
             id ?? Guid.NewGuid(),
             userId ?? Guid.NewGuid(),
-            plate ?? MakeRegistrationPlate(),
-            name ?? MakeVehicleName(),
+            name ?? MakeName(),
+            plate,
             new Mock<IVehicleRepository>().Object);
     }
 
-    public static VehicleName MakeVehicleName(string? value = null)
+    public static Name MakeName(string? value = null)
     {
-        return VehicleName.Create(value ?? VehicleNameDefault);
+        return Name.Create(value ?? Faker.Lorem.Word());
     }
 
     public static RegistrationPlate MakeRegistrationPlate(string? value = null)
     {
-        return RegistrationPlate.Create(value ?? PlateDefault);
+        return RegistrationPlate.Create(value ?? Faker.Random.AlphaNumeric(8).ToUpper());
     }
 }

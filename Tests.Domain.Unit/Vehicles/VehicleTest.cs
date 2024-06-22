@@ -7,53 +7,76 @@ namespace Tests.Domain.Unit.Vehicles;
 
 public class VehicleTest
 {
-    private readonly Guid _id;
-    private readonly Guid _userId;
-    private readonly VehicleName _name;
-    private readonly RegistrationPlate _plate;
     private readonly Mock<IVehicleRepository> _vehicleRepository;
 
     public VehicleTest()
     {
-        _id = Guid.NewGuid();
-        _userId = Guid.NewGuid();
-        _name = VehiclesMother.MakeVehicleName();
-        _plate = VehiclesMother.MakeRegistrationPlate();
         _vehicleRepository = new Mock<IVehicleRepository>();
     }
 
-    [Fact]
-    public void Create_Should_ReturnVehicle()
+    [Theory]
+    [ClassData(typeof(VehicleCreateValidData))]
+    public void Create_Should_ReturnVehicle(
+        Guid id,
+        Guid userId,
+        Name name,
+        RegistrationPlate? plate)
     {
-        _vehicleRepository.Setup(mock => mock.FindByUserAndPlate(_userId, _plate));
+        if (plate is not null)
+        {
+            _vehicleRepository.Setup(mock => mock.FindByUserAndPlate(userId, plate));
+        }
 
         var vehicle = Vehicle.Create(
-            _id,
-            _userId,
-            _plate,
-            _name,
+            id,
+            userId,
+            name,
+            plate,
             _vehicleRepository.Object);
 
-        Assert.Equal(_id, vehicle.Id);
-        Assert.Equal(_userId, vehicle.UserId);
-        Assert.Equal(_plate, vehicle.Plate);
-        Assert.Equal(_name, vehicle.Name);
+        Assert.Equal(id, vehicle.Id);
+        Assert.Equal(userId, vehicle.UserId);
+        Assert.Equal(name, vehicle.Name);
+        Assert.Equal(plate, vehicle.Plate);
         _vehicleRepository.VerifyAll();
     }
 
     [Fact]
     public void Create_Should_ThrowException_WhenPlateIsUsed()
     {
-        _vehicleRepository.Setup(mock => mock.FindByUserAndPlate(_userId, _plate))
+        var userId = Guid.NewGuid();
+        var plate = VehiclesMother.MakeRegistrationPlate();
+        _vehicleRepository.Setup(mock => mock.FindByUserAndPlate(userId, plate))
             .Returns(VehiclesMother.MakeVehicle());
 
-        Assert.Throws<RegistrationPlateIsAlreadyInUseException>(() => Vehicle.Create(
-            _id,
-            _userId,
-            _plate,
-            _name,
-            _vehicleRepository.Object));
+        Assert.Throws<RegistrationPlateIsAlreadyInUseException>(() =>
+        {
+            return Vehicle.Create(
+                Guid.NewGuid(),
+                userId,
+                VehiclesMother.MakeName(),
+                plate,
+                _vehicleRepository.Object);
+        });
 
         _vehicleRepository.VerifyAll();
+    }
+}
+
+public class VehicleCreateValidData
+    : TheoryData<Guid, Guid, Name, RegistrationPlate?>
+{
+    public VehicleCreateValidData()
+    {
+        Add(
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            VehiclesMother.MakeName(),
+            VehiclesMother.MakeRegistrationPlate());
+        Add(
+            Guid.NewGuid(),
+            Guid.NewGuid(),
+            VehiclesMother.MakeName(),
+            null);
     }
 }

@@ -2,5 +2,5 @@
 
 namespace Application.Vehicles.Commands.CreateVehicle;
 
-public sealed record CreateVehicleCommand(string Name, string Plate)
+public sealed record CreateVehicleCommand(string Name, string? Plate)
     : ITransactionalCommand<Guid>;

@@ -2,26 +2,26 @@
 
 namespace Domain.Vehicles;
 
-public sealed record VehicleName
+public sealed record Name
 {
     public const int MaximumLength = 100;
 
-    private VehicleName(string value) => Value = value;
+    private Name(string value) => Value = value;
 
     public string Value { get; init; }
 
-    public static VehicleName Create(string value)
+    public static Name Create(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            throw new VehicleNameIsEmptyException();
+            throw new NameIsEmptyException();
         }
 
         if (MaximumLength < value.Length)
         {
-            throw new VehicleNameLengthIsInvalidException();
+            throw new NameLengthIsInvalidException();
         }
 
-        return new VehicleName(value);
+        return new Name(value);
     }
 }

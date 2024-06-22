@@ -6,7 +6,7 @@ namespace Application.Vehicles.Commands.CreateVehicle;
 
 public sealed class CreateVehicleCommandHandler(
     IIdentityProvider identityProvider,
-    IVehicleRepository vehicleRepository) 
+    IVehicleRepository vehicleRepository)
     : ICommandHandler<CreateVehicleCommand, Guid>
 {
     public async Task<Guid> Handle(
@@ -16,8 +16,10 @@ public sealed class CreateVehicleCommandHandler(
         var vehicle = Vehicle.Create(
             Guid.NewGuid(),
             identityProvider.GetAuthenticatedUserId(),
-            RegistrationPlate.Create(request.Plate),
-            VehicleName.Create(request.Name),
+            Name.Create(request.Name),
+            request.Plate is null 
+                ? null 
+                : RegistrationPlate.Create(request.Plate),
             vehicleRepository);
 
         await vehicleRepository.AddAsync(vehicle, cancellationToken);
