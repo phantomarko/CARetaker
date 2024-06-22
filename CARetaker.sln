@@ -29,19 +29,19 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{EEE5CD1F-DF10-487E-B8BB-CE83B8833C8D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests.Fixtures", "Tests.Domain.Fixtures\Domain.Tests.Fixtures.csproj", "{54BB0930-2625-4E2D-AFE1-978CCE83D91A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests.Fixtures", "Domain.Tests.Fixtures\Domain.Tests.Fixtures.csproj", "{54BB0930-2625-4E2D-AFE1-978CCE83D91A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests.Unit", "Tests.Domain.Unit\Domain.Tests.Unit.csproj", "{C0F59D02-C7C3-4D65-BEB4-4F16C50A89E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain.Tests.Unit", "Domain.Tests.Unit\Domain.Tests.Unit.csproj", "{C0F59D02-C7C3-4D65-BEB4-4F16C50A89E2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests.Unit", "Tests.Application.Unit\Application.Tests.Unit.csproj", "{C51416C6-3493-4688-B496-EA600386874A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests.Unit", "Application.Tests.Unit\Application.Tests.Unit.csproj", "{C51416C6-3493-4688-B496-EA600386874A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests.Fixtures", "Tests.Application.Fixtures\Application.Tests.Fixtures.csproj", "{E3583445-ECBF-4783-B0E9-B8EE216BDFF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests.Fixtures", "Application.Tests.Fixtures\Application.Tests.Fixtures.csproj", "{E3583445-ECBF-4783-B0E9-B8EE216BDFF3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tools.MigrationRunner", "Tools.MigrationRunner\Tools.MigrationRunner.csproj", "{9E3BDA0D-9741-4C75-8996-0867CDE77929}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "SharedKernel\SharedKernel.csproj", "{B74E2116-999F-46AF-8222-2ECD7661CD70}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel.Tests.Unit", "Tests.SharedKernel.Unit\SharedKernel.Tests.Unit.csproj", "{C2737C99-E8BD-4139-9F49-4C5A362D2385}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel.Tests.Unit", "SharedKernel.Tests.Unit\SharedKernel.Tests.Unit.csproj", "{C2737C99-E8BD-4139-9F49-4C5A362D2385}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
