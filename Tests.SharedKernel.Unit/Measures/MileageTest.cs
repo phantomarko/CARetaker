@@ -1,6 +1,6 @@
 ﻿using SharedKernel.Measures;
 
-namespace Tests.SharedKernel.Unit.Measures;
+namespace SharedKernel.Tests.Unit.Measures;
 
 public class MileageTest
 {

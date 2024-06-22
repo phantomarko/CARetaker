@@ -1,9 +1,9 @@
 ﻿using Domain.Maintenances.Proxies;
+using Domain.Tests.Fixtures;
 using Domain.Vehicles;
 using Moq;
-using Tests.Domain.Fixtures;
 
-namespace Tests.Domain.Unit.Maintenances.Proxies;
+namespace Domain.Tests.Unit.Maintenances.Proxies;
 
 public class VehicleRepositoryProxyTest
 {

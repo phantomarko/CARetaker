@@ -2,7 +2,7 @@
 using Domain.Vehicles;
 using Moq;
 
-namespace Tests.Domain.Fixtures;
+namespace Domain.Tests.Fixtures;
 
 public class VehiclesMother
 {

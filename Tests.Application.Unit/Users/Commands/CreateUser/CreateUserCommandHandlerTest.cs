@@ -2,7 +2,7 @@
 using Domain.Users;
 using Moq;
 
-namespace Tests.Application.Unit.Users.Commands.CreateUser;
+namespace Application.Tests.Unit.Users.Commands.CreateUser;
 
 public class CreateUserCommandHandlerTest
 {
@@ -13,7 +13,7 @@ public class CreateUserCommandHandlerTest
     {
         _userRepository = new Mock<IUserRepository>();
         _handler = new CreateUserCommandHandler(
-            Domain.Fixtures.UsersMother.MakePasswordHasher(),
+            Domain.Tests.Fixtures.UsersMother.MakePasswordHasher(),
             _userRepository.Object);
     }
 
@@ -33,6 +33,6 @@ public class CreateUserCommandHandlerHandleValidData : TheoryData<CreateUserComm
 {
     public CreateUserCommandHandlerHandleValidData()
     {
-        Add(Application.Fixtures.UsersMother.MakeCreateUserCommand());
+        Add(Fixtures.UsersMother.MakeCreateUserCommand());
     }
 }

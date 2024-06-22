@@ -1,9 +1,9 @@
-﻿using Domain.Users;
+﻿using Domain.Tests.Fixtures;
+using Domain.Users;
 using Domain.Users.Exceptions;
 using Moq;
-using Tests.Domain.Fixtures;
 
-namespace Tests.Domain.Unit.Users;
+namespace Domain.Tests.Unit.Users;
 
 public class UserTest
 {

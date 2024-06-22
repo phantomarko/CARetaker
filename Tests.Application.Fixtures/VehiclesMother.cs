@@ -1,6 +1,6 @@
 ﻿using Application.Vehicles.Commands.CreateVehicle;
 
-namespace Tests.Application.Fixtures;
+namespace Application.Tests.Fixtures;
 
 public class VehiclesMother
 {

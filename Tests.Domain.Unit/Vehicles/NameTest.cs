@@ -1,7 +1,7 @@
 ﻿using Domain.Vehicles.Exceptions;
 using Domain.Vehicles;
 
-namespace Tests.Domain.Unit.Vehicles;
+namespace Domain.Tests.Unit.Vehicles;
 
 public class NameTest
 {

@@ -1,10 +1,9 @@
-﻿using Application.Exceptions;
+﻿using Application.Tests.Fixtures;
 using Application.Vehicles.Commands.CreateVehicle;
 using Domain.Vehicles;
 using Moq;
-using Tests.Application.Fixtures;
 
-namespace Tests.Application.Unit.Vehicles.Commands.CreateVehicle;
+namespace Application.Tests.Unit.Vehicles.Commands.CreateVehicle;
 
 public class CreateVehicleCommandHandlerTest : AuthenticatedHandlerTestCase
 {

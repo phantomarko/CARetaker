@@ -1,7 +1,7 @@
 ﻿using Domain.Maintenances.Exceptions;
 using Domain.Maintenances;
 
-namespace Tests.Domain.Unit.Maintenances;
+namespace Domain.Tests.Unit.Maintenances;
 
 public class NotesTest
 {

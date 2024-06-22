@@ -1,6 +1,6 @@
 ﻿using SharedKernel.Finances;
 
-namespace Tests.SharedKernel.Unit.Finances;
+namespace SharedKernel.Tests.Unit.Finances;
 
 public class MoneyTest
 {

@@ -1,8 +1,8 @@
 ﻿using Domain.Maintenances;
 using Domain.Maintenances.Dtos;
-using Tests.Domain.Fixtures;
+using Domain.Tests.Fixtures;
 
-namespace Tests.Domain.Unit.Maintenances;
+namespace Domain.Tests.Unit.Maintenances;
 
 public class MaintenanceLogTest
 {

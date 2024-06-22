@@ -1,6 +1,6 @@
 ﻿using Application.Maintenances.Commands.CreateMaintenance;
 
-namespace Tests.Application.Fixtures;
+namespace Application.Tests.Fixtures;
 
 public static class MaintenancesMother
 {

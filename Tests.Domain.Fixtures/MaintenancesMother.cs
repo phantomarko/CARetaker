@@ -5,7 +5,7 @@ using SharedKernel.Dates;
 using SharedKernel.Finances;
 using SharedKernel.Measures;
 
-namespace Tests.Domain.Fixtures;
+namespace Domain.Tests.Fixtures;
 
 public static class MaintenancesMother
 {

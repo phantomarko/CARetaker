@@ -5,7 +5,7 @@ using Domain.Maintenances.Proxies;
 using Domain.Vehicles;
 using Moq;
 
-namespace Tests.Application.Unit.Maintenances.Commands.CreateMaintenance;
+namespace Application.Tests.Unit.Maintenances.Commands.CreateMaintenance;
 
 public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
 {
@@ -29,7 +29,7 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
     [ClassData(typeof(CreateMaintenanceCommandHandlerHandleValidData))]
     public async Task Handle_Should_ReturnGuid(CreateMaintenanceCommand command)
     {
-        var vehicle = Domain.Fixtures.VehiclesMother.MakeVehicle(
+        var vehicle = Domain.Tests.Fixtures.VehiclesMother.MakeVehicle(
             id: new Guid(command.VehicleId),
             userId: _userId);
         UserIsAuthenticated(_userId);
@@ -58,7 +58,7 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
     {
         var vehicleId = Guid.NewGuid();
         var userId = Guid.NewGuid();
-        var vehicle = Domain.Fixtures.VehiclesMother.MakeVehicle(
+        var vehicle = Domain.Tests.Fixtures.VehiclesMother.MakeVehicle(
             id: vehicleId,
             userId: userId);
         UserIsAuthenticated(Guid.NewGuid());

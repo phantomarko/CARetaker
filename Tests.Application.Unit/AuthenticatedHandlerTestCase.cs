@@ -1,7 +1,7 @@
 ﻿using Application.Abstractions.Authentication;
 using Moq;
 
-namespace Tests.Application.Unit;
+namespace Application.Tests.Unit;
 
 public abstract class AuthenticatedHandlerTestCase
 {

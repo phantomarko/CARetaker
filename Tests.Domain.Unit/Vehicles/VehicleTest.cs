@@ -1,9 +1,9 @@
-﻿using Domain.Vehicles;
+﻿using Domain.Tests.Fixtures;
+using Domain.Vehicles;
 using Domain.Vehicles.Exceptions;
 using Moq;
-using Tests.Domain.Fixtures;
 
-namespace Tests.Domain.Unit.Vehicles;
+namespace Domain.Tests.Unit.Vehicles;
 
 public class VehicleTest
 {

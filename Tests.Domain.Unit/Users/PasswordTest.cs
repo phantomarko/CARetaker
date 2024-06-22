@@ -1,7 +1,7 @@
 ﻿using Domain.Users;
 using Domain.Users.Exceptions;
 
-namespace Tests.Domain.Unit.Users;
+namespace Domain.Tests.Unit.Users;
 
 public class PasswordTest
 {

@@ -1,7 +1,7 @@
 ﻿using Domain.Users;
 using Moq;
 
-namespace Tests.Domain.Fixtures;
+namespace Domain.Tests.Fixtures;
 
 public static class UsersMother
 {

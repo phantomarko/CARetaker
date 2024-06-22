@@ -4,7 +4,7 @@ using Application.Users.Exceptions;
 using Domain.Users;
 using Moq;
 
-namespace Tests.Application.Unit.Users.Commands.AuthorizeUser;
+namespace Application.Tests.Unit.Users.Commands.AuthorizeUser;
 
 public class AuthorizeUserCommandHandlerTest
 {
@@ -18,11 +18,11 @@ public class AuthorizeUserCommandHandlerTest
 
     public AuthorizeUserCommandHandlerTest()
     {
-        var passwordHasher = Domain.Fixtures.UsersMother.MakePasswordHasher();
+        var passwordHasher = Domain.Tests.Fixtures.UsersMother.MakePasswordHasher();
 
-        _email = Domain.Fixtures.UsersMother.MakeEmail();
-        _password = Domain.Fixtures.UsersMother.MakePassword();
-        _user = Domain.Fixtures.UsersMother.MakeUser(
+        _email = Domain.Tests.Fixtures.UsersMother.MakeEmail();
+        _password = Domain.Tests.Fixtures.UsersMother.MakePassword();
+        _user = Domain.Tests.Fixtures.UsersMother.MakeUser(
             email: _email,
             password: _password,
             passwordHasher: passwordHasher);
@@ -45,7 +45,7 @@ public class AuthorizeUserCommandHandlerTest
 
         string token = await _handler.Handle(command, _cancellationToken);
 
-        Assert.IsType<String>(token);
+        Assert.IsType<string>(token);
         _userRepository.VerifyAll();
         _jwtProvider.VerifyAll();
     }
@@ -76,7 +76,7 @@ public class AuthorizeUserCommandHandlerTest
 
     private AuthorizeUserCommand MakeCommand(string? password = null)
     {
-        return Application.Fixtures.UsersMother.MakeAuthorizeUserCommand(
+        return Fixtures.UsersMother.MakeAuthorizeUserCommand(
             _email.Value,
             password ?? _password.Value);
     }

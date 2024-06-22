@@ -1,7 +1,7 @@
 ﻿using Application.Users.Commands.AuthorizeUser;
 using Application.Users.Commands.CreateUser;
 
-namespace Tests.Application.Fixtures;
+namespace Application.Tests.Fixtures;
 
 public class UsersMother
 {

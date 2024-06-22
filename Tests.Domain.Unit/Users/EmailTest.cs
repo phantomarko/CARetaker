@@ -1,7 +1,7 @@
 ﻿using Domain.Users;
 using Domain.Users.Exceptions;
 
-namespace Tests.Domain.Unit.Users;
+namespace Domain.Tests.Unit.Users;
 
 public class EmailTest
 {
@@ -30,8 +30,8 @@ public class EmailCreateValidData : TheoryData<string>
         int maximumLength = Email.MaximumLength - emailDomain.Length;
 
         Add("email" + emailDomain);
-        Add((new string('x', maximumLength - 1)) + emailDomain);
-        Add((new string('x', maximumLength)) + emailDomain);
+        Add(new string('x', maximumLength - 1) + emailDomain);
+        Add(new string('x', maximumLength) + emailDomain);
     }
 }
 
@@ -59,6 +59,6 @@ public class EmailCreateInvalidData : TheoryData<Type, string>
             "@domain.example");
         Add(
             typeof(EmailLengthIsInvalidException),
-            (new string('x', maximumLength + 1)) + emailDomain);
+            new string('x', maximumLength + 1) + emailDomain);
     }
 }

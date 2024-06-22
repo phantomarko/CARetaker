@@ -1,6 +1,6 @@
 ﻿using SharedKernel.Dates;
 
-namespace Tests.SharedKernel.Unit.Dates;
+namespace SharedKernel.Tests.Unit.Dates;
 
 public class StringDateTest
 {
