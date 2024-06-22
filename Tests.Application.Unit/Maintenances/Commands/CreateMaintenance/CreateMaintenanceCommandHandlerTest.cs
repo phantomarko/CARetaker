@@ -29,8 +29,11 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
     [ClassData(typeof(CreateMaintenanceCommandHandlerHandleValidData))]
     public async Task Handle_Should_ReturnGuid(CreateMaintenanceCommand command)
     {
-        UserIsAuthenticated();
-        VehicleExists(_userId, new Guid(command.VehicleId));
+        var vehicle = Domain.Fixtures.VehiclesMother.MakeVehicle(
+            id: new Guid(command.VehicleId),
+            userId: _userId);
+        UserIsAuthenticated(_userId);
+        VehicleExists(vehicle);
         MaintenanceWillBePersisted();
 
         var result = await _handler.Handle(command, _cancellationToken);
@@ -50,6 +53,21 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
             await _handler.Handle(MakeCommand()));
     }
 
+    [Fact]
+    public async Task Handle_Should_ThrowException_WhenUserIsNotTheOwnerOfTheVehicle()
+    {
+        var vehicleId = Guid.NewGuid();
+        var userId = Guid.NewGuid();
+        var vehicle = Domain.Fixtures.VehiclesMother.MakeVehicle(
+            id: vehicleId,
+            userId: userId);
+        UserIsAuthenticated(Guid.NewGuid());
+        VehicleExists(vehicle);
+
+        await Assert.ThrowsAsync<VehicleNotFoundException>(async () =>
+            await _handler.Handle(MakeCommand(vehicleId: vehicleId.ToString())));
+    }
+
     private void MaintenanceWillBePersisted()
     {
         _maintenanceRepository.Setup(mock => mock.AddAsync(
@@ -57,15 +75,18 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
             _cancellationToken));
     }
 
-    private void VehicleExists(Guid userId, Guid vehicleId)
+    private void VehicleExists(Vehicle vehicle)
     {
-        _vehicleRepository.Setup(mock => mock.FindByUserAndId(userId, vehicleId))
-            .Returns(Domain.Fixtures.VehiclesMother.MakeVehicle());
+        _vehicleRepository.Setup(mock => mock.FindById(vehicle.Id))
+            .Returns(vehicle);
     }
 
-    public static CreateMaintenanceCommand MakeCommand(string? description = null)
+    public static CreateMaintenanceCommand MakeCommand(
+        string? vehicleId = null,
+        string? description = null)
     {
         return Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand(
+            vehicleId: vehicleId,
             description: description);
     }
 }
@@ -76,6 +97,6 @@ public class CreateMaintenanceCommandHandlerHandleValidData : TheoryData<CreateM
     {
         Add(CreateMaintenanceCommandHandlerTest.MakeCommand());
 
-        Add(CreateMaintenanceCommandHandlerTest.MakeCommand("This is a description"));
+        Add(CreateMaintenanceCommandHandlerTest.MakeCommand(description: "This is a description"));
     }
 }

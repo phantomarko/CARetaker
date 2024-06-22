@@ -13,10 +13,9 @@ public sealed class VehicleRepository(ApplicationDbContext context)
         await context.Vehicles.AddAsync(vehicle, cancellationToken);
     }
 
-    public Vehicle? FindByUserAndId(Guid userId, Guid id)
+    public Vehicle? FindById(Guid id)
     {
-        return context.Vehicles.FirstOrDefault(vehicle =>
-            vehicle.UserId == userId && vehicle.Id == id);
+        return context.Vehicles.FirstOrDefault(vehicle => vehicle.Id == id);
     }
 
     public Vehicle? FindByUserAndPlate(Guid userId, RegistrationPlate plate)

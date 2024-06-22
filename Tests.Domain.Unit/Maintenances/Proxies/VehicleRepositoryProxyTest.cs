@@ -36,11 +36,10 @@ public class VehicleRepositoryProxyTest
     public void FindById_Should_ReturnVehicle_WhenVehicleExists()
     {
         var vehicleId = Guid.NewGuid();
-        var userId = Guid.NewGuid();
-        _vehicleRepository.Setup(mock => mock.FindByUserAndId(userId, vehicleId))
+        _vehicleRepository.Setup(mock => mock.FindById(vehicleId))
             .Returns(VehiclesMother.MakeVehicle());
 
-        var vehicle = _proxy.FindByUserAndId(userId, vehicleId);
+        var vehicle = _proxy.FindById(vehicleId);
 
         Assert.NotNull(vehicle);
         _vehicleRepository.VerifyAll();
@@ -50,10 +49,9 @@ public class VehicleRepositoryProxyTest
     public void FindById_Should_ReturnNull_WhenVehicleDoNotExists()
     {
         var vehicleId = Guid.NewGuid();
-        var userId = Guid.NewGuid();
-        _vehicleRepository.Setup(mock => mock.FindByUserAndId(userId, vehicleId));
+        _vehicleRepository.Setup(mock => mock.FindById(vehicleId));
 
-        var vehicle = _proxy.FindByUserAndId(userId, vehicleId);
+        var vehicle = _proxy.FindById(vehicleId);
 
         Assert.Null(vehicle);
         _vehicleRepository.VerifyAll();

@@ -14,8 +14,8 @@ public abstract class AuthenticatedHandlerTestCase
         _userId = Guid.NewGuid();
     }
 
-    protected void UserIsAuthenticated()
+    protected void UserIsAuthenticated(Guid? userId = null)
     {
-        _identityProvider.Setup(mock => mock.GetAuthenticatedUserId()).Returns(_userId);
+        _identityProvider.Setup(mock => mock.GetAuthenticatedUserId()).Returns(userId ?? _userId);
     }
 }

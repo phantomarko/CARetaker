@@ -37,7 +37,10 @@ public sealed class CreateMaintenanceCommandHandler(
 
     private void GuardAgainstNotExistingVehicle(Guid userId, Guid vehicleId)
     {
-        if (vehicleRepository.FindByUserAndId(userId, vehicleId) is null)
+        var vehicle = vehicleRepository.FindById(vehicleId);
+        if (
+            vehicle is null
+            || !vehicle.UserId.Equals(userId))
         {
             throw new VehicleNotFoundException(vehicleId.ToString());
         }

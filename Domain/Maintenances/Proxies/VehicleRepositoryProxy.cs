@@ -12,9 +12,9 @@ public class VehicleRepositoryProxy(IVehicleRepository vehicleRepository)
         throw new NotSupportedException();
     }
 
-    public Vehicle? FindByUserAndId(Guid userId, Guid id)
+    public Vehicle? FindById(Guid id)
     {
-        return vehicleRepository.FindByUserAndId(userId, id);
+        return vehicleRepository.FindById(id);
     }
 
     public Vehicle? FindByUserAndPlate(Guid userId, RegistrationPlate plate)
