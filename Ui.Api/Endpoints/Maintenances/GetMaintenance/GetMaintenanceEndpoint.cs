@@ -6,7 +6,7 @@ using Ui.Api.Infrastructure.Authorization;
 namespace Ui.Api.Maintenances.Endpoints.GetMaintenance;
 
 public sealed class GetMaintenanceEndpoint(ISender sender)
-    : Endpoint<GetMaintenanceRequest, GetMaintenanceQueryResponse>
+    : Endpoint<GetMaintenanceRequest, MaintenanceResponse>
 {
     public override void Configure()
     {
@@ -18,12 +18,12 @@ public sealed class GetMaintenanceEndpoint(ISender sender)
         GetMaintenanceRequest request,
         CancellationToken cancellationToken)
     {
-        GetMaintenanceQueryResponse result = await sender.Send(
+        MaintenanceResponse maintenance = await sender.Send(
             new GetMaintenanceQuery(request.MaintenanceId),
             cancellationToken);
 
         await SendAsync(
-            result,
+            maintenance,
             cancellation: cancellationToken);
     }
 }

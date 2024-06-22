@@ -3,4 +3,4 @@
 namespace Application.Maintenances.Queries.GetMaintenance;
 
 public sealed record GetMaintenanceQuery(string MaintenanceId)
-    : IQuery<GetMaintenanceQueryResponse>;
+    : IQuery<MaintenanceResponse>;

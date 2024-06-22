@@ -8,13 +8,13 @@ namespace Application.Maintenances.Queries.GetMaintenance;
 public sealed class GetMaintenanceQueryHandler(
     IIdentityProvider identityProvider,
     IMaintenanceRepository maintenanceRepository)
-    : IQueryHandler<GetMaintenanceQuery, GetMaintenanceQueryResponse>
+    : IQueryHandler<GetMaintenanceQuery, MaintenanceResponse>
 {
-    public Task<GetMaintenanceQueryResponse> Handle(GetMaintenanceQuery request, CancellationToken cancellationToken)
+    public Task<MaintenanceResponse> Handle(GetMaintenanceQuery request, CancellationToken cancellationToken)
     {
         var maintenance = GetMaintenance(request.MaintenanceId);
 
-        return Task.FromResult(new GetMaintenanceQueryResponse(
+        return Task.FromResult(new MaintenanceResponse(
             maintenance.Id.ToString(),
             maintenance.VehicleId.ToString(),
             maintenance.Name.Value,
