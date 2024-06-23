@@ -12,7 +12,10 @@ Create, share and assign maintenance plans for your car.
 	echo YOUR_STRING_HERE | sha256sum
 	```
 
-2. **Build and start the containers.**
+2. **Build and start the containers.** Start `docker-compose` project via VS or manually execute the following command:
+	```bash
+	docker compose -f docker-compose.yml -f docker-compose.override.yml up --force-recreate --build
+	```
 
 3. **Execute the migrations.** Check the related doc in the section *Migrations*.
 
