@@ -1,4 +1,4 @@
-﻿namespace Application.Maintenances.Queries.GetMaintenance;
+﻿namespace Application.Maintenances.Responses;
 
 public sealed record MaintenanceResponse(
     string Id,

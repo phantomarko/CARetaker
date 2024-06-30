@@ -1,4 +1,5 @@
 ﻿using Application.Abstractions.Messaging;
+using Application.Users.Responses;
 
 namespace Application.Users.Commands.AuthorizeUser;
 

@@ -1,6 +1,7 @@
 ﻿using Application.Abstractions.Authentication;
 using Application.Abstractions.Messaging;
 using Application.Users.Exceptions;
+using Application.Users.Responses;
 using Domain.Users;
 
 namespace Application.Users.Commands.AuthorizeUser;

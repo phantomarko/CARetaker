@@ -1,4 +1,5 @@
 ﻿using Application.Behaviours;
+using Application.Maintenances.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application;
@@ -13,6 +14,9 @@ public static class DependencyInjection
 
             configuration.AddOpenBehavior(typeof(TransactionalPipelineBehaviour<,>));
         });
+
+        services.AddTransient<MaintenanceFinder>();
+        services.AddTransient<VehicleFinder>();
 
         return services;
     }

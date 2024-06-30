@@ -1,4 +1,5 @@
 ﻿using Application.Users.Commands.AuthorizeUser;
+using Application.Users.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

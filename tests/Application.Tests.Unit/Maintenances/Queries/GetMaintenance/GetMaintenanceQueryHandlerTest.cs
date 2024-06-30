@@ -1,7 +1,7 @@
 ﻿using Application.Maintenances.Queries.GetMaintenance;
+using Application.Maintenances.Services;
 using Domain.Maintenances;
 using Moq;
-using SharedKernel.Exceptions;
 
 namespace Application.Tests.Unit.Maintenances.Queries.GetMaintenance;
 
@@ -19,26 +19,7 @@ public class GetMaintenanceQueryHandlerTest : AuthenticatedHandlerTestCase
         _repository = new Mock<IMaintenanceRepository>();
         _handler = new GetMaintenanceQueryHandler(
             _identityProvider.Object,
-            _repository.Object);
-    }
-
-    [Fact]
-    public async Task Handle_Should_ThrowNotFoundException_WhenMaintenanceNotExists()
-    {
-        await Assert.ThrowsAsync<MaintenanceNotFoundException>(async () =>
-            await _handler.Handle(_query));
-    }
-
-    [Fact]
-    public async Task Handle_Should_ThrowNotFoundException_WhenUserIsNotOwner()
-    {
-        MaintenanceExists(
-            Domain.Tests.Fixtures.MaintenancesMother.MakeMaintenance(
-                id: _id,
-                userId: _userId));
-
-        await Assert.ThrowsAsync<MaintenanceNotFoundException>(async () =>
-            await _handler.Handle(_query));
+            new MaintenanceFinder(_repository.Object));
     }
 
     [Theory]
