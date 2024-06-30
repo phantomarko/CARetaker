@@ -1,7 +1,7 @@
 ﻿using Application.Abstractions.Authentication;
 using Application.Abstractions.Messaging;
-using Application.Exceptions;
 using Domain.Maintenances;
+using SharedKernel.Exceptions;
 
 namespace Application.Maintenances.Queries.GetMaintenance;
 

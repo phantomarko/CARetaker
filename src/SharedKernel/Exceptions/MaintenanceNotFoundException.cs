@@ -1,4 +1,4 @@
-﻿namespace Application.Exceptions;
+﻿namespace SharedKernel.Exceptions;
 
 public sealed class MaintenanceNotFoundException(string identifier)
     : NotFoundException(EntityName, identifier)

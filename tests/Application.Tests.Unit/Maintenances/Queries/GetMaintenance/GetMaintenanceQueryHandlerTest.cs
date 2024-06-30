@@ -1,7 +1,7 @@
-﻿using Application.Exceptions;
-using Application.Maintenances.Queries.GetMaintenance;
+﻿using Application.Maintenances.Queries.GetMaintenance;
 using Domain.Maintenances;
 using Moq;
+using SharedKernel.Exceptions;
 
 namespace Application.Tests.Unit.Maintenances.Queries.GetMaintenance;
 

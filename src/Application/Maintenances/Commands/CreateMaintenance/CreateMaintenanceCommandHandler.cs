@@ -1,8 +1,8 @@
 ﻿using Application.Abstractions.Authentication;
 using Application.Abstractions.Messaging;
-using Application.Exceptions;
 using Domain.Maintenances;
 using Domain.Maintenances.Proxies;
+using SharedKernel.Exceptions;
 using SharedKernel.Responses;
 
 namespace Application.Maintenances.Commands.CreateMaintenance;
