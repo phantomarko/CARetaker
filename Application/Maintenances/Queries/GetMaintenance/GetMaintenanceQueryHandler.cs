@@ -10,7 +10,9 @@ public sealed class GetMaintenanceQueryHandler(
     IMaintenanceRepository maintenanceRepository)
     : IQueryHandler<GetMaintenanceQuery, MaintenanceResponse>
 {
-    public Task<MaintenanceResponse> Handle(GetMaintenanceQuery request, CancellationToken cancellationToken)
+    public Task<MaintenanceResponse> Handle(
+        GetMaintenanceQuery request,
+        CancellationToken cancellationToken = default)
     {
         var maintenance = GetMaintenance(request.MaintenanceId);
 

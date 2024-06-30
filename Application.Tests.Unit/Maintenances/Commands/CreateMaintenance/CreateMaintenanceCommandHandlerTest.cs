@@ -27,7 +27,7 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
     }
 
     [Theory]
-    [ClassData(typeof(CreateMaintenanceCommandHandlerHandleValidData))]
+    [ClassData(typeof(CreateMaintenanceCommandData))]
     public async Task Handle_Should_ReturnGuid(CreateMaintenanceCommand command)
     {
         var vehicle = Domain.Tests.Fixtures.VehiclesMother.MakeVehicle(
@@ -93,12 +93,11 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
     }
 }
 
-public class CreateMaintenanceCommandHandlerHandleValidData : TheoryData<CreateMaintenanceCommand>
+public class CreateMaintenanceCommandData : TheoryData<CreateMaintenanceCommand>
 {
-    public CreateMaintenanceCommandHandlerHandleValidData()
+    public CreateMaintenanceCommandData()
     {
         Add(CreateMaintenanceCommandHandlerTest.MakeCommand());
-
         Add(CreateMaintenanceCommandHandlerTest.MakeCommand(description: "This is a description"));
     }
 }
