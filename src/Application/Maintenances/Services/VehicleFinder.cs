@@ -1,5 +1,5 @@
-﻿using Domain.Maintenances.Proxies;
-using SharedKernel.Exceptions;
+﻿using Application.Maintenances.Exceptions;
+using Domain.Maintenances.Proxies;
 
 namespace Application.Maintenances.Services;
 

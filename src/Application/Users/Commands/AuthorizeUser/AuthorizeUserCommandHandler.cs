@@ -14,7 +14,7 @@ public sealed class AuthorizeUserCommandHandler(
 {
     public Task<BearerTokenResponse> Handle(
         AuthorizeUserCommand request,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken = default)
     {
         var email = Email.Create(request.Email);
         User? user = userRepository.FindByEmail(email);

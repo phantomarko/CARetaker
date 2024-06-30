@@ -1,5 +1,5 @@
-﻿using Domain.Maintenances;
-using SharedKernel.Exceptions;
+﻿using Application.Maintenances.Exceptions;
+using Domain.Maintenances;
 
 namespace Application.Maintenances.Services;
 
@@ -12,7 +12,7 @@ public sealed class MaintenanceFinder(IMaintenanceRepository repository)
             maintenance is null
             || !maintenance.UserId.Equals(userId))
         {
-            throw new MaintenanceNotFoundException(maintenanceId.ToString());
+            throw new MaintenanceNotFoundException();
         }
 
         return maintenance;

@@ -16,7 +16,7 @@ public sealed class CreateMaintenanceCommandHandler(
         CreateMaintenanceCommand request,
         CancellationToken cancellationToken = default)
     {
-        var vehicleId = new Guid(request.VehicleId);
+        var vehicleId = Guid.Parse(request.VehicleId);
         var userId = identityProvider.GetAuthenticatedUserId();
 
         vehicleFinder.GuardAgainstNotExistingVehicle(vehicleId, userId);

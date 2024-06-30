@@ -1,8 +1,8 @@
-﻿using Application.Maintenances.Services;
+﻿using Application.Maintenances.Exceptions;
+using Application.Maintenances.Services;
 using Domain.Maintenances.Proxies;
 using Domain.Vehicles;
 using Moq;
-using SharedKernel.Exceptions;
 
 namespace Application.Tests.Unit.Maintenances.Services;
 

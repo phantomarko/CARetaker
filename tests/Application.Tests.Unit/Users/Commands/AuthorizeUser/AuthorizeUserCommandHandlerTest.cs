@@ -12,7 +12,6 @@ public class AuthorizeUserCommandHandlerTest
     private readonly Email _email;
     private readonly Password _password;
     private readonly User _user;
-    private readonly CancellationToken _cancellationToken;
     private readonly Mock<IUserRepository> _userRepository;
     private readonly Mock<IJwtProvider> _jwtProvider;
     private readonly AuthorizeUserCommandHandler _handler;
@@ -27,7 +26,6 @@ public class AuthorizeUserCommandHandlerTest
             email: _email,
             password: _password,
             passwordHasher: passwordHasher);
-        _cancellationToken = new CancellationTokenSource().Token;
 
         _userRepository = new Mock<IUserRepository>();
         _jwtProvider = new Mock<IJwtProvider>();
@@ -45,7 +43,7 @@ public class AuthorizeUserCommandHandlerTest
         UserExistsWithTheGivenEmail();
         _jwtProvider.Setup(mock => mock.Generate(_user)).Returns(jwtValue);
 
-        var result = await _handler.Handle(command, _cancellationToken);
+        var result = await _handler.Handle(command);
 
         Assert.IsType<BearerTokenResponse>(result);
         Assert.Equal(jwtValue, result.BearerToken);
@@ -60,7 +58,7 @@ public class AuthorizeUserCommandHandlerTest
         UserNotExistsWithTheGivenEmail();
 
         await Assert.ThrowsAsync<InvalidCredentialsException>(async () =>
-            await _handler.Handle(command, _cancellationToken));
+            await _handler.Handle(command));
 
         _userRepository.VerifyAll();
     }
@@ -72,7 +70,7 @@ public class AuthorizeUserCommandHandlerTest
         UserExistsWithTheGivenEmail();
 
         await Assert.ThrowsAsync<InvalidCredentialsException>(async () =>
-            await _handler.Handle(command, _cancellationToken));
+            await _handler.Handle(command));
 
         _userRepository.VerifyAll();
     }
