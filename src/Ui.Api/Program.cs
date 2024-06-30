@@ -10,16 +10,5 @@ builder.Services.AddApi(builder.Configuration);
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapControllers();
-app.UseExceptionHandler("/error");
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
+app.ConfigureApi();
 app.Run();
