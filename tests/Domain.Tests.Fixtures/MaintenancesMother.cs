@@ -43,7 +43,7 @@ public static class MaintenancesMother
     {
         return Money.Create(
             value ?? Faker.Random.Decimal(0m, 10000m),
-            currency ?? Faker.Finance.Currency().Code);
+            currency ?? Faker.Random.ArrayElement(["USD", "EUR", "JPY"]));
     }
 
     public static Notes MakeNotes(string? value = null)
