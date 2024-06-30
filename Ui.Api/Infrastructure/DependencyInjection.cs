@@ -1,7 +1,5 @@
 ﻿using Application.Abstractions.Authentication;
-using FastEndpoints;
-using FastEndpoints.Security;
-using FastEndpoints.Swagger;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Ui.Api.Infrastructure.Authentication;
@@ -13,29 +11,31 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddApi(this IServiceCollection services, IConfiguration configuration)
     {
-        // endpoints
+        // controllers
+        services.AddControllers();
         services.AddEndpointsApiExplorer();
-        services.AddFastEndpoints();
-        services.SwaggerDocument();
+        services.AddSwaggerGen();
 
         // authentication
         services.ConfigureOptions<JwtOptionsSetup>();
-        services.AddScoped<IJwtProvider, JwtProvider>();
-        services.AddAuthenticationJwtBearer(s => { }, options =>
-        {
-            var jwtOptions = configuration.GetSection(JwtOptions.Section).Get<JwtOptions>()!;
-            options.TokenValidationParameters = new()
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
             {
-                ValidateIssuer = true,
-                ValidateAudience = true,
-                ValidateLifetime = true,
-                ValidateIssuerSigningKey = true,
-                ValidIssuer = jwtOptions.Issuer,
-                ValidAudience = jwtOptions.Audience,
-                IssuerSigningKey = new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes(jwtOptions.SecretKey))
-            };
-        });
+                var jwtOptions = configuration.GetSection(JwtOptions.Section).Get<JwtOptions>()!;
+                options.TokenValidationParameters = new()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtOptions.Issuer,
+                    ValidAudience = jwtOptions.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(jwtOptions.SecretKey))
+                };
+            });
+        services.AddScoped<IJwtProvider, JwtProvider>();
+        services.AddHttpContextAccessor();
         services.AddScoped<IIdentityProvider, HttpContextIdentityProvider>();
 
         // authorization

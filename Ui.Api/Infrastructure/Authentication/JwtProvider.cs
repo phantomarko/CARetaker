@@ -11,13 +11,15 @@ namespace Ui.Api.Infrastructure.Authentication;
 public sealed class JwtProvider(IOptions<JwtOptions> options)
     : IJwtProvider
 {
+    public const string IdentityClaim = "uuid";
+
     private readonly JwtOptions _jwtOptions = options.Value;
 
     public string Generate(User user)
     {
         var claims = new Claim[]
         {
-            new (JwtRegisteredClaimNames.Sub, user.Id.ToString())
+            new (IdentityClaim, user.Id.ToString())
         };
 
         var signingCredentials = new SigningCredentials(

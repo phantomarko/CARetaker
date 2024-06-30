@@ -1,5 +1,4 @@
 ﻿using Application.Abstractions.Authentication;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
 namespace Ui.Api.Infrastructure.Authentication;
@@ -9,7 +8,7 @@ public sealed class HttpContextIdentityProvider(IHttpContextAccessor context)
 {
     public Guid GetAuthenticatedUserId()
     {
-        var id = GetClaimFromContext(JwtRegisteredClaimNames.Sub);
+        var id = GetClaimFromContext(JwtProvider.IdentityClaim);
 
         return id is null ? throw new Exception("User not available") : new Guid(id);
     }

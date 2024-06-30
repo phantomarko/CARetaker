@@ -2,6 +2,7 @@
 using Application.Vehicles.Commands.CreateVehicle;
 using Domain.Vehicles;
 using Moq;
+using SharedKernel.Responses;
 
 namespace Application.Tests.Unit.Vehicles.Commands.CreateVehicle;
 
@@ -29,7 +30,8 @@ public class CreateVehicleCommandHandlerTest : AuthenticatedHandlerTestCase
 
         var result = await _handler.Handle(command, _cancellationToken);
 
-        Assert.IsType<Guid>(result);
+        Assert.IsType<ResourceCreatedResponse>(result);
+        Assert.True(Guid.TryParse(result.Id, out Guid guid));
         _identityProvider.VerifyAll();
         _vehicleRepository.VerifyAll();
     }

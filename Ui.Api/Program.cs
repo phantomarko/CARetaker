@@ -1,6 +1,4 @@
 using Application;
-using FastEndpoints;
-using FastEndpoints.Swagger;
 using Infrastructure;
 using Ui.Api.Infrastructure;
 
@@ -12,19 +10,15 @@ builder.Services.AddApi(builder.Configuration);
 
 var app = builder.Build();
 
-// Native
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
-
-// FastEndpoints
-app.UseDefaultExceptionHandler();
-app.UseFastEndpoints();
+app.MapControllers();
 
 if (app.Environment.IsDevelopment())
 {
-    // FastEndpoints
-    app.UseSwaggerGen();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.Run();

@@ -9,9 +9,9 @@ public sealed class AuthorizeUserCommandHandler(
     IUserRepository userRepository,
     PasswordHasher passwordHasher,
     IJwtProvider jwtProvider)
-    : ICommandHandler<AuthorizeUserCommand, string>
+    : ICommandHandler<AuthorizeUserCommand, BearerTokenResponse>
 {
-    public Task<string> Handle(
+    public Task<BearerTokenResponse> Handle(
         AuthorizeUserCommand request,
         CancellationToken cancellationToken)
     {
@@ -25,6 +25,7 @@ public sealed class AuthorizeUserCommandHandler(
             throw new InvalidCredentialsException();
         }
 
-        return Task.FromResult(jwtProvider.Generate(user));
+        return Task.FromResult(
+            new BearerTokenResponse(jwtProvider.Generate(user)));
     }
 }

@@ -4,6 +4,7 @@ using Domain.Maintenances;
 using Domain.Maintenances.Proxies;
 using Domain.Vehicles;
 using Moq;
+using SharedKernel.Responses;
 
 namespace Application.Tests.Unit.Maintenances.Commands.CreateMaintenance;
 
@@ -38,7 +39,8 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
 
         var result = await _handler.Handle(command, _cancellationToken);
 
-        Assert.IsType<Guid>(result);
+        Assert.IsType<ResourceCreatedResponse>(result);
+        Assert.True(Guid.TryParse(result.Id, out Guid guid));
         _identityProvider.VerifyAll();
         _maintenanceRepository.VerifyAll();
         _vehicleRepository.VerifyAll();

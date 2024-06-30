@@ -3,4 +3,4 @@
 namespace Application.Users.Commands.AuthorizeUser;
 
 public sealed record AuthorizeUserCommand(string Email, string Password)
-    : ICommand<string>;
+    : ICommand<BearerTokenResponse>;

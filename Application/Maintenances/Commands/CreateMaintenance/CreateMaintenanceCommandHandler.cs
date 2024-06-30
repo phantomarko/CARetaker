@@ -3,6 +3,7 @@ using Application.Abstractions.Messaging;
 using Application.Exceptions;
 using Domain.Maintenances;
 using Domain.Maintenances.Proxies;
+using SharedKernel.Responses;
 
 namespace Application.Maintenances.Commands.CreateMaintenance;
 
@@ -10,9 +11,9 @@ public sealed class CreateMaintenanceCommandHandler(
     IIdentityProvider identityProvider,
     IMaintenanceRepository maintenanceRepository,
     VehicleRepositoryProxy vehicleRepository)
-    : ICommandHandler<CreateMaintenanceCommand, Guid>
+    : ICommandHandler<CreateMaintenanceCommand, ResourceCreatedResponse>
 {
-    public async Task<Guid> Handle(
+    public async Task<ResourceCreatedResponse> Handle(
         CreateMaintenanceCommand request,
         CancellationToken cancellationToken = default)
     {
@@ -32,7 +33,7 @@ public sealed class CreateMaintenanceCommandHandler(
 
         await maintenanceRepository.AddAsync(maintenance, cancellationToken);
 
-        return maintenance.Id;
+        return new ResourceCreatedResponse(maintenance.Id.ToString());
     }
 
     private void GuardAgainstNotExistingVehicle(Guid userId, Guid vehicleId)

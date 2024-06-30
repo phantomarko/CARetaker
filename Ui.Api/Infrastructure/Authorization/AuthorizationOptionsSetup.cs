@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
-using System.IdentityModel.Tokens.Jwt;
+using Ui.Api.Infrastructure.Authentication;
 
 namespace Ui.Api.Infrastructure.Authorization;
 
@@ -10,6 +10,6 @@ public sealed class AuthorizationOptionsSetup : IConfigureOptions<AuthorizationO
     {
         options.AddPolicy(
             ApplicationPolicies.User,
-            x => x.RequireClaim(JwtRegisteredClaimNames.Sub));
+            x => x.RequireClaim(JwtProvider.IdentityClaim));
     }
 }

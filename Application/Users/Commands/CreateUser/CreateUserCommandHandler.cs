@@ -1,14 +1,15 @@
 ﻿using Application.Abstractions.Messaging;
 using Domain.Users;
+using SharedKernel.Responses;
 
 namespace Application.Users.Commands.CreateUser;
 
 public sealed class CreateUserCommandHandler(
     PasswordHasher passwordHasher,
     IUserRepository userRepository)
-    : ICommandHandler<CreateUserCommand, Guid>
+    : ICommandHandler<CreateUserCommand, ResourceCreatedResponse>
 {
-    public async Task<Guid> Handle(
+    public async Task<ResourceCreatedResponse> Handle(
         CreateUserCommand request,
         CancellationToken cancellationToken = default)
     {
@@ -21,6 +22,6 @@ public sealed class CreateUserCommandHandler(
 
         await userRepository.AddAsync(user, cancellationToken);
 
-        return user.Id;
+        return new ResourceCreatedResponse(user.Id.ToString());
     }
 }

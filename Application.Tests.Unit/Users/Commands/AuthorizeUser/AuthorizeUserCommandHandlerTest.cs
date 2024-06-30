@@ -40,12 +40,14 @@ public class AuthorizeUserCommandHandlerTest
     public async Task Handle_Should_ReturnToken()
     {
         var command = MakeCommand();
+        var jwtValue = "token";
         UserExistsWithTheGivenEmail();
-        _jwtProvider.Setup(mock => mock.Generate(_user)).Returns("token");
+        _jwtProvider.Setup(mock => mock.Generate(_user)).Returns(jwtValue);
 
-        string token = await _handler.Handle(command, _cancellationToken);
+        var result = await _handler.Handle(command, _cancellationToken);
 
-        Assert.IsType<string>(token);
+        Assert.IsType<BearerTokenResponse>(result);
+        Assert.Equal(jwtValue, result.BearerToken);
         _userRepository.VerifyAll();
         _jwtProvider.VerifyAll();
     }

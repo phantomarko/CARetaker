@@ -1,15 +1,16 @@
 ﻿using Application.Abstractions.Authentication;
 using Application.Abstractions.Messaging;
 using Domain.Vehicles;
+using SharedKernel.Responses;
 
 namespace Application.Vehicles.Commands.CreateVehicle;
 
 public sealed class CreateVehicleCommandHandler(
     IIdentityProvider identityProvider,
     IVehicleRepository vehicleRepository)
-    : ICommandHandler<CreateVehicleCommand, Guid>
+    : ICommandHandler<CreateVehicleCommand, ResourceCreatedResponse>
 {
-    public async Task<Guid> Handle(
+    public async Task<ResourceCreatedResponse> Handle(
         CreateVehicleCommand request,
         CancellationToken cancellationToken = default)
     {
@@ -24,6 +25,6 @@ public sealed class CreateVehicleCommandHandler(
 
         await vehicleRepository.AddAsync(vehicle, cancellationToken);
 
-        return vehicle.Id;
+        return new ResourceCreatedResponse(vehicle.Id.ToString());
     }
 }

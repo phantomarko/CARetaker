@@ -1,3 +1,3 @@
-﻿namespace Ui.Api.Endpoints.Users.AuthorizeUser;
+﻿namespace Ui.Api.Controllers.Users.AuthorizeUser;
 
 public sealed record AuthorizeUserRequest(string Email, string Password);

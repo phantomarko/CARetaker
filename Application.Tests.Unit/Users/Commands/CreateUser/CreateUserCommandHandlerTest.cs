@@ -1,6 +1,7 @@
 ﻿using Application.Users.Commands.CreateUser;
 using Domain.Users;
 using Moq;
+using SharedKernel.Responses;
 
 namespace Application.Tests.Unit.Users.Commands.CreateUser;
 
@@ -24,8 +25,9 @@ public class CreateUserCommandHandlerTest
         var tokenSource = new CancellationTokenSource();
         var result = await _handler.Handle(command, tokenSource.Token);
 
+        Assert.IsType<ResourceCreatedResponse>(result);
+        Assert.True(Guid.TryParse(result.Id, out Guid guid));
         _userRepository.Verify(mock => mock.AddAsync(It.IsAny<User>(), tokenSource.Token), Times.Once);
-        Assert.IsType<Guid>(result);
     }
 }
 
