@@ -1,8 +1,9 @@
 ﻿using Application.Abstractions.Data;
+using Application.Maintenances.Services;
 using Domain.Maintenances;
-using Domain.Maintenances.Proxies;
 using Domain.Users;
 using Domain.Vehicles;
+using Infrastructure.Maintenances;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Maintenances;
 using Infrastructure.Persistence.Users;
@@ -19,7 +20,18 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
         services.AddPersistence();
-        services.AddUsersInfrastructure();
+
+        // Users
+        services.ConfigureOptions<PasswordHasherOptionsSetup>();
+        services.AddScoped(serviceProvider =>
+        {
+            PasswordHasherOptions options = serviceProvider.GetService<IOptions<PasswordHasherOptions>>()!.Value;
+
+            return new PasswordHasher(options.Pepper, options.Iterations);
+        });
+
+        // Maintenances
+        services.AddScoped<IVehicleClient, VehicleRepositoryClient>();
 
         return services;
     }
@@ -42,21 +54,7 @@ public static class DependencyInjection
         services.AddScoped<IMaintenanceRepository, MaintenanceRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IVehicleRepository, VehicleRepository>();
-        services.AddScoped<VehicleRepositoryProxy>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-        return services;
-    }
-
-    private static IServiceCollection AddUsersInfrastructure(this IServiceCollection services)
-    {
-        services.ConfigureOptions<PasswordHasherOptionsSetup>();
-        services.AddScoped(serviceProvider =>
-        {
-            PasswordHasherOptions options = serviceProvider.GetService<IOptions<PasswordHasherOptions>>()!.Value;
-
-            return new PasswordHasher(options.Pepper, options.Iterations);
-        });
 
         return services;
     }

@@ -9,7 +9,7 @@ namespace Application.Maintenances.Commands.CreateMaintenance;
 public sealed class CreateMaintenanceCommandHandler(
     IIdentityProvider identityProvider,
     IMaintenanceRepository maintenanceRepository,
-    VehicleFinder vehicleFinder)
+    VehicleFacade vehicleFinder)
     : ICommandHandler<CreateMaintenanceCommand, ResourceCreatedResponse>
 {
     public async Task<ResourceCreatedResponse> Handle(

@@ -1,27 +1,24 @@
 ﻿using Application.Maintenances.Exceptions;
 using Application.Maintenances.Services;
-using Domain.Maintenances.Proxies;
-using Domain.Vehicles;
 using Moq;
 
 namespace Application.Tests.Unit.Maintenances.Services;
 
-public class VehicleFinderTest
+public class VehicleFacadeTest
 {
-    private readonly Mock<IVehicleRepository> _repository;
-    private readonly VehicleFinder _finder;
+    private readonly Mock<IVehicleClient> _client;
+    private readonly VehicleFacade _facade;
 
-    public VehicleFinderTest()
+    public VehicleFacadeTest()
     {
-        _repository = new Mock<IVehicleRepository>();
-        _finder = new VehicleFinder(
-            new VehicleRepositoryProxy(_repository.Object));
+        _client = new Mock<IVehicleClient>();
+        _facade = new VehicleFacade(_client.Object);
     }
 
     [Fact]
     public void GuardAgainstNotExistingVehicle_Should_ThrowException_WhenRepositoryReturnsNull()
     {
-        Assert.Throws<VehicleNotFoundException>(() => _finder.GuardAgainstNotExistingVehicle(
+        Assert.Throws<VehicleNotFoundException>(() => _facade.GuardAgainstNotExistingVehicle(
             Guid.NewGuid(),
             Guid.NewGuid()));
     }
@@ -30,14 +27,14 @@ public class VehicleFinderTest
     public void GuardAgainstNotExistingVehicle_Should_ThrowException_WhenUserIsNotTheOwner()
     {
         var vehicleId = Guid.NewGuid();
-        VehicleExists(Domain.Tests.Fixtures.VehiclesMother.MakeVehicle(
+        VehicleExists(Fixtures.MaintenancesMother.MakeVehicleDto(
             id: vehicleId,
             userId: Guid.NewGuid()));
 
-        Assert.Throws<VehicleNotFoundException>(() => _finder.GuardAgainstNotExistingVehicle(
+        Assert.Throws<VehicleNotFoundException>(() => _facade.GuardAgainstNotExistingVehicle(
             vehicleId,
             Guid.NewGuid()));
-        _repository.VerifyAll();
+        _client.VerifyAll();
     }
 
     [Fact]
@@ -45,19 +42,19 @@ public class VehicleFinderTest
     {
         var vehicleId = Guid.NewGuid();
         var userId = Guid.NewGuid();
-        VehicleExists(Domain.Tests.Fixtures.VehiclesMother.MakeVehicle(
+        VehicleExists(Fixtures.MaintenancesMother.MakeVehicleDto(
             id: vehicleId,
             userId: userId));
 
-        _finder.GuardAgainstNotExistingVehicle(
+        _facade.GuardAgainstNotExistingVehicle(
             vehicleId,
             userId);
-        _repository.VerifyAll();
+        _client.VerifyAll();
     }
 
-    private void VehicleExists(Vehicle vehicle)
+    private void VehicleExists(VehicleDto vehicle)
     {
-        _repository.Setup(mock => mock.FindById(vehicle.Id))
+        _client.Setup(mock => mock.GetVehicle(vehicle.Id))
             .Returns(vehicle);
     }
 }

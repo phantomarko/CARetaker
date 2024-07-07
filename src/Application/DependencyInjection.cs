@@ -15,8 +15,9 @@ public static class DependencyInjection
             configuration.AddOpenBehavior(typeof(TransactionalPipelineBehaviour<,>));
         });
 
+        // Maintenances
         services.AddTransient<MaintenanceFinder>();
-        services.AddTransient<VehicleFinder>();
+        services.AddTransient<VehicleFacade>();
 
         return services;
     }

@@ -1,9 +1,8 @@
 ﻿using Application.Maintenances.Exceptions;
-using Domain.Maintenances.Proxies;
 
 namespace Application.Maintenances.Services;
 
-public sealed class VehicleFinder(VehicleRepositoryProxy vehicleRepository)
+public sealed class VehicleFacade(IVehicleClient client)
 {
     public void GuardAgainstNotExistingVehicle(Guid vehicleId, Guid userId)
     {
@@ -15,7 +14,7 @@ public sealed class VehicleFinder(VehicleRepositoryProxy vehicleRepository)
 
     private bool VehicleExists(Guid vehicleId, Guid userId)
     {
-        var vehicle = vehicleRepository.FindById(vehicleId);
+        var vehicle = client.GetVehicle(vehicleId);
         return vehicle is not null && vehicle.UserId.Equals(userId);
     }
 }

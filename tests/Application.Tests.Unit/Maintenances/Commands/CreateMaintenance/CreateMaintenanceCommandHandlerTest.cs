@@ -1,8 +1,6 @@
 ﻿using Application.Maintenances.Commands.CreateMaintenance;
 using Application.Maintenances.Services;
 using Domain.Maintenances;
-using Domain.Maintenances.Proxies;
-using Domain.Vehicles;
 using Moq;
 using SharedKernel.Responses;
 
@@ -11,18 +9,18 @@ namespace Application.Tests.Unit.Maintenances.Commands.CreateMaintenance;
 public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
 {
     private readonly Mock<IMaintenanceRepository> _maintenanceRepository;
-    private readonly Mock<IVehicleRepository> _vehicleRepository;
+    private readonly Mock<IVehicleClient> _vehicleClient;
     private readonly CreateMaintenanceCommandHandler _handler;
     private readonly CancellationToken _cancellationToken;
 
     public CreateMaintenanceCommandHandlerTest()
     {
         _maintenanceRepository = new Mock<IMaintenanceRepository>();
-        _vehicleRepository = new Mock<IVehicleRepository>();
+        _vehicleClient = new Mock<IVehicleClient>();
         _handler = new CreateMaintenanceCommandHandler(
             _identityProvider.Object,
             _maintenanceRepository.Object,
-            new VehicleFinder(new VehicleRepositoryProxy(_vehicleRepository.Object)));
+            new VehicleFacade(_vehicleClient.Object));
         _cancellationToken = new CancellationTokenSource().Token;
     }
 
@@ -30,7 +28,7 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
     [ClassData(typeof(CreateMaintenanceCommandData))]
     public async Task Handle_Should_ReturnGuid(CreateMaintenanceCommand command)
     {
-        var vehicle = Domain.Tests.Fixtures.VehiclesMother.MakeVehicle(
+        var vehicle = Fixtures.MaintenancesMother.MakeVehicleDto(
             id: new Guid(command.VehicleId),
             userId: _userId);
         VehicleExists(vehicle);
@@ -43,7 +41,7 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
         Assert.True(Guid.TryParse(result.Id, out Guid guid));
         _identityProvider.VerifyAll();
         _maintenanceRepository.VerifyAll();
-        _vehicleRepository.VerifyAll();
+        _vehicleClient.VerifyAll();
     }
 
     private void MaintenanceWillBePersisted()
@@ -53,19 +51,10 @@ public class CreateMaintenanceCommandHandlerTest : AuthenticatedHandlerTestCase
             _cancellationToken));
     }
 
-    private void VehicleExists(Vehicle vehicle)
+    private void VehicleExists(VehicleDto vehicle)
     {
-        _vehicleRepository.Setup(mock => mock.FindById(vehicle.Id))
+        _vehicleClient.Setup(mock => mock.GetVehicle(vehicle.Id))
             .Returns(vehicle);
-    }
-
-    public static CreateMaintenanceCommand MakeCommand(
-        string? vehicleId = null,
-        string? description = null)
-    {
-        return Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand(
-            vehicleId: vehicleId,
-            description: description);
     }
 }
 
@@ -73,7 +62,8 @@ public class CreateMaintenanceCommandData : TheoryData<CreateMaintenanceCommand>
 {
     public CreateMaintenanceCommandData()
     {
-        Add(CreateMaintenanceCommandHandlerTest.MakeCommand());
-        Add(CreateMaintenanceCommandHandlerTest.MakeCommand(description: "This is a description"));
+        Add(Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand());
+        Add(Fixtures.MaintenancesMother.MakeCreateMaintenanceCommand(
+            description: "This is a description"));
     }
 }

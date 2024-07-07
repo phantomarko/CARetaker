@@ -1,5 +1,6 @@
 ﻿using Application.Maintenances.Commands.CreateMaintenance;
 using Application.Maintenances.Queries.GetMaintenance;
+using Application.Maintenances.Services;
 using Bogus;
 
 namespace Application.Tests.Fixtures;
@@ -22,5 +23,14 @@ public static class MaintenancesMother
     public static GetMaintenanceQuery MakeGetMaintenanceQuery(string? id = null)
     {
         return new GetMaintenanceQuery(id ?? Guid.NewGuid().ToString());
+    }
+
+    public static VehicleDto MakeVehicleDto(
+        Guid? id = null,
+        Guid? userId = null)
+    {
+        return new VehicleDto(
+            id ?? Guid.NewGuid(),
+            userId ?? Guid.NewGuid());
     }
 }
