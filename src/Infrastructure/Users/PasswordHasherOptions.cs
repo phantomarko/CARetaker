@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Security;
+﻿namespace Infrastructure.Users;
 
 public sealed class PasswordHasherOptions
 {
