@@ -6,5 +6,5 @@ public interface IMaintenanceRepository
         Maintenance maintenance,
         CancellationToken cancellationToken = default);
 
-    Maintenance? GetById(Guid id);
+    Maintenance? FindById(Guid id);
 }

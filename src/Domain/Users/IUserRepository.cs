@@ -6,5 +6,7 @@ public interface IUserRepository
         User user,
         CancellationToken cancellationToken = default);
 
+    User? FindById(Guid id);
+
     User? FindByEmail(Email email);
 }

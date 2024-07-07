@@ -57,7 +57,7 @@ public class MaintenanceFinderTest
 
     private void MaintenanceExists(Maintenance maintenance)
     {
-        _repository.Setup(mock => mock.GetById(maintenance.Id))
+        _repository.Setup(mock => mock.FindById(maintenance.Id))
             .Returns(maintenance);
     }
 }

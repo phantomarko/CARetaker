@@ -14,8 +14,8 @@ public sealed class MaintenanceRepository(ApplicationDbContext context)
             cancellationToken);
     }
 
-    public Maintenance? GetById(Guid id)
+    public Maintenance? FindById(Guid id)
     {
-        return context.Maintenances.FirstOrDefault(Maintenance => Maintenance.Id == id);
+        return context.Maintenances.FirstOrDefault(maintenance => maintenance.Id == id);
     }
 }

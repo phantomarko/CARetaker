@@ -36,7 +36,8 @@ public static class DependencyInjection
             });
         services.AddScoped<IJwtProvider, JwtProvider>();
         services.AddHttpContextAccessor();
-        services.AddScoped<IIdentityProvider, HttpContextIdentityProvider>();
+        services.AddScoped<IIdentityProvider, IdentityProvider>();
+        services.AddScoped<IContext, Authentication.HttpContext>();
 
         // authorization
         services.ConfigureOptions<AuthorizationOptionsSetup>();

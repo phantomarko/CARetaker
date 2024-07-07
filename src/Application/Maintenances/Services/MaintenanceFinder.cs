@@ -7,7 +7,7 @@ public sealed class MaintenanceFinder(IMaintenanceRepository repository)
 {
     public Maintenance Find(Guid maintenanceId, Guid userId)
     {
-        var maintenance = repository.GetById(maintenanceId);
+        var maintenance = repository.FindById(maintenanceId);
         if (
             maintenance is null
             || !maintenance.UserId.Equals(userId))

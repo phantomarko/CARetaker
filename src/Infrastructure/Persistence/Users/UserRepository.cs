@@ -12,6 +12,11 @@ public sealed class UserRepository(ApplicationDbContext context)
         await context.Users.AddAsync(user, cancellationToken);
     }
 
+    public User? FindById(Guid id)
+    {
+        return context.Users.FirstOrDefault(user => user.Id == id);
+    }
+
     public User? FindByEmail(Email email)
     {
         return context.Users.FirstOrDefault(user => user.Email == email);
