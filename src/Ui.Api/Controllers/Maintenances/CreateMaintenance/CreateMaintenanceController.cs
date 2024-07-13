@@ -20,11 +20,11 @@ public class CreateMaintenanceController(ISender sender)
         CancellationToken cancellationToken)
     {
         ResourceCreatedResponse result = await sender.Send(
-                    new CreateMaintenanceCommand(
-                        request.VehicleId,
-                        request.Name,
-                        request.Description),
-                    cancellationToken);
+            new CreateMaintenanceCommand(
+                request.VehicleId,
+                request.Name,
+                request.Description),
+            cancellationToken);
 
         return CreatedAtRoute(
             nameof(GetMaintenanceController),
