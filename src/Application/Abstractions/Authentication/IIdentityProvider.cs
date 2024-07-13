@@ -3,4 +3,6 @@
 public interface IIdentityProvider
 {
     Guid GetAuthenticatedUserId();
+
+    AuthenticatedUser GetAuthenticatedUser();
 }

@@ -11,19 +11,22 @@ public sealed class IdentityProvider(
 {
     public Guid GetAuthenticatedUserId()
     {
-        var userId = GetIdentityClaimFromContext();
+        return GetAuthenticatedUser().Id;
+    }
 
-        if (
-            userId is null
-            || !UserExists((Guid)userId))
+    public AuthenticatedUser GetAuthenticatedUser()
+    {
+        var user = userRepository.FindById(GetIdFromContext());
+
+        if (user is null)
         {
             throw new UnauthorizedException();
         }
 
-        return (Guid)userId;
+        return new AuthenticatedUser(user.Id, user.Email.ToString());
     }
 
-    private Guid? GetIdentityClaimFromContext()
+    private Guid GetIdFromContext()
     {
         var id = context.GetClaim(JwtProvider.IdentityClaim);
         
@@ -31,16 +34,9 @@ public sealed class IdentityProvider(
             id is null 
             || !Guid.TryParse(id, out Guid guid))
         {
-            return null;
+            throw new UnauthorizedException();
         }
 
         return guid;
-    }
-
-    private bool UserExists(Guid id)
-    {
-        var user = userRepository.FindById(id);
-
-        return user is not null;
     }
 }

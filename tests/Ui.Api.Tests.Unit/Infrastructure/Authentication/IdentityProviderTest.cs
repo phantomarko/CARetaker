@@ -24,9 +24,9 @@ public class IdentityProviderTest
     }
 
     [Fact]
-    public void GetAuthenticatedUserId_Should_ThrowException_WhenContextReturnNullIdentity()
+    public void GetAuthenticatedUser_Should_ThrowException_WhenContextReturnNullIdentity()
     {
-        Assert.Throws<UnauthorizedException>(() => _identityProvider.GetAuthenticatedUserId());
+        Assert.Throws<UnauthorizedException>(() => _identityProvider.GetAuthenticatedUser());
 
         _context.Verify(
             mock => mock.GetClaim(It.IsAny<string>()),
@@ -37,12 +37,12 @@ public class IdentityProviderTest
     }
 
     [Fact]
-    public void GetAuthenticatedUserId_Should_ThrowException_WhenIdentityClaimIsNotAGuid()
+    public void GetAuthenticatedUser_Should_ThrowException_WhenIdentityClaimIsNotAGuid()
     {
         _context.Setup(mock => mock.GetClaim(JwtProvider.IdentityClaim))
             .Returns("not a GUID");
 
-        Assert.Throws<UnauthorizedException>(() => _identityProvider.GetAuthenticatedUserId());
+        Assert.Throws<UnauthorizedException>(() => _identityProvider.GetAuthenticatedUser());
 
         _repository.Verify(
             mock => mock.FindById(It.IsAny<Guid>()),
@@ -50,14 +50,29 @@ public class IdentityProviderTest
     }
 
     [Fact]
-    public void GetAuthenticatedUserId_Should_ThrowException_WhenUserNotExists()
+    public void GetAuthenticatedUser_Should_ThrowException_WhenUserNotExists()
     {
         _context.Setup(mock => mock.GetClaim(JwtProvider.IdentityClaim))
             .Returns(_userId.ToString());
 
-        Assert.Throws<UnauthorizedException>(() => _identityProvider.GetAuthenticatedUserId());
+        Assert.Throws<UnauthorizedException>(() => _identityProvider.GetAuthenticatedUser());
 
         _repository.Verify(mock => mock.FindById(_userId), Times.Once());
+    }
+
+    [Fact]
+    public void GetAuthenticatedUser_Should_ReturnAuthenticatedUser()
+    {
+        var user = UsersMother.MakeUser(id: _userId);
+        _context.Setup(mock => mock.GetClaim(JwtProvider.IdentityClaim))
+            .Returns(_userId.ToString());
+        _repository.Setup<User>(mock => mock.FindById(_userId))
+            .Returns(user);
+
+        var authenticatedUser = _identityProvider.GetAuthenticatedUser();
+
+        Assert.Equal(user.Id, authenticatedUser.Id);
+        Assert.Equal(user.Email.ToString(), authenticatedUser.Email);
     }
 
     [Fact]
