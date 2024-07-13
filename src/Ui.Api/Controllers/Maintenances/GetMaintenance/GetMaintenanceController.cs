@@ -14,6 +14,7 @@ public class GetMaintenanceController(ISender sender)
     [Authorize(Policy = ApplicationPolicies.User)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ApiExplorerSettings(GroupName = "Maintenances")]
     public async Task<ActionResult<MaintenanceResponse>> Index(
         string id,
         CancellationToken cancellationToken)

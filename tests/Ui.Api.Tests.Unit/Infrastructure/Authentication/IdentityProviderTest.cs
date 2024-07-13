@@ -72,7 +72,7 @@ public class IdentityProviderTest
         var authenticatedUser = _identityProvider.GetAuthenticatedUser();
 
         Assert.Equal(user.Id, authenticatedUser.Id);
-        Assert.Equal(user.Email.ToString(), authenticatedUser.Email);
+        Assert.Equal(user.Email.Value, authenticatedUser.Email);
     }
 
     [Fact]

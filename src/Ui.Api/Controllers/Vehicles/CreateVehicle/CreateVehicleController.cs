@@ -14,6 +14,7 @@ public class CreateVehicleController(ISender sender)
     [Authorize(Policy = ApplicationPolicies.User)]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ApiExplorerSettings(GroupName = "Vehicles")]
     public async Task<ActionResult<ResourceCreatedResponse>> Index(
         CreateVehicleRequest request,
         CancellationToken cancellationToken)

@@ -1,6 +1,8 @@
 ﻿using Application.Abstractions.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 using Ui.Api.Infrastructure.Authentication;
 using Ui.Api.Infrastructure.Authorization;
@@ -14,7 +16,27 @@ public static class DependencyInjection
         // controllers
         services.AddControllers();
         services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
+        services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+
+            c.TagActionsBy(api =>
+            {
+                if (api.GroupName != null)
+                {
+                    return new[] { api.GroupName };
+                }
+
+                var controllerActionDescriptor = api.ActionDescriptor as ControllerActionDescriptor;
+                if (controllerActionDescriptor != null)
+                {
+                    return new[] { controllerActionDescriptor.ControllerName };
+                }
+
+                throw new InvalidOperationException("Unable to determine tag for endpoint.");
+            });
+            c.DocInclusionPredicate((name, api) => true);
+        });
 
         // authentication
         services.ConfigureOptions<JwtOptionsSetup>();

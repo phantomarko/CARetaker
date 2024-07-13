@@ -23,7 +23,7 @@ public sealed class IdentityProvider(
             throw new UnauthorizedException();
         }
 
-        return new AuthenticatedUser(user.Id, user.Email.ToString());
+        return new AuthenticatedUser(user.Id, user.Email.Value);
     }
 
     private Guid GetIdFromContext()

@@ -13,6 +13,7 @@ public class AuthorizeUserController(ISender sender)
     [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ApiExplorerSettings(GroupName = "Users")]
     public async Task<ActionResult<BearerTokenResponse>> Index(
         AuthorizeUserRequest request,
         CancellationToken cancellationToken)

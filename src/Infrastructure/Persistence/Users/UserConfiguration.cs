@@ -16,7 +16,7 @@ public sealed class UserConfiguration : IEntityTypeConfiguration<User>
         .Property(e => e.Email)
         .HasConversion(
             v => v.Value,
-        v => Email.Create(v))
+            v => Email.Create(v))
         .HasMaxLength(EmailMaxLength)
         .IsRequired();
 
