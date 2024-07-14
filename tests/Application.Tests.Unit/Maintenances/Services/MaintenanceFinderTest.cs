@@ -1,6 +1,7 @@
 ﻿using Application.Maintenances.Exceptions;
 using Application.Maintenances.Services;
 using Domain.Maintenances;
+using Domain.Tests.Fixtures;
 using Moq;
 
 namespace Application.Tests.Unit.Maintenances.Services;
@@ -27,31 +28,34 @@ public class MaintenanceFinderTest
     [Fact]
     public void Find_Should_ThrowException_WhenUserIsNotOwner()
     {
-        var vehicleId = Guid.NewGuid();
+        var maintenanceId = Guid.NewGuid();
         MaintenanceExists(
             Domain.Tests.Fixtures.MaintenancesMother.MakeMaintenance(
-                id: vehicleId,
+                id: maintenanceId,
                 userId: Guid.NewGuid()));
 
         Assert.Throws<MaintenanceNotFoundException>(() => _finder.Find(
-            vehicleId,
+            maintenanceId,
             Guid.NewGuid()));
         _repository.VerifyAll();
     }
 
     [Fact]
-    public void Find_ShouldNot_ThrowException()
+    public void Find_Should_ReturnMaintenance()
     {
-        var vehicleId = Guid.NewGuid();
+        var maintenanceId = Guid.NewGuid();
         var userId = Guid.NewGuid();
+        var expectedMaintenance = MaintenancesMother.MakeMaintenance(
+            id: maintenanceId,
+            userId: userId);
         MaintenanceExists(
-            Domain.Tests.Fixtures.MaintenancesMother.MakeMaintenance(
-                id: vehicleId,
-                userId: userId));
+            expectedMaintenance);
 
-        _finder.Find(
-            vehicleId,
+        var result = _finder.Find(
+            maintenanceId,
             userId);
+
+        Assert.Equal(expectedMaintenance, result);
         _repository.VerifyAll();
     }
 

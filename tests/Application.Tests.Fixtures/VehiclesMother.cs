@@ -1,4 +1,5 @@
 ﻿using Application.Vehicles.Commands.CreateVehicle;
+using Application.Vehicles.Queries.GetVehicle;
 
 namespace Application.Tests.Fixtures;
 
@@ -14,5 +15,10 @@ public class VehiclesMother
         return new CreateVehicleCommand(
             name ?? NameDefault,
             plate ?? PlateDefault);
+    }
+
+    public static GetVehicleQuery MakeGetVehicleQuery(string? vehicleId = null)
+    {
+        return new GetVehicleQuery(vehicleId ?? Guid.NewGuid().ToString());
     }
 }

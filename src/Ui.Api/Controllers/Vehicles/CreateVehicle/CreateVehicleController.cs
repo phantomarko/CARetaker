@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedKernel.Responses;
+using Ui.Api.Controllers.Vehicles.GetVehicle;
 using Ui.Api.Infrastructure.Authorization;
 
 namespace Ui.Api.Controllers.Vehicles.CreateVehicle;
@@ -25,9 +26,9 @@ public class CreateVehicleController(ISender sender)
                 request.Plate),
             cancellationToken);
 
-        // TODO: set to CreatedAtRoute() pointing to get user controller
-        return CreatedAtAction(
-            nameof(Index),
+        return CreatedAtRoute(
+            nameof(GetVehicleController),
+            new { id = result.Id },
             result);
     }
 }
