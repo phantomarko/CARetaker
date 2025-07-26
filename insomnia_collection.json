@@ -1,1 +1,230 @@
-{"_type":"export","__export_format":4,"__export_date":"2024-07-14T17:37:32.978Z","__export_source":"insomnia.desktop.app:v9.3.2","resources":[{"_id":"req_cec9c4bea1104c549b682f6c1bd1e385","parentId":"fld_75c1b367eb2a4a16bceaadfda002c0d1","modified":1720886432371,"created":1711892050329,"url":"{{ _.apiUrl }}/users","name":"Create","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"email\": \"user6@domain.example\",\n\t\"password\": \"P4ssw0rd\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json"},{"name":"User-Agent","value":"insomnia/8.6.1"}],"authentication":{},"preRequestScript":"","metaSortKey":-1711891937632,"isPrivate":false,"pathParameters":[],"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_75c1b367eb2a4a16bceaadfda002c0d1","parentId":"wrk_scratchpad","modified":1711891978529,"created":1711891978529,"name":"Users","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1711891978529,"_type":"request_group"},{"_id":"wrk_scratchpad","parentId":null,"modified":1711891771993,"created":1711891771993,"name":"Scratch Pad","description":"","scope":"collection","_type":"workspace"},{"_id":"req_2fda0eb499414a4f963b7ba8e309332d","parentId":"fld_75c1b367eb2a4a16bceaadfda002c0d1","modified":1720978449848,"created":1711892010408,"url":"{{ _.apiUrl }}/users/authorize","name":"Authorize","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"email\": \"user@domain.example\",\n\t\"password\": \"P4ssw0rd\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json"},{"name":"User-Agent","value":"insomnia/8.6.1"}],"authentication":{},"preRequestScript":"","metaSortKey":-1711891937532,"isPrivate":false,"pathParameters":[],"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_10701aecb09e4ed99129d10fc5dd37ed","parentId":"fld_75c1b367eb2a4a16bceaadfda002c0d1","modified":1720978595034,"created":1720885717917,"url":"{{ _.apiUrl }}/users/me","name":"Get","description":"","method":"GET","body":{},"parameters":[],"headers":[{"name":"User-Agent","value":"insomnia/8.6.1"}],"authentication":{"type":"bearer","token":"{{ _.bearerToken }}"},"preRequestScript":"","metaSortKey":-1711891937432,"isPrivate":false,"pathParameters":[],"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_89310e1b1d0c4fe1a892f11ed522aab8","parentId":"fld_a8a0fa01e98e4cd28eab6d6ab14469b3","modified":1720978601629,"created":1711891855706,"url":"{{ _.apiUrl }}/vehicles","name":"Create","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"plate\": null,\n\t\"name\": \"PL4t3L3SS!!\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json"},{"name":"User-Agent","value":"insomnia/8.6.1"}],"authentication":{"type":"bearer","token":"{{ _.bearerToken }}"},"preRequestScript":"","metaSortKey":-1711891855906,"isPrivate":false,"pathParameters":[],"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_a8a0fa01e98e4cd28eab6d6ab14469b3","parentId":"wrk_scratchpad","modified":1712308619094,"created":1711891850918,"name":"Vehicles","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1711891946626.25,"_type":"request_group"},{"_id":"req_53b9f89000e04cee9039ed84238727f4","parentId":"fld_a8a0fa01e98e4cd28eab6d6ab14469b3","modified":1720978628758,"created":1720978300129,"url":"{{ _.apiUrl }}/vehicles/587cd8f5-770b-49ab-bd5c-838bcea80727","name":"Get","description":"","method":"GET","body":{},"parameters":[],"headers":[{"name":"User-Agent","value":"insomnia/8.6.1"}],"authentication":{"type":"bearer","token":"{{ _.bearerToken }}"},"preRequestScript":"","metaSortKey":-1711891855806,"isPrivate":false,"pathParameters":[],"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_f1514968d8b146958555ff8afd204839","parentId":"fld_a9ad4ebdd13641409151fb68d6614299","modified":1720389482010,"created":1712308636606,"url":"{{ _.apiUrl }}/maintenances","name":"Create","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"vehicleId\": \"82e28d13-8cd5-4d9b-aada-223f2fb571fa\",\n\t\"name\": \"Pintar coche\",\n\t\"description\": null\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json"},{"name":"User-Agent","value":"insomnia/8.6.1"}],"authentication":{"type":"bearer","token":"{{ _.bearerToken }}"},"preRequestScript":"","metaSortKey":-1712308641300,"isPrivate":false,"pathParameters":[],"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_a9ad4ebdd13641409151fb68d6614299","parentId":"wrk_scratchpad","modified":1712308614711,"created":1712308601256,"name":"Maintenances","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1711891914723.5,"_type":"request_group"},{"_id":"req_fb250f16274849dda5e89f2fb74ffd98","parentId":"fld_a9ad4ebdd13641409151fb68d6614299","modified":1720978587468,"created":1718575573679,"url":"{{ _.apiUrl }}/maintenances/9a4f1733-6490-41be-9b3a-9c34a33caec0","name":"Get","description":"","method":"GET","body":{},"parameters":[],"headers":[{"name":"User-Agent","value":"insomnia/8.6.1"}],"authentication":{"type":"bearer","token":"{{ _.bearerToken }}"},"preRequestScript":"","metaSortKey":-1712308641200,"isPrivate":false,"pathParameters":[],"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"env_99d30891da4bdcebc63947a8fc17f076de878684","parentId":"wrk_scratchpad","modified":1711813948587,"created":1711813948587,"name":"Base Environment","data":{},"dataPropertyOrder":null,"color":null,"isPrivate":false,"metaSortKey":1711813948587,"_type":"environment"},{"_id":"jar_99d30891da4bdcebc63947a8fc17f076de878684","parentId":"wrk_scratchpad","modified":1711891773626,"created":1711891773626,"name":"Default Jar","cookies":[],"_type":"cookie_jar"},{"_id":"env_9c482316ede542bfbf1db262d497a943","parentId":"env_99d30891da4bdcebc63947a8fc17f076de878684","modified":1712308726443,"created":1711813983552,"name":"Development","data":{"apiUrl":"https://localhost:8081","bearerToken":"{% response 'body', 'req_2fda0eb499414a4f963b7ba8e309332d', 'b64::JC5iZWFyZXJUb2tlbg==::46b', 'when-expired', 86400 %}"},"dataPropertyOrder":{"&":["apiUrl","bearerToken"]},"color":null,"isPrivate":true,"metaSortKey":1711813983552,"_type":"environment"}]}
+type: collection.insomnia.rest/5.0
+name: CARetaker
+meta:
+  id: wrk_85a3dad5d8644369970b87ce090b5411
+  created: 1712755905988
+  modified: 1712755905988
+  description: ""
+collection:
+  - name: Vehicles
+    meta:
+      id: fld_862d3d04856b4f4d848a4ac5eda710a0
+      created: 1711891850918
+      modified: 1712308619094
+      sortKey: -1711891946626.25
+      description: ""
+    children:
+      - url: "{{ _.apiUrl }}/vehicles"
+        name: Create
+        meta:
+          id: req_c57913a34c2549e083d74c1d3d41fff8
+          created: 1711891855706
+          modified: 1753524146982
+          isPrivate: false
+          description: ""
+          sortKey: -1711891855706
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"plate": "4901GFC",
+            	"name": "Coñoneta"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/8.6.1
+        authentication:
+          type: bearer
+          token: "{{ _.bearerToken }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.apiUrl }}/vehicles/61339322-3ef1-4383-bbb3-989a0546943e"
+        name: Get
+        meta:
+          id: req_a60a1c6d7ed249d1867c2cb4cb82840a
+          created: 1753524259876
+          modified: 1753524291317
+          isPrivate: false
+          description: ""
+          sortKey: -1711891855656
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/8.6.1
+        authentication:
+          type: bearer
+          token: "{{ _.bearerToken }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Users
+    meta:
+      id: fld_b79bb13cf41345e9b5eb9968d4e6f95e
+      created: 1711891978529
+      modified: 1711891978529
+      sortKey: -1711891978529
+      description: ""
+    children:
+      - url: "{{ _.apiUrl }}/users/authorize"
+        name: Authorize
+        meta:
+          id: req_be9b2baf2a4c4486b8373312e9434daf
+          created: 1711892010408
+          modified: 1753524358394
+          isPrivate: false
+          description: ""
+          sortKey: -1711892019708
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "user@domain.example",
+            	"password": "P4ssw0rd"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/8.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.apiUrl }}/users"
+        name: Create
+        meta:
+          id: req_1f78e59184444d78b2c31487e16c2dcf
+          created: 1711892050329
+          modified: 1753524356498
+          isPrivate: false
+          description: ""
+          sortKey: -1711892019758
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "user@domain.example",
+            	"password": "P4ssw0rd"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/8.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.apiUrl }}/users/me"
+        name: Me
+        meta:
+          id: req_2488d328322c4fb79412575f9d364c40
+          created: 1753524347230
+          modified: 1753524365514
+          isPrivate: false
+          description: ""
+          sortKey: -1711892019658
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/8.6.1
+        authentication:
+          type: bearer
+          token: "{{ _.bearerToken }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Maintenances
+    meta:
+      id: fld_c52518cdf32840d09f0547255a1a258c
+      created: 1712308601256
+      modified: 1712308614711
+      sortKey: -1711891914723.5
+      description: ""
+    children:
+      - url: "{{ _.apiUrl }}/vehicles/c444b0df-bef9-4c63-87ba-0dee050a701f/maintenances"
+        name: Create
+        meta:
+          id: req_1575b6edb0824efca0f8a88cc7697b45
+          created: 1712308636606
+          modified: 1712309501414
+          isPrivate: false
+          description: ""
+          sortKey: -1712308641300
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "Change tires"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/8.6.1
+        authentication:
+          type: bearer
+          token: "{{ _.bearerToken }}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_4a6a6a625aae083517622c7a9b1602a013857f11
+    created: 1712755905992
+    modified: 1712755905992
+environments:
+  name: Base Environment
+  meta:
+    id: env_4a6a6a625aae083517622c7a9b1602a013857f11
+    created: 1712755905991
+    modified: 1712755905991
+    isPrivate: false
+  subEnvironments:
+    - name: Development
+      meta:
+        id: env_a79d1e18eb904214a0cee6e76cb8ccf5
+        created: 1711813983552
+        modified: 1712755948628
+        isPrivate: true
+        sortKey: 1711813983552
+      data:
+        apiUrl: https://localhost:8081
+        bearerToken: "{% response 'body', 'req_2fda0eb499414a4f963b7ba8e309332d',
+          'b64::JC5iZWFyZXJUb2tlbg==::46b', 'when-expired', 86400 %}"
