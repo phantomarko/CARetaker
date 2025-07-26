@@ -19,7 +19,7 @@ collection:
         meta:
           id: req_c57913a34c2549e083d74c1d3d41fff8
           created: 1711891855706
-          modified: 1753524146982
+          modified: 1753534229385
           isPrivate: false
           description: ""
           sortKey: -1711891855706
@@ -28,8 +28,8 @@ collection:
           mimeType: application/json
           text: |-
             {
-            	"plate": "4901GFC",
-            	"name": "Coñoneta"
+            	"plate": "789",
+            	"name": "optimus789"
             }
         headers:
           - name: Content-Type
@@ -38,7 +38,8 @@ collection:
             value: insomnia/8.6.1
         authentication:
           type: bearer
-          token: "{{ _.bearerToken }}"
+          token: "{% response 'body', 'req_be9b2baf2a4c4486b8373312e9434daf',
+            'b64::JC5iZWFyZXJUb2tlbg==::46b', 'no-history', 60 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -47,12 +48,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: "{{ _.apiUrl }}/vehicles/61339322-3ef1-4383-bbb3-989a0546943e"
+      - url: "{{ _.apiUrl }}/vehicles/d3c1a75b-07a3-48d7-bbe9-4c5f0fcc6209"
         name: Get
         meta:
           id: req_a60a1c6d7ed249d1867c2cb4cb82840a
           created: 1753524259876
-          modified: 1753524291317
+          modified: 1753534240171
           isPrivate: false
           description: ""
           sortKey: -1711891855656
@@ -62,7 +63,8 @@ collection:
             value: insomnia/8.6.1
         authentication:
           type: bearer
-          token: "{{ _.bearerToken }}"
+          token: "{% response 'body', 'req_be9b2baf2a4c4486b8373312e9434daf',
+            'b64::JC5iZWFyZXJUb2tlbg==::46b', 'no-history', 60 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -84,7 +86,7 @@ collection:
         meta:
           id: req_be9b2baf2a4c4486b8373312e9434daf
           created: 1711892010408
-          modified: 1753524358394
+          modified: 1753534191597
           isPrivate: false
           description: ""
           sortKey: -1711892019708
@@ -93,7 +95,7 @@ collection:
           mimeType: application/json
           text: |-
             {
-            	"email": "user@domain.example",
+            	"email": "userTOP@domain.example",
             	"password": "P4ssw0rd"
             }
         headers:
@@ -114,7 +116,7 @@ collection:
         meta:
           id: req_1f78e59184444d78b2c31487e16c2dcf
           created: 1711892050329
-          modified: 1753524356498
+          modified: 1753533812682
           isPrivate: false
           description: ""
           sortKey: -1711892019758
@@ -123,7 +125,7 @@ collection:
           mimeType: application/json
           text: |-
             {
-            	"email": "user@domain.example",
+            	"email": "userTOP@domain.example",
             	"password": "P4ssw0rd"
             }
         headers:
@@ -144,7 +146,7 @@ collection:
         meta:
           id: req_2488d328322c4fb79412575f9d364c40
           created: 1753524347230
-          modified: 1753524365514
+          modified: 1753534161517
           isPrivate: false
           description: ""
           sortKey: -1711892019658
@@ -154,7 +156,8 @@ collection:
             value: insomnia/8.6.1
         authentication:
           type: bearer
-          token: "{{ _.bearerToken }}"
+          token: "{% response 'body', 'req_be9b2baf2a4c4486b8373312e9434daf',
+            'b64::JC5iZWFyZXJUb2tlbg==::46b', 'no-history', 60 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -176,7 +179,7 @@ collection:
         meta:
           id: req_1575b6edb0824efca0f8a88cc7697b45
           created: 1712308636606
-          modified: 1712309501414
+          modified: 1753534212324
           isPrivate: false
           description: ""
           sortKey: -1712308641300
@@ -194,7 +197,8 @@ collection:
             value: insomnia/8.6.1
         authentication:
           type: bearer
-          token: "{{ _.bearerToken }}"
+          token: "{% response 'body', 'req_be9b2baf2a4c4486b8373312e9434daf',
+            'b64::JC5iZWFyZXJUb2tlbg==::46b', 'no-history', 60 %}"
         settings:
           renderRequestBody: true
           encodeUrl: true
@@ -217,14 +221,12 @@ environments:
     modified: 1712755905991
     isPrivate: false
   subEnvironments:
-    - name: Development
+    - name: Local
       meta:
         id: env_a79d1e18eb904214a0cee6e76cb8ccf5
         created: 1711813983552
-        modified: 1712755948628
+        modified: 1753534307589
         isPrivate: true
         sortKey: 1711813983552
       data:
         apiUrl: https://localhost:8081
-        bearerToken: "{% response 'body', 'req_2fda0eb499414a4f963b7ba8e309332d',
-          'b64::JC5iZWFyZXJUb2tlbg==::46b', 'when-expired', 86400 %}"
