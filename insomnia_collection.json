@@ -19,7 +19,7 @@ collection:
         meta:
           id: req_c57913a34c2549e083d74c1d3d41fff8
           created: 1711891855706
-          modified: 1753534229385
+          modified: 1753535787353
           isPrivate: false
           description: ""
           sortKey: -1711891855706
@@ -28,8 +28,8 @@ collection:
           mimeType: application/json
           text: |-
             {
-            	"plate": "789",
-            	"name": "optimus789"
+            	"plate": "0000BBB",
+            	"name": "First"
             }
         headers:
           - name: Content-Type
@@ -48,12 +48,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: "{{ _.apiUrl }}/vehicles/d3c1a75b-07a3-48d7-bbe9-4c5f0fcc6209"
+      - url: "{{ _.apiUrl }}/vehicles/850c29ef-6063-4e89-bea1-dbcb14fc2623"
         name: Get
         meta:
           id: req_a60a1c6d7ed249d1867c2cb4cb82840a
           created: 1753524259876
-          modified: 1753534240171
+          modified: 1753535795862
           isPrivate: false
           description: ""
           sortKey: -1711891855656
@@ -86,7 +86,7 @@ collection:
         meta:
           id: req_be9b2baf2a4c4486b8373312e9434daf
           created: 1711892010408
-          modified: 1753534191597
+          modified: 1753534681440
           isPrivate: false
           description: ""
           sortKey: -1711892019708
@@ -95,7 +95,7 @@ collection:
           mimeType: application/json
           text: |-
             {
-            	"email": "userTOP@domain.example",
+            	"email": "user@domain.example",
             	"password": "P4ssw0rd"
             }
         headers:
@@ -116,7 +116,7 @@ collection:
         meta:
           id: req_1f78e59184444d78b2c31487e16c2dcf
           created: 1711892050329
-          modified: 1753533812682
+          modified: 1753535674583
           isPrivate: false
           description: ""
           sortKey: -1711892019758
@@ -125,7 +125,7 @@ collection:
           mimeType: application/json
           text: |-
             {
-            	"email": "userTOP@domain.example",
+            	"email": "user@domain.example",
             	"password": "P4ssw0rd"
             }
         headers:
@@ -174,25 +174,51 @@ collection:
       sortKey: -1711891914723.5
       description: ""
     children:
-      - url: "{{ _.apiUrl }}/vehicles/c444b0df-bef9-4c63-87ba-0dee050a701f/maintenances"
+      - url: "{{ _.apiUrl }}/maintenances"
         name: Create
         meta:
           id: req_1575b6edb0824efca0f8a88cc7697b45
           created: 1712308636606
-          modified: 1753534212324
+          modified: 1753536166235
           isPrivate: false
           description: ""
           sortKey: -1712308641300
         method: POST
         body:
           mimeType: application/json
-          text: |-
+          text: >-
             {
+            	"vehicleId": "{% response 'body', 'req_a60a1c6d7ed249d1867c2cb4cb82840a', 'b64::JC5pZA==::46b', 'never', 60 %}",
             	"name": "Change tires"
             }
         headers:
           - name: Content-Type
             value: application/json
+          - name: User-Agent
+            value: insomnia/8.6.1
+        authentication:
+          type: bearer
+          token: "{% response 'body', 'req_be9b2baf2a4c4486b8373312e9434daf',
+            'b64::JC5iZWFyZXJUb2tlbg==::46b', 'no-history', 60 %}"
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.apiUrl }}/maintenances/ee2cc7ab-b726-4b88-88f3-cb1215f25e5d"
+        name: Get
+        meta:
+          id: req_c5ec459f62b9420fbb42dff083f7a765
+          created: 1753536200529
+          modified: 1753536219748
+          isPrivate: false
+          description: ""
+          sortKey: -1712308641250
+        method: GET
+        headers:
           - name: User-Agent
             value: insomnia/8.6.1
         authentication:
